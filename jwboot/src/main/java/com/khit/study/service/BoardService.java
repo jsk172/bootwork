@@ -1,43 +1,43 @@
 package com.khit.study.service;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
-import com.khit.study.entity.BoardVO;
+import com.khit.study.entity.Board;
+import com.khit.study.repository.BoardRepository;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-@Controller
+@AllArgsConstructor
+@Service
 public class BoardService {
-	
-	
-	//상세보기
-	public BoardVO getBoard() {
-		BoardVO board = new BoardVO();
-		board.setId(1);
-		board.setTitle("대상현의 코딩");
-		board.setWriter("빛상현");
-		board.setContent("KH대상현의 코딩강의 입니다.");
-		board.setCreateDate(new Date());
-		
-		return board;
+	private BoardRepository boardRepository;
+
+	public void save(Board board) {
+		boardRepository.save(board);
 	}
-	//리스트 보기
-	public List<BoardVO> getBoardList(){
-		List<BoardVO> boardList = new ArrayList<>();
-		for(int i=1; i<=10; i++) {
-			BoardVO board = new BoardVO();
-			board.setId(i);
-			board.setTitle("대상현의 코딩" + i);
-			board.setWriter("빛상현");
-			board.setContent(i + "번 KH대상현의 코딩강의 입니다.");
-			board.setCreateDate(new Date());
-			
-			boardList.add(board);
-		}
-		return boardList;
+
+	public List<Board> findAll() {
+		//정렬 - 오름차순
+		//내림차순 - Sort 클래스 사용
+		return boardRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+	}
+
+	public Board findById(Long id) {
+		return boardRepository.findById(id).get();
+	}
+	
+	public void delete(Long id) {
+		//1건삭제 - deleteById
+		boardRepository.deleteById(id);
+	}
+
+	public void update(Board board) {
+		board.setCreateDate(new Timestamp(System.currentTimeMillis()));
+		boardRepository.save(board);
 	}
 }
