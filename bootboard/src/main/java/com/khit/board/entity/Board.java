@@ -38,6 +38,18 @@ public class Board extends BaseEntity{
 				.boardTitle(boardDTO.getBoardTitle())
 				.boardWriter(boardDTO.getBoardWriter())
 				.boardContent(boardDTO.getBoardContent())
+				.boardHits(0)
+				.build();
+		
+		return board;
+	}
+	
+	public static Board toUpdateEntity(BoardDTO boardDTO) {
+		Board board = Board.builder()
+				.id(boardDTO.getId())
+				.boardTitle(boardDTO.getBoardTitle())
+				.boardWriter(boardDTO.getBoardWriter())
+				.boardContent(boardDTO.getBoardContent())
 				.boardHits(boardDTO.getBoardHits())
 				.build();
 		
