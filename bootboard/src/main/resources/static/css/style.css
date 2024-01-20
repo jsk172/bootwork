@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#container{width: 1200px; margin: 30px auto;}
+#container{width: 1200px; margin: 30px auto; text-align: center;}
 h2{color: skyblue; text-align: center;}
 ul li{list-style: none; margin: 16px;}
 /* index 스타일 */
@@ -42,3 +42,10 @@ a{text-decoration: none;}
 .tbl_write th, td{border: 1px solid #ccc; padding: 6px;}
 .tbl_write input[type="text"]{width: 500px; height: 25px;}
 .tbl_write textarea{width: 500px; height: 300px;}
+
+/* pagelist 스타일 */
+.pagination{margin: 10px; text-align: center;}
+.pagination a{padding: 5px; color: #555; text-decoration: none;}
+.btn_write{text-align: center; padding-top: 10px;}
+.searchForm{width: 700px; margin: 0 auto; text-align: right; margin-bottom: 12px;}
+.sel_type{padding: 4px;}

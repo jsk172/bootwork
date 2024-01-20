@@ -75,6 +75,7 @@ public class BoardRepositoryTest {
 //	public void deleteBoard() {
 //		boardRepository.deleteById(3L);
 //	}
+	/*
 	@Test
 	public void insert() {
 		Board board = new Board();
@@ -84,7 +85,8 @@ public class BoardRepositoryTest {
 		
 		boardRepository.save(board);
 		log.info("설하네 강의" + board);
-	}
+	}*/
+	/*
 	@Test
 	public void update() {
 		Board board = boardRepository.findById(611L).get();
@@ -92,5 +94,6 @@ public class BoardRepositoryTest {
 		
 		boardRepository.save(board);
 		log.info("설하네 강의 수정" + board.toString());
-	}
+	}*/
+
 }

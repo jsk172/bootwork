@@ -31,6 +31,10 @@ public class Board extends BaseEntity{
 	private String boardContent;
 	@Column
 	private Integer boardHits;
+	@Column
+	private String filename;
+	@Column
+	private  String filepath;
 	
 	
 	public static Board toSaveEntity(BoardDTO boardDTO) {
@@ -38,6 +42,8 @@ public class Board extends BaseEntity{
 				.boardTitle(boardDTO.getBoardTitle())
 				.boardWriter(boardDTO.getBoardWriter())
 				.boardContent(boardDTO.getBoardContent())
+				.filename(boardDTO.getFilename())
+				.filepath(boardDTO.getFilepath())
 				.boardHits(0)
 				.build();
 		
@@ -51,6 +57,8 @@ public class Board extends BaseEntity{
 				.boardWriter(boardDTO.getBoardWriter())
 				.boardContent(boardDTO.getBoardContent())
 				.boardHits(boardDTO.getBoardHits())
+				.filepath(boardDTO.getFilepath())
+				.filename(boardDTO.getFilename())
 				.build();
 		
 		return board;

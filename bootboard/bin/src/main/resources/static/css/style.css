@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+#container{width: 1200px; margin: 30px auto;}
+h2{color: skyblue; text-align: center;}
+ul li{list-style: none; margin: 16px;}
+/* index 스타일 */
+.main-img{text-align: center;}
+.menu{text-align: center;}
+a{text-decoration: none;}
+
+/* join 스타일 */
+.joinform{width: 450px; margin: 0 auto;}
+.joinform label{width: 100px; float: left;}
+.joinform input{padding: 5px;}
+
+/* memberlist 스타일 */
+.memberlist{width:700px; margin: 0 auto; border-collapse: collapse;}
+.memberlist th, td{border:1px solid #ccc; padding: 8px;}
+/* detail 스타일 */
+.detail{width:420px; margin: 0 auto;}
+.detail label{width: 100px; float: left;}
+.detail input{padding: 5px;}
+/* login 스타일 */
+.login{width:420px; margin: 0 auto;}
+.login label{width: 100px; float: left;}
+.login input{padding: 5px;}
+.error{color: red;}
+
+/* 게시판 스타일 */
+.wrap{
+	width: 1000px;
+	margin: 30px auto;
+	text-align: center;
+}
+h1{color: blue;}
+a{text-decoration: none;}
+.tbl_write{
+	width: 600px;
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+.tbl_write th, td{border: 1px solid #ccc; padding: 6px;}
+.tbl_write input[type="text"]{width: 500px; height: 25px;}
+.tbl_write textarea{width: 500px; height: 300px;}

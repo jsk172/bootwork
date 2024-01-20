@@ -8,7 +8,7 @@
 <body>
 	<div class="wrap">
 		<h2>글쓰기</h2>
-		<form th:action="@{/board/write}" method="post">
+		<form th:action="@{/board/write}" method="post" enctype="multipart/form-data">
 			<table class="tbl_write">
 				<tbody>
 					<tr>
@@ -18,7 +18,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="text" name="boardWriter" th:value="${session.sessionName}">
+							<input type="text" name="boardWriter" th:value="${session.sessionName}" readonly>
 						</td>
 					</tr>
 					<tr>
@@ -28,8 +28,13 @@
 					</tr>
 					<tr>
 						<td>
+							<input type="file" name="boardFile">
+						</td>
+					</tr>
+					<tr>
+						<td>
 							<input type="submit" value="등록">
-							<input type="reset" value="취소">
+							<a th:href="@{/}"><button type="button">취소</button></a>
 						</td>
 					</tr>
 				</tbody>

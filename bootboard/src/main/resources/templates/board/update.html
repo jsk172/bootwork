@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>수정</title>
@@ -9,7 +9,7 @@
 	<div class="wrap">
 		<h2>수정하기</h2>
 		
-		<form th:action="@{/board/update}" method="post">
+		<form th:action="@{/board/update}" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="id" th:value="${board.id}">
 			<input type="hidden" name="boardHits" th:value="${board.boardHits}">
 			<input type="hidden" name="createdDate" th:value="${board.createdDate}">
@@ -49,9 +49,15 @@
 					</tr>
 					<tr>
 						<td>
+							<img th:src="@{${board.filepath}}" alt="Image">
+							<input type="file" name="boardFile">
+						</td>
+					</tr>
+					<tr>
+						<td>
 							<input type="submit" value="저장">
 							<a th:href="@{|/board/delete/${board.id}|}"><button type="button" onclick="return confirm('삭제하시겠습니까?')">삭제</button></a>
-							<a th:href="@{/board/list}"><button type="button">목록</button></a>
+							<a th:href="@{/board/pagelist}"><button type="button">목록</button></a>
 						</td>
 					</tr>
 				</tbody>
