@@ -90,11 +90,30 @@ public class BoardService {
 	}
 
 	@Transactional
-	public void update(BoardDTO boardDTO) {
-		//save() - 삽입(id가 없고), 수정(id가 있음)
-		//dto -> entity 변환
+	public void update(BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
+		//1. 파일을 서버에 저장하고,
+		if(!boardFile.isEmpty()){ //전달된 파일이 있으면
+			//저장 경로
+			String filepath = "C:\\bootworks\\bootboard\\src\\main\\resources\\static\\upload\\";
+			UUID uuid = UUID.randomUUID(); //무작위 아이디 생성
+			String filename = uuid + "_" + boardFile.getOriginalFilename(); //원본 파일
+
+			//file 클래스 객체 생성
+			File savedFile = new File(filepath, filename);//upload 폴더에 저장
+			boardFile.transferTo(savedFile);
+			// 2. 파일 이름은 db에 저장
+			boardDTO.setFilename(filename);
+			boardDTO.setFilepath("/upload/" + filename);
+
+		}else{
+//			Board board = Board.toUpdateNoFile(boardDTO);
+//			boardRepository.save(board);
+			boardDTO.setFilepath(findById(boardDTO.getId()).getFilepath());
+		}
 		Board board = Board.toUpdateEntity(boardDTO);
 		boardRepository.save(board);
+		//save() - 삽입(id가 없고), 수정(id가 있음)
+		//dto -> entity 변환
 	}
 
 	public Page<BoardDTO> findListAll(Pageable pageable) {

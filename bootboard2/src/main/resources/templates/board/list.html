@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글목록</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div class="wrap">
+		<h2>글목록</h2>
+			<table class="tbl_write">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="board: ${boardList}">
+						<td th:text="${board.id}"></td>
+<!--						<td th:text="${board.title}"></td>-->
+						<td>
+<!--							|쓰는이유 안쓰면 문자열로 들어가는데 |로 닫아주면 숫자로 유지가 됨-->
+							<a th:href="@{|/board/${board.id}|}" th:text="${board.title}"></a>
+						</td>
+						<td th:text="${board.content}"></td>
+						<td th:text="${#dates.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+    				</tr>
+				</tbody>
+			</table>
+			<a th:href="@{/}"><button type="button">Home</button></a>
+	</div>
+</body>
+</html>

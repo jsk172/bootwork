@@ -31,6 +31,7 @@ public class Board extends BaseEntity{
 	private String boardContent;
 	@Column
 	private Integer boardHits;
+	//write.html에서 name값과
 	@Column
 	private String filename;
 	@Column
@@ -50,6 +51,7 @@ public class Board extends BaseEntity{
 		return board;
 	}
 	
+	//첨부파일이 있는경우
 	public static Board toUpdateEntity(BoardDTO boardDTO) {
 		Board board = Board.builder()
 				.id(boardDTO.getId())
@@ -63,4 +65,17 @@ public class Board extends BaseEntity{
 		
 		return board;
 	}
+
+	//첨부파일이 없는경우
+//	public static Board toUpdateNoFile(BoardDTO boardDTO) {
+//		Board board = Board.builder()
+//				.id(boardDTO.getId())
+//				.boardTitle(boardDTO.getBoardTitle())
+//				.boardWriter(boardDTO.getBoardWriter())
+//				.boardContent(boardDTO.getBoardContent())
+//				.boardHits(boardDTO.getBoardHits())
+//				.build();
+//
+//		return board;
+//	}
 }

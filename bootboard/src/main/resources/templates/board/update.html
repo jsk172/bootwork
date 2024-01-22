@@ -47,9 +47,13 @@
 							<textarea rows="5" cols="50" name="boardContent" th:text="${board.boardContent}"></textarea>
 						</td>
 					</tr>
-					<tr>
 						<td>
 							<img th:src="@{${board.filepath}}" alt="Image">
+						</td>
+					<tr>
+					</tr>
+					<tr>
+						<td>
 							<input type="file" name="boardFile">
 						</td>
 					</tr>
