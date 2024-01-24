@@ -30,7 +30,7 @@ public class RelationMappingTest {
         member1.setMemberId("member1");
         member1.setPassword("password1");
         member1.setName("존잘재원형");
-        member1.setRole("USER");
+//        member1.setRole("USER");
 
         memberRepository.save(member1);
 
@@ -50,7 +50,7 @@ public class RelationMappingTest {
         member0.setMemberId("member0");
         member0.setPassword("password0");
         member0.setName("대상현");
-        member0.setRole("ADMIN");
+//        member0.setRole("ADMIN");
 
         memberRepository.save(member0);
         //관리자가 등록한 글

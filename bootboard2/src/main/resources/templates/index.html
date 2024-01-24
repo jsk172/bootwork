@@ -6,27 +6,24 @@
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div id="container">
-	<h2>MyHome</h2>
-	<div class="main-img">
-		<img th:src="@{/images/B1.PNG}" alt="아저씨">
+<!-- header.html 연결 -->
+<div th:replace="~{/layout/header::header-fragment}"></div>
+	<div id="container">
+		<section id="main">
+		<h2>MyHome</h2>
+		<div class="main_img">
+			<img th:src="@{/images/B3.jpg}" alt="석민이형">
+		</div>
+		<div class="menu">
+				<a th:href="@{/main}">메인페이지</a>&nbsp;&nbsp;
+				<a th:href="@{/member/join}">회원가입</a>&nbsp;&nbsp;
+				<a th:href="@{/member/list}">회원목록</a>&nbsp;&nbsp;
+				<a th:href="@{/auth/main}">인증메인</a>&nbsp;&nbsp;
+				<a th:href="@{/board/list}">글목록</a>&nbsp;&nbsp;
+		</div>
+		</section>
 	</div>
-	<div class="menu">
-		<th:block th:if="${session.sessionEmail != null}">
-			<h2 th:text="${session.sessionName} + '님 환영합니다.'"></h2>
-			<a th:href="@{/member/logout}">로그아웃</a>&nbsp;&nbsp;
-			<a th:href="@{/member/list}">회원목록</a>&nbsp;&nbsp;
-			<a th:href="@{/board/write}">글쓰기</a>&nbsp;&nbsp;
-			<a th:href="@{/board/list}">글목록</a>&nbsp;&nbsp;
-		</th:block>
-		<th:block th:unless="${session.sessionEmail != null}">
-			<a th:href="@{/member/join}">회원가입</a>&nbsp;&nbsp;
-			<a th:href="@{/member/list}">회원목록</a>&nbsp;&nbsp;
-			<a th:href="@{/member/login}">로그인</a>&nbsp;&nbsp;
-			<a th:href="@{/board/write}">글쓰기</a>&nbsp;&nbsp;
-			<a th:href="@{/board/list}">글목록</a>&nbsp;&nbsp;
-		</th:block>
-	</div>
-</div>
+<!-- footer.html 연결 -->
+<div th:replace="~{/layout/footer::footer-fragment}"></div>
 </body>
 </html>

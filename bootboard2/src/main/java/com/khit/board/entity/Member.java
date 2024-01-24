@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @ToString(exclude = "boardList") //순환참조 방지
 @Table(name = "t_member")
-public class Member {
+public class Member extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //자동순번
     private Integer id; //회원번호
@@ -23,12 +23,14 @@ public class Member {
     private String password; //비밀번호
     @Column(nullable = false, length = 30)
     private String name; //이름
-    @Column
-    private String role; //권한
+//    @Column
+    //private String role; //권한
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     //Board와 관계 매핑
     //주인 설정(다(Board)쪽이 주인)
     //cascade : 참조된 객체가 삭제되면 참조하는 객체도 삭제됨
-    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Board> boardList = new ArrayList<>();
 }

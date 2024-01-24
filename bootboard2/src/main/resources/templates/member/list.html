@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원목록</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{/layout/header::header-fragment}"></div>
+	<div id="container">
+		<h2>회원목록</h2>
+		<table class="memberlist">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>권한</th>
+					<th>조회</th>
+					<th>삭제</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="member: ${memberList}">
+					<td th:text="${member.id}"></td>					
+					<td th:text="${member.memberId}"></td>
+					<td th:text="${member.name}"></td>
+					<td th:text="${member.role}"></td>
+					<!-- 버티컬바(|)는 ${member.id}를 숫자로 유지시켜줌 -->
+					<td><a th:href="@{|/member/${member.id}|}">조회</a></td>					
+					<td><a th:href="@{|/member/delete/${member.id}|}" onclick="return confirm('삭제 하시겠습니까?')">삭제</a></td>					
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/}"><button type="button">Home</button></a>
+	</div>
+<div th:replace="~{/layout/footer::footer-fragment}"></div>
+</body>
+</html>

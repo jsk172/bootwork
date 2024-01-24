@@ -6,15 +6,17 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<div th:replace="~{/layout/header::header-fragment}"></div>
 	<div id="container">
+		<section id="login">
 		<h2>로그인</h2>
 		<div class="login">
 			<form th:action="@{/member/login}" method="post" class="loginform">
 				<fieldset>
 					<ul>
 						<li>
-							<label for="memberId">이메일</label>
-							<input type="text" name="memberId" id="memberId" placeholder="아이디">
+							<label for="username">아이디</label>
+							<input type="text" name="username" id="username" placeholder="아이디">
 						</li>
 						<li>
 							<label for="password">비밀번호</label>
@@ -32,6 +34,8 @@
 				</fieldset>		
 			</form>
 		</div>
+		</section>
 	</div>
+<div th:replace="~{/layout/footer::footer-fragment}"></div>
 </body>
 </html>

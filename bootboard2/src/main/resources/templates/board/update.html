@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="UTF-8">
+<title>수정</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div class="wrap">
+		<h2>수정하기</h2>
+		
+		<form th:action="@{/board/update}" method="post">
+			<input type="hidden" name="id" th:value="${board.id}">
+			<table class="tbl_write">
+				<tbody>
+					<tr>
+						<td>
+							<input type="text" name="title" th:value="${board.title}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							글쓴이 : <span sec:authentication="principal.member.name"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea rows="5" cols="50" name="content" th:text="${board.content}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span th:if="${board.updatedDate} != null" th:text="'수정일 ' + ${#dates.format(board.updatedDate, 'yyyy-MM-dd HH:mm')}"></span>
+							<span th:unless="${board.updatedDate} != null" th:text="'작성일 ' +${#dates.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="submit" value="저장">
+							<a th:href="@{/board/list}"><button type="button">목록</button></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

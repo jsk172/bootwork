@@ -6,6 +6,7 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<div th:replace="~{/layout/header::header-fragment}"></div>
 	<div class="wrap">
 		<h2>글목록</h2>
 			<table class="tbl_write">
@@ -13,7 +14,7 @@
 					<tr>
 						<th>번호</th>
 						<th>제목</th>
-						<th>작성자</th>
+						<th>글내용</th>
 						<th>작성일</th>
 					</tr>
 				</thead>
@@ -26,11 +27,16 @@
 							<a th:href="@{|/board/${board.id}|}" th:text="${board.title}"></a>
 						</td>
 						<td th:text="${board.content}"></td>
-						<td th:text="${#dates.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+						<td>
+							<span th:if="${board.updatedDate} != null" th:text="'수정일 ' + ${#dates.format(board.updatedDate, 'yyyy-MM-dd HH:mm')}"></span>
+							<span th:unless="${board.updatedDate} != null" th:text="'작성일 ' +${#dates.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+						</td>
     				</tr>
 				</tbody>
 			</table>
-			<a th:href="@{/}"><button type="button">Home</button></a>
+		<a th:href="@{/board/write}"><button type="button">글쓰기</button></a>
+		<a th:href="@{/}"><button type="button">Home</button></a>
 	</div>
+<div th:replace="~{/layout/footer::footer-fragment}"></div>
 </body>
 </html>

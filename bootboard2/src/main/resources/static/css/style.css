@@ -1,12 +1,91 @@
 @charset "UTF-8";
 
 #container{width: 1200px; margin: 30px auto; text-align: center;}
+/* header 스타일 */
+header{
+	height: 80px;
+	background-color: #0077cc;
+}
+header #logo{
+	width: 250px;
+	float: left;
+	line-height: 80px;
+}
+#logo h2 a{
+	color: greenyellow;
+	padding-left: 24px;
+	font-style: italic;
+}
+#logo h2 a:hover{
+	color: #eee;
+}
+header nav{
+	width: 900px;
+	float: right;
+}
+#topMenu{
+	line-height: 80px;
+	padding-left: 150px;
+}
+#topMenu li{
+	float: left;
+	margin: 0 20px;
+}
+#topMenu li a{
+	color:  #eee;
+	padding: 0 20px;
+}
+#topMenu li a:hover{
+	color: #444;
+}
+
+/* footer 스타일 */
+footer{
+	height: 80px;
+	border-top: 2px solid #222;
+	clear: both;
+}
+#bottomMenu{
+	margin: 10px 20px;
+}
+#bottomMenu li{
+	float: left;
+	margin: 10px 0;
+	padding: 0 10px;
+	border-right: 1.5px solid #ccc;
+}
+#bottomMenu li a{
+	color: #444;
+}
+#bottomMenu li:last-child{
+	border: none;
+}
+
 h2{color: skyblue; text-align: center;}
 ul li{list-style: none; margin: 16px;}
 /* index 스타일 */
-.main-img{text-align: center;}
-.menu{text-align: center;}
-a{text-decoration: none;}
+#main h2{
+	color: blue;
+	font-style: italic;
+	padding: 20px 60px;
+	text-align: center;
+}
+#main .main_img{
+	margin: 16px 30px;
+	text-align: center;
+}
+#main .main_img img{
+	border-radius: 5px;
+}
+#main .newboard{
+	margin: 20px;
+}
+#main .newboard h3{
+	margin: 20px;
+}
+#main .newboard p{
+	line-height: 2.5;
+}
 
 /* join 스타일 */
 .joinform{width: 450px; margin: 0 auto;}

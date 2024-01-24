@@ -1,39 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
 <title>글쓰기</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<div th:replace="~{/layout/header::header-fragment}"></div>
 	<div class="wrap">
 		<h2>글쓰기</h2>
-		<form th:action="@{/board/write}" method="post" enctype="multipart/form-data">
+		<form th:action="@{/board/write}" method="post">
 			<table class="tbl_write">
 				<tbody>
 					<tr>
 						<td>
-							<input type="text" name="boardTitle" placeholder="글제목" required>
+							<input type="text" name="title" placeholder="글제목" required>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" name="boardWriter" th:value="${session.sessionName}" readonly>
+							<div sec:authorize="isAuthenticated()">
+								글쓴이 : <span sec:authentication="principal.member.name"></span>
+							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<textarea rows="5" cols="50" name="boardContent" placeholder="글내용" required></textarea>
+							<textarea rows="5" cols="50" name="content" placeholder="글내용" required></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="file" name="boardFile">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="submit" value="등록">
+							<button type="submit">등록</button>
 							<a th:href="@{/}"><button type="button">취소</button></a>
 						</td>
 					</tr>
@@ -41,5 +40,6 @@
 			</table>
 		</form>
 	</div>
+<div th:replace="~{/layout/footer::footer-fragment}"></div>
 </body>
 </html>
