@@ -16,16 +16,16 @@ public class PasswordEncoderTest {
     @Autowired
     private PasswordEncoder pwEncoder;
 
-    @Test
-    public void testInsertData(){
-        //일반회원 - 저장
-        Member member =  new Member();
-        member.setMemberId("seolha86");
-        member.setPassword(pwEncoder.encode("tjfgk9137!"));
-        member.setName("김설하");
-        member.setRole(Role.MEMBER);
-
-        memberRepository.save(member);
-    }
+//    @Test
+//    public void testInsertData(){
+//        //일반회원 - 저장
+//        Member member =  new Member();
+//        member.setMemberId("seolha86");
+//        member.setPassword(pwEncoder.encode("tjfgk9137!"));
+//        member.setName("김설하");
+//        member.setRole(Role.MEMBER);
+//
+//        memberRepository.save(member);
+//    }
 
 }

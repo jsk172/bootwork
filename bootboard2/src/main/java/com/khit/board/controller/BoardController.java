@@ -53,15 +53,15 @@ public class BoardController {
     }
     //게시글 수정
     @GetMapping("/update/{id}")
-    public String updateForm(@ModelAttribute Board board, @PathVariable Integer id, Model model, @AuthenticationPrincipal SecurityUser principal){
+    public String updateForm(@AuthenticationPrincipal SecurityUser principal, @PathVariable Integer id, Model model){
+        Board board = boardService.findById(id);
         board.setMember(principal.getMember());
         model.addAttribute("board", board);
-        boardService.findById(id);
         return "/board/update";
     }
     @PostMapping("/update")
     public String update(@ModelAttribute Board board){
         boardService.save(board);
-        return "redirect:/board/list";
+        return "redirect:/board/update/" + board.getId();
     }
 }
