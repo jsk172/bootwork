@@ -99,6 +99,7 @@ ul li{list-style: none; margin: 16px;}
 .detail{width:420px; margin: 0 auto;}
 .detail label{width: 100px; float: left;}
 .detail input{padding: 5px;}
+
 /* login 스타일 */
 .login{width:420px; margin: 0 auto;}
 .login label{width: 100px; float: left;}
@@ -128,3 +129,8 @@ a{text-decoration: none;}
 .btn_write{text-align: center; padding-top: 10px;}
 .searchForm{width: 700px; margin: 0 auto; text-align: right; margin-bottom: 12px;}
 .sel_type{padding: 4px;}
+
+/* 댓글 스타일 */
+.reply p:nth-child(1){border-top: 1px dotted #ccc;}
+.reply p:nth-child(2){border-bottom: 1px dotted #ccc;}
+.reply p{padding: 5px;}

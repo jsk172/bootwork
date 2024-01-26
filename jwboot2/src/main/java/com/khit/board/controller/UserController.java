@@ -33,4 +33,14 @@ public class UserController {
         User findUser = userService.findById(id);
         return findUser;
     }
+    @PutMapping("/user")
+    public @ResponseBody String updateUser(@RequestBody User user){
+        userService.update(user);
+        return "수정완료";
+    }
+    @DeleteMapping("/user/{id}")
+    public @ResponseBody String deleteUser(@PathVariable Integer id){
+        userService.deleteById(id);
+        return "삭제완료";
+    }
 }

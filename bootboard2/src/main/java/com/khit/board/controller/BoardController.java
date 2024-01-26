@@ -28,9 +28,8 @@ public class BoardController {
     }
     //글 상세보기
     @GetMapping("/{id}")
-    public String getBoard(@AuthenticationPrincipal SecurityUser principal, @PathVariable Integer id, Model model){
+    public String getBoard(@PathVariable Integer id, Model model){
         Board board = boardService.findById(id);
-        board.setMember(principal.getMember());
         model.addAttribute("board", board);
         return "/board/detail";
     }
