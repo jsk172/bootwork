@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
+@Configuration //환경설정에 필요한 어노테이션
 @EnableWebSecurity
 public class SecurityConfig {
 
@@ -26,20 +26,24 @@ public class SecurityConfig {
 
     	http
     		.authorizeHttpRequests(authroize -> authroize
-                    .requestMatchers("/", "/css/**", "/images/**","/js/**", "/auth/main").permitAll()
+                    .requestMatchers("/", "/css/**", "/images/**","/js/**", "/error").permitAll()
                     .requestMatchers("/board/write").authenticated()
-                    .requestMatchers("/member/**", "/board/**").permitAll()
+                    .requestMatchers("/member/list").hasAnyAuthority("ADMIN")
+                    .requestMatchers("/member/**", "/board/**", "/public-data/**").permitAll()
                     .anyRequest().authenticated()
                     )
                     .formLogin(form ->
-                            form.loginPage("/member/login")
-                                .defaultSuccessUrl("/")
+                            form.loginPage("/login")
+                                .defaultSuccessUrl("/", true)
                     );
-                http.logout().logoutUrl("/member/logout")
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+
+                //접근권한 페이지
+                http.exceptionHandling().accessDeniedPage("/auth/accessDenied");
+                http.logout().logoutUrl("/logout")
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .invalidateHttpSession(true)
                         .logoutSuccessUrl("/");
-        return http.build();
+        return http.build(); //처음 프로젝트 만들때 시큐리티 로그인 안뜨게 해줌.
     }
     //암호화 설정
     //PasswordEncoder를 상속받은 BCryptPasswordEncoder를 반환

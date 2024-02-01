@@ -7,26 +7,29 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
-<div th:replace="~{/layout/header::header-fragment}"></div>
+<div th:replace="~{header::header-fragment}"></div>
 	<div id="container">
 		<h2>회원가입</h2>
-		<form th:action="@{/member/join}" method="post" class="joinform">
+		<form th:action="@{/member/join}" method="post" class="joinform" th:object="${memberDTO}">
 			<fieldset>
 				<ul>
 					<li>
 						<label for="memberId">아이디</label>
-						<input type="text" name="memberId" id="memberId" placeholder="아이디" onblur="checkMemberId()">
+						<input type="text" id="memberId" th:field="*{memberId}" onblur="checkMemberId()">
+						<p th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}" class="error"></p>
 					</li>
 					<li>
 						<p id="check-result"></p>
 					</li>
 					<li>
 						<label for="password">비밀번호</label>
-						<input type="password" name="password" id="password" placeholder="비밀번호">
+						<input type="password" id="password"th:field="*{password}">
+						<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></p>
 					</li>
 					<li>
 						<label for="name">이름</label>
-						<input type="text" name="name" id="name" placeholder="이름">
+						<input type="text" id="name" th:field="*{name}">
+						<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></p>
 					</li>
 					<li>
 						<input type="submit" value="가입">
@@ -36,7 +39,7 @@
 			</fieldset>		
 		</form>
 	</div>
-<div th:replace="~{/layout/footer::footer-fragment}"></div>
+<div th:replace="~{footer::footer-fragment}"></div>
 <script>
 	const checkEmail = () => {
 		let inputEmail = document.getElementById("memberId").value;

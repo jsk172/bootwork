@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>선유도서관</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div id="container">
+    <section id="main">
+        <h2>선유책숲</h2>
+        <div class="main_img">
+            <img th:src="@{/images/B3.jpg}" alt="석민이형">
+        </div>
+        <th:block sec:authorize="isAnonymous()">
+            <a th:href="@{/member/join}"><button type="button">회원가입</button></a>
+            <a th:href="@{/login}"><button type="button">로그인</button></a>
+        </th:block>
+        <th:block sec:authorize="isAuthenticated()">
+            <a th:href="@{/board/write}"><button type="button">글쓰기</button></a>
+            <a th:href="@{/logout}"><button type="button">로그아웃</button></a>
+            <a th:href="@{/book/list}"><button type="button">책목록</button></a>
+            <a th:href="@{/member/update}"><button type="button">나의정보</button></a>
+            <a th:href="@{/member/list}" sec:authorize="hasAnyAuthority('Admin')"><button type="button">회원목록</button></a> <!--관리자 로그인시 보임-->
+            <a th:href="@{/book/register}" sec:authorize="hasAnyAuthority('Admin')"><button type="button">책등록</button></a> <!--관리자 로그인시 보임-->
+        </th:block>
+    </section>
+</div>
+</body>
+</html>

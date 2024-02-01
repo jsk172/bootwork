@@ -1,13 +1,14 @@
 package com.khit.board.controller;
 
 import com.khit.board.config.SecurityUser;
-import com.khit.board.entity.Member;
+import com.khit.board.dto.MemberDTO;
 import com.khit.board.service.MemberService;
-import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +24,9 @@ public class MemberController {
     }
 
     //로그인
-    @GetMapping("/member/login")
+    @GetMapping("/login")
     public String loginForm(){
-        return "/member/login";
+        return "login";
     }
     /*@PostMapping("/member/login")
     public String login(@ModelAttribute Member member, HttpSession session){
@@ -40,12 +41,16 @@ public class MemberController {
     }*/
     //회원가입
     @GetMapping("/member/join")
-    public String joinForm(){
-        return "/member/join";
+    public String joinForm(MemberDTO memberDTO){
+        return "member/join";
     }
     @PostMapping("/member/join")
-    public String join(@ModelAttribute Member member){
-        memberService.join(member);
+    public String join(@Valid MemberDTO memberDTO, BindingResult bindingResult){ //@valid : 필드의 유효성 검사
+        if(bindingResult.hasErrors()){
+            //에러가 있으면 회원가입페이지에 머무름
+            return "member/join";
+        }
+        memberService.save(memberDTO);
         return "redirect:/";
     }
     //로그아웃
@@ -56,16 +61,16 @@ public class MemberController {
     //회원 목록
     @GetMapping("/member/list")
     public String list(Model model){
-        List<Member> memberList = memberService.findAll();
-        model.addAttribute("memberList", memberList);
-        return "/member/list";
+        List<MemberDTO> memberDTOList = memberService.findAll();
+        model.addAttribute("memberList", memberDTOList);
+        return "member/list";
     }
     //회원 상세보기
     @GetMapping("/member/{id}")
     public String detail(@PathVariable Integer id, Model model){
-        Member member = memberService.findById(id);
-        model.addAttribute("member", member);
-        return "/member/detail";
+        MemberDTO memberDTO = memberService.findById(id);
+        model.addAttribute("member", memberDTO);
+        return "member/detail";
     }
     //회원 삭제
     @GetMapping("/member/delete/{id}")
@@ -77,13 +82,13 @@ public class MemberController {
     //@AuthenticationPrincipal - 회원을 인가하는 클래스
     @GetMapping("/member/update")
     public String updateForm(@AuthenticationPrincipal SecurityUser principal, Model model){
-        Member member = memberService.findByMemberId(principal);
-        model.addAttribute("member", member);
-        return "/member/update";
+        MemberDTO memberDTO = memberService.findByMemberId(principal);
+        model.addAttribute("member", memberDTO);
+        return "member/update";
     }
     @PostMapping("/member/update")
-    public String update(@ModelAttribute Member member){
-        memberService.save(member);
-        return "redirect:/member/" + member.getId();
+    public String update(@ModelAttribute MemberDTO memberDTO){
+        memberService.update(memberDTO);
+        return "redirect:/member/" + memberDTO.getId();
     }
 }

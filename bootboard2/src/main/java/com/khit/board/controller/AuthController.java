@@ -9,4 +9,10 @@ public class AuthController {
     public String main(){
         return "/auth/main";
     }
+
+    //권한 에러 페이지
+    @GetMapping("/auth/accessDenied")
+    public String access(){
+        return "auth/accessDenied";
+    }
 }

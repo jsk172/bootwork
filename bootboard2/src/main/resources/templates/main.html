@@ -2,27 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
-<meta charset="UTF-8">
-<title>Index</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
+	<meta charset="UTF-8">
+	<title>공공데이터</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-	<div id="container">
-		<div sec:authorize="isAuthenticated()">
-			<p th:text="${#authentication.getPrincipal()}"></p>
-			<h3 sec:authentication="principal.member.name"></h3>
-		</div>
-		<div class="menu">
-			<a th:href="@{/member/logout}">
-				<button type="button">로그아웃</button>
-			</a>
-			<a th:href="@{/member/update}">
-				<button type="button">내 정보수정</button>
-			</a>
-			<a th:href="@{/}">
-				<button type="button">홈으로</button>
-			</a>
-		</div>
+<div id="container">
+	<div sec:authorize="isAuthenticated()">
+		<p th:text="${#authentication.getPrincipal()}"></p>
+		<h3 sec:authentication="principal.member.name"></h3>
 	</div>
+	<div class="menu">
+		<a th:href="@{/member/logout}">
+			<button type="button">로그아웃</button>
+		</a>
+		<a th:href="@{/member/update}">
+			<button type="button">내 정보수정</button>
+		</a>
+		<a th:href="@{/}">
+			<button type="button">홈으로</button>
+		</a>
+	</div>
+</div>
 </body>
 </html>

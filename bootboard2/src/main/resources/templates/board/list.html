@@ -6,7 +6,7 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div th:replace="~{/layout/header::header-fragment}"></div>
+<div th:replace="~{header::header-fragment}"></div>
 	<div class="wrap">
 		<h2>글목록</h2>
 			<table class="tbl_write">
@@ -37,6 +37,6 @@
 		<a th:href="@{/board/write}"><button type="button">글쓰기</button></a>
 		<a th:href="@{/}"><button type="button">Home</button></a>
 	</div>
-<div th:replace="~{/layout/footer::footer-fragment}"></div>
+<div th:replace="~{footer::footer-fragment}"></div>
 </body>
 </html>

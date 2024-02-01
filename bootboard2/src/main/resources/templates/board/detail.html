@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
-<div th:replace="~{/layout/header::header-fragment}"></div>
+<div th:replace="~{header::header-fragment}"></div>
 	<div class="wrap">
 		<h2>상세보기</h2>
 		<table class="tbl_write">
@@ -22,6 +22,7 @@
 				</tr>
 				<tr>
 					<td>
+						<!--<span th:text="${board.member.name}"></span>-->
 						<input type="text" th:value="${board.member.name}" readonly>
 					</td>
 				</tr>
@@ -48,14 +49,22 @@
 			</tbody>
 		</table>
 		<!-- 댓글 영역 -->
-		<!-- 댓글 목록 -->
+
+		<!-- 댓글 목록  -->
 		<div class="reply">
-			<div th:each="reply:${board.replyList}">
+			<div th:each="reply : ${board.replyList}">
 				<p th:text="${reply.content}"></p>
-				<p th:text="'작성자 : ' + ${reply.member.name} + '(작성일 : ' + ${reply.createdDate} + ')'"></p>
+				<p th:text=" '작성자: ' + ${reply.member.name} +
+       		      ' (작성일: ' + ${reply.createdDate} + ')' "></p>
 				<p>
-					<a th:href="'#'">수정</a> |
-					<a th:href="'#'" onclick="replyObject.deleteReply([[${board.id}]], [[${reply.id}]])">삭제</a>
+					<th:block sec:authorize="isAuthenticated()"
+							  th:if="${#authentication.getPrincipal.getUsername()}==
+       		  	                 ${reply.member.memberId}">
+						<a th:href="'#'">수정</a> |
+						<!-- 자바스크립트에서 자료형값을 유지- [[자료]] -->
+						<a th:href="'#'"
+						   th:onclick="replyObject.deleteReply([[${board.id}]], [[${reply.id}]])">삭제</a>
+					</th:block>
 				</p>
 			</div>
 		</div>
@@ -63,12 +72,14 @@
 		<div class="reply-insert">
 			<input type="hidden" id="boardId" th:value="${board.id}">
 			<p>
-				<textarea rows="3" cols="30" id="replycContent" placeholder="댓글을 남겨주세요."></textarea>
+       			<textarea rows="3" cols="80"
+						  id="replyContent" placeholder="댓글을 남겨주세요"></textarea>
 			</p>
-			<button id="btn-save-reply">댓글등록</button>
+			<button id="btn-save-reply">댓글 등록</button>
 		</div>
+
 	</div>
-<div th:replace="~{/layout/footer::footer-fragment}"></div>
+<div th:replace="~{footer::footer-fragment}"></div>
 <script src="/js/reply.js"></script>
 </body>
 </html>

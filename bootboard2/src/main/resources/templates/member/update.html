@@ -6,7 +6,7 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div th:replace="~{/layout/header::header-fragment}"></div>
+<div th:replace="~{header::header-fragment}"></div>
 	<div id="container">
 		<h2>회원 수정</h2>
 		<div class="detail">
@@ -20,7 +20,7 @@
 						</li>
 						<li>
 							<label for="password">비밀번호</label>
-							<input type="text" name="password" id="password" required>
+							<input type="text" name="password" id="password" placeholder="비밀번호를 입력해주세요." required>
 						</li>
 						<li>
 							<label for="name">이름</label>
@@ -32,13 +32,13 @@
 						</li>
 						<li>
 							<button type="submit">수정</button>
-							<a th:href="@{/member/list}"><button type="button">목록</button></a>
+							<a th:href="@{/}"><button type="button">취소</button></a>
 						</li>
 					</ul>
 				</fieldset>		
 			</form>
 		</div>
 	</div>
-<div th:replace="~{/layout/footer::footer-fragment}"></div>
+<div th:replace="~{footer::footer-fragment}"></div>
 </body>
 </html>

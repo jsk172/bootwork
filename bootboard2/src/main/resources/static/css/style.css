@@ -1,6 +1,10 @@
 @charset "UTF-8";
-
-#container{width: 1200px; margin: 30px auto; text-align: center;}
+/* 공통 스타일 */
+*{margin: 0; padding: 0;}
+#container{width: 1200px; margin: 30px auto 100px;}
+h2{color: skyblue; text-align: center;}
+ul li{list-style: none; margin: 16px;}
+a{text-decoration: none;}
 /* header 스타일 */
 header{
 	height: 80px;
@@ -29,7 +33,7 @@ header nav{
 }
 #topMenu li{
 	float: left;
-	margin: 0 20px;
+	margin: 0 10px;
 }
 #topMenu li a{
 	color:  #eee;
@@ -61,9 +65,10 @@ footer{
 	border: none;
 }
 
-h2{color: skyblue; text-align: center;}
-ul li{list-style: none; margin: 16px;}
 /* index 스타일 */
+#main{width: 1000px; margin: 40px auto;}
+#main h1{color: blue; font-style: italic;
+	padding: 20px 60px; text-align: center}
 #main h2{
 	color: blue;
 	font-style: italic;
@@ -86,6 +91,8 @@ ul li{list-style: none; margin: 16px;}
 #main .newboard p{
 	line-height: 2.5;
 }
+#main .weather{text-align: center;}
+#main .weather .result{margin: 16px;}
 
 /* join 스타일 */
 .joinform{width: 450px; margin: 0 auto;}
@@ -134,3 +141,8 @@ a{text-decoration: none;}
 .reply p:nth-child(1){border-top: 1px dotted #ccc;}
 .reply p:nth-child(2){border-bottom: 1px dotted #ccc;}
 .reply p{padding: 5px;}
+
+/* 에러 스타일 */
+.error{
+
+}

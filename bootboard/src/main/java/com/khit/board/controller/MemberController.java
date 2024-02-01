@@ -26,7 +26,7 @@ public class MemberController {
 	//회원가입
 	@GetMapping("/member/join")
 	public String joinForm() {
-		return "/member/join";
+		return "member/join";
 	}
 	@PostMapping("member/join")
 	public String join(@ModelAttribute MemberDTO memberDTO) {
@@ -41,7 +41,7 @@ public class MemberController {
 		//memberDTO로 반환할 것
 		List<MemberDTO> memberDTOList = memberService.findAll();
 		model.addAttribute("memberList", memberDTOList);
-		return "/member/list";
+		return "member/list";
 	}
 	//회원 상세보기
 	//@PathVariable - 경로에 변수를 할당
@@ -49,7 +49,7 @@ public class MemberController {
 	public String detail(@PathVariable Long id, Model model) {
 		MemberDTO memberDTO = memberService.findById(id);
 		model.addAttribute("member", memberDTO);
-		return "/member/detail";
+		return "member/detail";
 	}
 	//회원 삭제
 	@GetMapping("/member/delete/{id}")
@@ -63,7 +63,7 @@ public class MemberController {
 	//로그인
 	@GetMapping("/member/login")
 	public String loginForm() {
-		return "/member/login";
+		return "login";
 	}
 	@PostMapping("/member/login")
 	public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, Model model) {
@@ -78,7 +78,7 @@ public class MemberController {
 			System.out.println("로그인 실패");
 			String error = "아이디나 비밀번호를 확인해 주세요.";
 			model.addAttribute("error", error);
-			return "/member/login";
+			return "login";
 		}
 	}
 	//로그아웃

@@ -1,9 +1,8 @@
 package com.khit.board.entity;
 
+import com.khit.board.dto.BoardDTO;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
@@ -14,6 +13,9 @@ import java.util.List;
 @ToString(exclude = "member")
 @Table(name = "t_board")
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Board extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //자동순번
@@ -33,4 +35,24 @@ public class Board extends BaseEntity{
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     @OrderBy("id desc")
     private List<Reply> replyList;
+
+    public static Board toSaveEntity(BoardDTO boardDTO){
+        Board board = Board.builder()
+                .title(boardDTO.getTitle())
+                .content(boardDTO.getContent())
+                .member(boardDTO.getMember())
+                .replyList(boardDTO.getReplyList())
+                .build();
+        return board;
+    }
+    public static Board toUpdateEntity(BoardDTO boardDTO){
+        Board board = Board.builder()
+                .id(boardDTO.getId())
+                .title(boardDTO.getTitle())
+                .content(boardDTO.getContent())
+                .member(boardDTO.getMember())
+                .replyList(boardDTO.getReplyList())
+                .build();
+        return board;
+    }
 }

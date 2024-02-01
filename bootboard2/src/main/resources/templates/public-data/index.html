@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<div id="forecast">
+    <h2>오늘의 날씨</h2>
+    <h3 class="result">
+    </h3>
+</div>
+<script>
+    const date = new Date();
+    let year = '0' + date.getFullYear(); // '0' 추가
+    let month = '0' + date.getMonth() + 1;
+    month = month.substring(1); // 2->1
+    let day = '0' + date.getDate();
+    day = day.substring(1); // 2->1
+    let today = year + month + day;
+    $.ajax({
+        type: "GET",
+        url: 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst'
+            + '?serviceKey=cWq32bGv6s%2BYXyuviPtmB%2BnsNsq7yi9oKktaYE7NvEuuNW280DC%2BuwD69iQhnRtNu6W8QFVoBi%2FigywhpOU6qQ%3D%3D'
+            + '&pageNo=1&numOfRows=1000&dataType=json'
+            + '&base_date=' + today + '&base_time=0600&nx=55&ny=127',
+        success: function(data){
+            let item = data.response.body.items.item[3]; //.item
+            let content = "날짜: " + item.baseDate +
+                ', ' +
+                "발표시각: " + item.baseTime +
+                ', ' +
+                "기온: " + item.obsrValue;
+            $('.result').text(content); // data->content변경
+        },
+        error: function(response){
+            console.log("ajax 통신 실패! " + response);
+        }
+    });
+</script>

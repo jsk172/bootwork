@@ -1,6 +1,7 @@
 package com.khit.board.controller;
 
 import com.khit.board.config.SecurityUser;
+import com.khit.board.dto.BoardDTO;
 import com.khit.board.entity.Board;
 import com.khit.board.service.BoardService;
 import jakarta.persistence.Id;
@@ -22,26 +23,26 @@ public class BoardController {
     //글목록
     @GetMapping("/list")
     public String getList(Model model){
-        List<Board> boardList = boardService.findAll();
-        model.addAttribute("boardList", boardList);
-        return "/board/list";
+        List<BoardDTO> boardDTOList = boardService.findAll();
+        model.addAttribute("boardList", boardDTOList);
+        return "board/list";
     }
     //글 상세보기
     @GetMapping("/{id}")
     public String getBoard(@PathVariable Integer id, Model model){
-        Board board = boardService.findById(id);
-        model.addAttribute("board", board);
-        return "/board/detail";
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        return "board/detail";
     }
     //글쓰기
     @GetMapping("/write")
     public String writeForm(){
-        return "/board/write";
+        return "board/write";
     }
     @PostMapping("/write")
-    public String write(@ModelAttribute Board board, @AuthenticationPrincipal SecurityUser principal){
-        board.setMember(principal.getMember()); //
-        boardService.save(board);
+    public String write(@ModelAttribute BoardDTO boardDTO, @AuthenticationPrincipal SecurityUser principal){
+        boardDTO.setMember(principal.getMember()); //
+        boardService.save(boardDTO);
         return "redirect:/board/list";
     }
     //게시글 삭제
@@ -52,15 +53,15 @@ public class BoardController {
     }
     //게시글 수정
     @GetMapping("/update/{id}")
-    public String updateForm(@AuthenticationPrincipal SecurityUser principal, @PathVariable Integer id, Model model){
-        Board board = boardService.findById(id);
-        board.setMember(principal.getMember());
-        model.addAttribute("board", board);
-        return "/board/update";
+    public String updateForm(@PathVariable Integer id, Model model){
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        return "board/update";
     }
     @PostMapping("/update")
-    public String update(@ModelAttribute Board board){
-        boardService.save(board);
-        return "redirect:/board/update/" + board.getId();
+    public String update(@ModelAttribute BoardDTO boardDTO, @AuthenticationPrincipal SecurityUser principal){
+        boardDTO.setMember(principal.getMember());
+        boardService.update(boardDTO);
+        return "redirect:/board/update/" + boardDTO.getId();
     }
 }
