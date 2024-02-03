@@ -1,15 +1,14 @@
 package com.khit.library.entity;
 
-import java.sql.Timestamp;
-
 import com.khit.library.dto.RentalReturnDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-import lombok.Data;
+import java.sql.Timestamp;
 
 @Entity
 @Data
@@ -20,7 +19,7 @@ import lombok.Data;
 public class RentalReturn {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long RentalId; // 대출번호
+	private Long rentalId; // 대출번호
 
 	@Column(updatable = false)
 	@CreationTimestamp
@@ -40,7 +39,7 @@ public class RentalReturn {
 		RentalReturn rentalReturn = RentalReturn.builder()
 				.rentalDate(RentalReturnDTO.getRentalDate())
 				.returnDate(RentalReturnDTO.getReturnDate())
-				.deadlineDate(RentalReturnDTO.getDeadlineDate())
+				.deadlineDate(deadlineDate)
 				.member(RentalReturnDTO.getMember())
 				.book(RentalReturnDTO.getBook())
 				.build();
@@ -48,7 +47,7 @@ public class RentalReturn {
 	}
 	public static RentalReturn toUpdateEntity(RentalReturnDTO RentalReturnDTO){
 		RentalReturn rentalReturn = RentalReturn.builder()
-				.RentalId(RentalReturnDTO.getRentalId())
+				.rentalId(RentalReturnDTO.getRentalId())
 				.rentalDate(RentalReturnDTO.getRentalDate())
 				.returnDate(RentalReturnDTO.getReturnDate())
 				.deadlineDate(RentalReturnDTO.getDeadlineDate())

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @Builder
@@ -14,7 +15,9 @@ public class BookDTO {
     private String bname; //도서이름
     private String bnumber; //도서고유번호
     private String author; //도서저자
-    private RentalReturn rentalReturn;
+    private boolean available;
+
+    private List<RentalReturn> rentalReturnList;
 
     private Timestamp createdDate;
     private Timestamp updatedDate;
@@ -25,9 +28,9 @@ public class BookDTO {
                 .bname(book.getBname())
                 .bnumber(book.getBnumber())
                 .author(book.getAuthor())
-//                .rentalReturn(book.getRentalReturnList())
                 .createdDate(book.getCreatedDate())
                 .updatedDate(book.getUpdatedDate())
+                .rentalReturnList(book.getRentalReturnList())
                 .build();
         return bookDTO;
     }

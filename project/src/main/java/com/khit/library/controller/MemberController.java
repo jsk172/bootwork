@@ -5,6 +5,7 @@ import com.khit.library.dto.MemberDTO;
 import com.khit.library.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
     private final MemberService memberService;
 
@@ -72,6 +74,7 @@ public class MemberController {
     @PostMapping("/member/update")
     public String update(@ModelAttribute MemberDTO memberDTO){
         memberService.update(memberDTO);
+        log.info("dto : " + memberDTO);
         return "redirect:/member/" + memberDTO.getMemberId();
     }
 }

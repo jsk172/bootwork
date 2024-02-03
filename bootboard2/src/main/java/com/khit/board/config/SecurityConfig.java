@@ -43,6 +43,7 @@ public class SecurityConfig {
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .invalidateHttpSession(true)
                         .logoutSuccessUrl("/");
+
         return http.build(); //처음 프로젝트 만들때 시큐리티 로그인 안뜨게 해줌.
     }
     //암호화 설정

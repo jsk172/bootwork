@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Data
 @Builder
 public class RentalReturnDTO {
-    private Long RentalId;
+    private Long rentalId;
     private Timestamp rentalDate;
     private Timestamp returnDate;
     private Timestamp deadlineDate;
@@ -21,7 +21,7 @@ public class RentalReturnDTO {
 
     public static RentalReturnDTO toSaveDTO(RentalReturn rentalReturn){
         RentalReturnDTO rentalReturnDTO = RentalReturnDTO.builder()
-                .RentalId(rentalReturn.getRentalId())
+                .rentalId(rentalReturn.getRentalId())
                 .rentalDate(rentalReturn.getRentalDate())
                 .returnDate(rentalReturn.getReturnDate())
                 .deadlineDate(new Timestamp(rentalReturn.getRentalDate().getTime() + 7 * 24 * 60 * 60 * 1000)) // rentalDate + 7일로 설정

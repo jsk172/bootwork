@@ -1,12 +1,18 @@
 package com.khit.library.service;
 
 import com.khit.library.dto.BookDTO;
+import com.khit.library.dto.MemberDTO;
+import com.khit.library.dto.RentalReturnDTO;
 import com.khit.library.entity.Book;
+import com.khit.library.entity.RentalReturn;
 import com.khit.library.exception.FinalException;
 import com.khit.library.repository.BookRepository;
+import com.khit.library.repository.RentalReturnRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +21,7 @@ import java.util.Optional;
 @Service
 public class BookService {
     private final BookRepository bookRepository;
+    private final RentalReturnRepository rentalReturnRepository;
     
     //책 등록
     public void save(BookDTO bookDTO) {
@@ -48,8 +55,11 @@ public class BookService {
         Book book = Book.toUpdateEntity(bookDTO);
         bookRepository.save(book);
     }
-
+    //책 삭제
     public void deleteById(Long bookId) {
         bookRepository.deleteById(bookId);
+    }
+
+    public void rentBook(Long bookId, MemberDTO memberDTO) {
     }
 }

@@ -4,9 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <title>책 상세보기</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
+<div th:replace="~{header::header-fragment}"></div>
 	<div id="container">
 		<h2>책 상세보기</h2>
 		<div class="detail">
@@ -26,11 +28,42 @@
 					</li>
 					<li>
 						<a th:href="@{|/book/update/${book.bookId}|}" sec:authorize="hasAnyAuthority('Admin')"><button type="button">수정</button></a>
+<!--						<a th:href="@{/rentalReturn/list}">-->
+							<!--<button type="button" id="btn1" onclick="return confirm('대여하시겠습니까?')">대여하기</button>-->
+<!--						</a>-->
+						<input type="submit" th:value="대여" id="btn1" onclick="return confirm('대여하시겠습니까?')">
 						<a th:href="@{/book/list}"><button type="button">책목록</button></a>
 					</li>
 				</ul>
 			</fieldset>		
 		</div>
 	</div>
+
+
+<script>
+	$("#btn1").click(function(){
+		$.ajax({
+			type: "post",
+			contentType: 'application/json; charset=utf-8',
+			url: "/rentalReturn/rental",
+			dataType: 'json',
+			data: JSON.stringify({
+				book: {
+					bookId : [[${book.bookId}]]
+				},
+				rentalDate : new Date(),
+			}),
+			success: function(data){
+				console.log("대출성공 : " + data)
+				console.log(data)
+				location.href = "/rental/list";
+			},
+			error: function(response){
+				console.log("대출실패" + response);
+			}
+		});
+	});
+
+</script>
 </body>
 </html>

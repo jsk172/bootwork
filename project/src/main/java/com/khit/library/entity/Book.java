@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,11 +31,13 @@ public class Book extends BaseEntity{
     @Column(nullable = false, length = 30)
     private String author; //도서저자
 
+
     public static Book toSaveEntity(BookDTO bookDTO){
         Book book = Book.builder()
                 .bname(bookDTO.getBname())
                 .bnumber(bookDTO.getBnumber())
                 .author(bookDTO.getAuthor())
+                .rentalReturnList(bookDTO.getRentalReturnList())
                 .build();
         return book;
     }
@@ -46,6 +47,7 @@ public class Book extends BaseEntity{
                 .bname(bookDTO.getBname())
                 .bnumber(bookDTO.getBnumber())
                 .author(bookDTO.getAuthor())
+                .rentalReturnList(bookDTO.getRentalReturnList())
                 .build();
         return book;
     }

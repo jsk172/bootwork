@@ -1,8 +1,12 @@
 package com.khit.library.controller;
 
 import com.khit.library.dto.BookDTO;
+import com.khit.library.dto.MemberDTO;
 import com.khit.library.service.BookService;
+import com.khit.library.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +18,8 @@ import java.util.List;
 @RequestMapping("/book")
 public class BookController {
     private final BookService bookService;
-    
+
+
     //책등록 폼
     @GetMapping("/register")
     public String insertFrom(){

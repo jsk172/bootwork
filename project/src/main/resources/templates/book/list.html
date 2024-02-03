@@ -11,11 +11,10 @@
 		<table class="booklist">
 			<thead>
 				<tr>
-					<th>번호</th>
+					<th>도서코드</th>
 					<th>서명</th>
 					<th>저자</th>
-					<th>고유번호</th>
-					<th>대여상태</th>
+					<th>ISBN</th>
 					<th>등록일</th>
 					<th>조회</th>
 				</tr>
@@ -26,8 +25,7 @@
 					<td th:text="${book.bname}"></td>
 					<td th:text="${book.author}"></td>
 					<td th:text="${book.bnumber}"></td>
-					<!--<td th:if="${book.rentalReturn.returnDate == null}" th:text="대여가능"></td>-->
-					<td th:text="${#dates.format(book.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
+					<td th:text="${#dates.format(book.createdDate, 'yyyy-MM-dd')}"></td>
 					<!-- 버티컬바(|)는 ${member.id}를 숫자로 유지시켜줌 -->
 					<td><a th:href="@{|/book/detail/${book.bookId}|}">조회</a></td>
 					<td><a th:href="@{|/book/delete/${book.bookId}|}" sec:authorize="hasAnyAuthority('Admin')" onclick="return confirm('삭제 하시겠습니까?')">삭제</a></td>

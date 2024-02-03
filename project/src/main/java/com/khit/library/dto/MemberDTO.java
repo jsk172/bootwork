@@ -21,9 +21,9 @@ public class MemberDTO {
 
     private String name;
 
-    private Integer rentalCount = 0;
+    private Integer rentalCount;
 
-    private Boolean rentalAble = true;
+    private Boolean rentalAble;
 
     private Role role;
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="UTF-8">
+<title>대출정보 목록</title>
+</head>
+<body>
+	<div id="container">
+		<h2>대출정보 목록</h2>
+		<table class="booklist">
+			<thead>
+				<tr>
+					<th>대출코드</th>
+					<th>도서코드</th>
+					<th>회원ID</th>
+					<th>대출일</th>
+					<th>반납마감일</th>
+					<th>대출상태</th>
+					<th>반납버튼</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="rental : ${rentalList}">
+					<td th:text="${rental.rentalId}"></td>
+					<td th:text="${rental.book.bookId}"></td>
+					<td th:text="${rental.member.memberId}"></td>
+					<td th:text="${#dates.format(rental.rentalDate, 'yyyy-MM-dd')}"></td>
+					<td th:text="${#dates.format(rental.deadlineDate, 'yyyy-MM-dd')}"></td>
+					<td th:text="${rental.returnDate}"></td>
+					<!-- 버티컬바(|)는 ${member.id}를 숫자로 유지시켜줌 -->
+					<td><button type="button">반납</button></td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/}"><button type="button">Home</button></a>
+	</div>
+</body>
+</html>

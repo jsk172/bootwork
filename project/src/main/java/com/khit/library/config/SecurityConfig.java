@@ -25,9 +25,10 @@ public class SecurityConfig {
                         .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/error").permitAll()
                         .requestMatchers("/board/write").authenticated()
                         .requestMatchers("/member/list", "/book/register").hasAnyAuthority("Admin")
-                        .requestMatchers("/member/**", "/board/**", "/book/**").permitAll()
+                        .requestMatchers("/member/**", "/board/**", "/book/**", "/rentalReturn/**").permitAll()
                         .anyRequest().authenticated()
                 )
+                .csrf().disable()
                 .formLogin(form ->
                         form.loginPage("/login")
                                 .defaultSuccessUrl("/")

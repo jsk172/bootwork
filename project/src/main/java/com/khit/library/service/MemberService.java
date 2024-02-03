@@ -68,4 +68,8 @@ public class MemberService {
             throw new FinalException("페이지를 찾을 수 없습니다");
         }
     }
+
+    public MemberDTO findByUsername(String username) {
+        return null;
+    }
 }

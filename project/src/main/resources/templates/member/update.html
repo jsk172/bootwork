@@ -10,6 +10,8 @@
 		<div class="detail">
 			<form th:action="@{/member/update}" method="post">
 			<input type="hidden" name="memberId" th:value="${member.memberId}">
+			<input type="hidden" name="rentalCount" id="rentalCount" th:value="${member.rentalCount}" readonly>
+			<input type="hidden" name="rentalAble" id="rentalAble" th:value="${member.rentalAble}" readonly>
 				<fieldset>
 					<ul>
 						<li>
