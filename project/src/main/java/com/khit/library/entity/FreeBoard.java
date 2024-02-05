@@ -1,16 +1,22 @@
 package com.khit.library.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.khit.library.dto.FreeBoardDTO;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,22 +45,32 @@ public class FreeBoard extends BaseEntity{
 	@Column(nullable = true)
 	private Integer fbhit;  //조회수
 	
-	public static FreeBoard toSaveEntity(FreeBoardDTO fboardDTO) {
-		FreeBoard fboard = FreeBoard.builder()
-				.fbtitle(fboardDTO.getFbtitle())
-				.fbcontent(fboardDTO.getFbcontent())
-				.fbhit(fboardDTO.getFbhit())
+//	@ManyToOne(fetch = FetchType.LAZY)  // 글쓴이 - 외래키
+//	@JoinColumn(name = "mId")
+//	private Member member;
+	
+	@OneToMany(mappedBy="freeboard", cascade = CascadeType.ALL)
+	private List<FreeReply> freeReplyList;
+	
+	//insert
+	public static FreeBoard toSaveEntity(FreeBoardDTO freeBoardDTO) {
+		FreeBoard freeBoard = FreeBoard.builder()
+				.fbtitle(freeBoardDTO.getFbtitle())
+				.fbcontent(freeBoardDTO.getFbcontent())
+				.fbhit(freeBoardDTO.getFbhit())
 				.build();
-		return fboard;
+		return freeBoard;
 	}
-	public static FreeBoard toUpdateEntity(FreeBoardDTO fboardDTO) {
-		FreeBoard fboard = FreeBoard.builder()
-				.fbid(fboardDTO.getFbid())
-				.fbtitle(fboardDTO.getFbtitle())
-				.fbcontent(fboardDTO.getFbcontent())
-				.fbhit(fboardDTO.getFbhit())
+	//update
+	public static FreeBoard toUpdateEntity(FreeBoardDTO freeBoardDTO) {
+		FreeBoard freeBoard = FreeBoard.builder()
+				.fbid(freeBoardDTO.getFbid())
+				.fbtitle(freeBoardDTO.getFbtitle())
+				.fbcontent(freeBoardDTO.getFbcontent())
+				.fbhit(freeBoardDTO.getFbhit())
 				.build();
-		return fboard;
+		return freeBoard;
 	}
+
 
 }

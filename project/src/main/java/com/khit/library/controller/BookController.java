@@ -10,6 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -27,8 +28,8 @@ public class BookController {
     }
     //책 등록 처리
     @PostMapping("/register")
-    public String insert(@ModelAttribute BookDTO bookDTO){
-        bookService.save(bookDTO);
+    public String insert(@ModelAttribute BookDTO bookDTO, MultipartFile bookFile) throws Exception{
+        bookService.save(bookDTO, bookFile);
         return "redirect:/";
     }
     //책 리스트

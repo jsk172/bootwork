@@ -25,7 +25,7 @@ public class FreeReplyController {
 							  @RequestBody FreeReply freeReply,
 							  @AuthenticationPrincipal SecurityUser principal) {
 		freeReply.setMember(principal.getMember());
-		fboardService.insertReply(fboardId, freeReply);
+//		fboardService.insertReply(fboardId, freeReply);
 		return "댓글 등록 성공";
 	}
 								

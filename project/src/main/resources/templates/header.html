@@ -11,24 +11,24 @@
     <div id="header">
         <section class="header">
             <div class="header_logo_box">
-                <img class="header_logo" src="/images/logo.png" alt="logo">
+                <a th:href="@{/}"><img class="header_logo" src="/images/main_logo.png" alt="logo"></a>
             </div>
             <div class="header_links">
                 <div class="header_link">
                     <div class="header_link_search">
-                        <a href="#">도서검색</a>
+                        <a th:href="@{#}">도서검색</a>
                     </div>
                     <div class="header_link_open_space">
-                        <a href="#">열린공간</a>
+                        <a th:href="@{#}">열린공간</a>
                     </div>
                     <div class="header_link_library_info">
-                        <a href="#">도서관안내</a>
+                        <a th:href="@{#}">도서관안내</a>
                     </div>
                     <div class="header_link_study_room">
-                        <a href="#">열람실</a>
+                        <a th:href="@{#}">열람실</a>
                     </div>
                     <div class="header_link_my_labrary">
-                        <a href="#">나의책숲</a>
+                        <a th:href="@{#}">나의책숲</a>
                     </div>
                 </div>
             </div>
@@ -42,6 +42,7 @@
                     <a th:href="@{/logout}"><button type="button">로그아웃</button></a>
                     <a th:href="@{/book/list}"><button type="button">책목록</button></a>
                     <a th:href="@{/member/update}"><button type="button">나의정보</button></a>
+                    <a th:href="@{/rentalReturn/list}" sec:authorize="hasAnyAuthority('Admin')"><button type="button">대출정보</button></a>
                     <a th:href="@{/member/list}" sec:authorize="hasAnyAuthority('Admin')"><button type="button">회원목록</button></a> <!--관리자 로그인시 보임-->
                     <a th:href="@{/book/register}" sec:authorize="hasAnyAuthority('Admin')"><button type="button">책등록</button></a> <!--관리자 로그인시 보임-->
                 </th:block>

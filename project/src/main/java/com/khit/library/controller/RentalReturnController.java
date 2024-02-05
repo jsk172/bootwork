@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Controller
@@ -22,20 +23,6 @@ import java.util.List;
 public class RentalReturnController {
     private final RentalReturnService rentalReturnService;
     private final MemberService memberService;
-    //도서대출
-    @RequestMapping(value = "/rental", method = RequestMethod.POST)
-    public ResponseEntity<?> rental(@RequestBody RentalReturnDTO rentalReturnDTO, @AuthenticationPrincipal SecurityUser user){
-        rentalReturnDTO.setMember(user.getMember());
-        rentalReturnService.save(rentalReturnDTO);
-        System.out.println(rentalReturnDTO);
-        return ResponseEntity.ok(rentalReturnDTO);
-    }
-    /*@PostMapping("/rental") @ResponseBody
-    public String rental(@RequestBody RentalReturnDTO rentalReturnDTO){
-        System.out.println(rentalReturnDTO);
-        rentalReturnService.save(rentalReturnDTO);
-        return "redirect:/rental/list";
-    }*/
 
     //대출리스트
     @GetMapping("/list")
@@ -44,4 +31,24 @@ public class RentalReturnController {
         model.addAttribute("rentalList", rentalReturnDTOList);
         return "rental/list";
     }
+
+    //도서대출
+    @PostMapping("/rental")
+    public @ResponseBody RentalReturnDTO rental(@RequestBody RentalReturnDTO rentalReturnDTO, @AuthenticationPrincipal SecurityUser user){
+        rentalReturnDTO.setMember(Member.builder().memberId(user.getMember().getMemberId()).build());
+        rentalReturnDTO.setReturnDate(null);
+        rentalReturnService.save(rentalReturnDTO);
+
+        return rentalReturnDTO;
+    }
+
+    //도서 반납
+    @PutMapping("/return")
+    public @ResponseBody RentalReturnDTO bookReturn(@RequestBody RentalReturnDTO rentalReturnDTO){
+        RentalReturnDTO findRentalId = rentalReturnService.findByRentalId(rentalReturnDTO.getRentalId());
+        findRentalId.setReturnDate(rentalReturnDTO.getReturnDate());
+        rentalReturnService.update(findRentalId);
+        return findRentalId;
+    }
+
 }

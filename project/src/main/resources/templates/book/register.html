@@ -9,12 +9,16 @@
 <body>
 	<div id="container">
 		<h2>책 등록</h2>
-		<form th:action="@{/book/register}" method="post" class="joinform">
+		<form th:action="@{/book/register}" method="post" class="joinform" enctype="multipart/form-data">
 			<fieldset>
 				<ul>
 					<li>
 						<label for="bname">서명</label>
 						<input type="text" name="bname" id="bname" placeholder="서명">
+					</li>
+					<li>
+						<label for="publisher">출판사</label>
+						<input type="text" name="publisher" id="publisher" placeholder="출판사">
 					</li>
 					<li>
 						<label for="author">저자</label>
@@ -23,6 +27,9 @@
 					<li>
 						<label for="bnumber">ISBN(고유번호)</label>
 						<input type="text" name="bnumber" id="bnumber" placeholder="고유번호">
+					</li>
+					<li>
+						<input type="file" name="bookFile">
 					</li>
 					<li>
 						<input type="submit" value="등록">

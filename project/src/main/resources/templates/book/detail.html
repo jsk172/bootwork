@@ -6,6 +6,11 @@
 <title>책 상세보기</title>
 <link rel="stylesheet" th:href="@{/css/header.css}">
 	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<style>
+		#container{
+			margin-top: 100px;
+		}
+	</style>
 </head>
 <body>
 <div th:replace="~{header::header-fragment}"></div>
@@ -19,6 +24,10 @@
 						<input type="text" name="bname" id="bname" th:value="${book.bname}" readonly>
 					</li>
 					<li>
+						<label for="publisher">출판사</label>
+						<input type="text" name="publisher" id="publisher" th:value="${book.publisher}" readonly>
+					</li>
+					<li>
 						<label for="author">저자</label>
 						<input type="text" name="author" id="author" th:value="${book.author}" readonly>
 					</li>
@@ -27,11 +36,11 @@
 						<input type="text" name="bnumber" id="bnumber" th:value="${book.bnumber}" readonly>
 					</li>
 					<li>
+						<img th:src="@{${book.bfilepath}}" alt="책 이미지">
+					</li>
+					<li>
 						<a th:href="@{|/book/update/${book.bookId}|}" sec:authorize="hasAnyAuthority('Admin')"><button type="button">수정</button></a>
-<!--						<a th:href="@{/rentalReturn/list}">-->
-							<!--<button type="button" id="btn1" onclick="return confirm('대여하시겠습니까?')">대여하기</button>-->
-<!--						</a>-->
-						<input type="submit" th:value="대여" id="btn1" onclick="return confirm('대여하시겠습니까?')">
+						<input type="submit" th:value="대여" id="rentalBtn" onclick="return confirm('대여하시겠습니까?')">
 						<a th:href="@{/book/list}"><button type="button">책목록</button></a>
 					</li>
 				</ul>
@@ -41,7 +50,7 @@
 
 
 <script>
-	$("#btn1").click(function(){
+	$("#rentalBtn").click(function(){
 		$.ajax({
 			type: "post",
 			contentType: 'application/json; charset=utf-8',
@@ -56,7 +65,7 @@
 			success: function(data){
 				console.log("대출성공 : " + data)
 				console.log(data)
-				location.href = "/rental/list";
+				location.href = "/rentalReturn/list";
 			},
 			error: function(response){
 				console.log("대출실패" + response);

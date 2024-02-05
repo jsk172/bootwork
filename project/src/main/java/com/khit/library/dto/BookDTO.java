@@ -15,7 +15,10 @@ public class BookDTO {
     private String bname; //도서이름
     private String bnumber; //도서고유번호
     private String author; //도서저자
-    private boolean available;
+    private String publisher; //출판사
+
+    private String bfilename;
+    private String bfilepath;
 
     private List<RentalReturn> rentalReturnList;
 
@@ -28,6 +31,9 @@ public class BookDTO {
                 .bname(book.getBname())
                 .bnumber(book.getBnumber())
                 .author(book.getAuthor())
+                .publisher(book.getPublisher())
+                .bfilename(book.getBfilename())
+                .bfilepath(book.getBfilepath())
                 .createdDate(book.getCreatedDate())
                 .updatedDate(book.getUpdatedDate())
                 .rentalReturnList(book.getRentalReturnList())

@@ -1,11 +1,10 @@
 package com.khit.library.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.khit.library.dto.RentalReturnDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
@@ -26,20 +25,17 @@ public class RentalReturn {
 	private Timestamp rentalDate; //대출일
 
 	@Column
-	@CreationTimestamp
 	private Timestamp returnDate; //반납일
 
 	@Column
-	@CreationTimestamp
 	private Timestamp deadlineDate; //반납마감일
 
 	public static RentalReturn toSaveEntity(RentalReturnDTO RentalReturnDTO){
 		//반납일은 대출일 + 7일로 설정
-		Timestamp deadlineDate = new Timestamp(RentalReturnDTO.getRentalDate().getTime() + 7*24*60*60*1000);
 		RentalReturn rentalReturn = RentalReturn.builder()
 				.rentalDate(RentalReturnDTO.getRentalDate())
 				.returnDate(RentalReturnDTO.getReturnDate())
-				.deadlineDate(deadlineDate)
+				.deadlineDate(new Timestamp(RentalReturnDTO.getRentalDate().getTime() + 7*24*60*60*1000))
 				.member(RentalReturnDTO.getMember())
 				.book(RentalReturnDTO.getBook())
 				.build();
@@ -57,10 +53,12 @@ public class RentalReturn {
 		return rentalReturn;
 	}
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
 	private Member member;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
 	private Book book;

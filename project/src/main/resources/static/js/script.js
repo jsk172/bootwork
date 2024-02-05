@@ -1,42 +1,46 @@
-const mainPics = document.querySelectorAll(".main_pic");
-let currentIdx = 0;
-let slideInterval;
-let remainingTime = 0; // 남은 시간 저장
+function startSlideshow() {
+  let currentIdx = 0;
+  const pictures = document.querySelectorAll(".main_pic");
+  const intervalTime = 5000;
+  let slideshowInterval;
 
-function showSlideImg() {
-  mainPics[currentIdx].classList.remove("active");
-  currentIdx = (currentIdx + 1) % mainPics.length;
-  mainPics[currentIdx].classList.add("active");
-}
+  pictures[currentIdx].classList.add("active");
 
-function togglePicture() {
-  let circle = document.querySelector(".main_timer");
-  if (slideInterval) {
-    clearInterval(slideInterval);
-    remainingTime = 0; // 초기화
-    const computedStyle = getComputedStyle(circle);
-    const animationDuration =
-      parseFloat(computedStyle.animationDuration) * 1000;
-    const animationDelay = parseFloat(computedStyle.animationDelay) * 1000;
-    remainingTime =
-      animationDuration -
-      ((performance.now() - animationDelay) % animationDuration); // 남은 시간 계산
-    circle.style.animationPlayState = "paused";
-    mainPics[currentIdx].style.animationPlayState = "paused";
-  } else {
-    slideInterval = setInterval(() => {
-      showSlideImg();
-      remainingTime = 0; // 초기화
-    }, 5000);
-    circle.style.animationPlayState = "running";
-    mainPics[currentIdx].style.animationPlayState = "running";
-    if (remainingTime > 0) {
-      setTimeout(() => {
-        showSlideImg();
-        slideInterval = setInterval(showSlideImg, 5000);
-        circle.style.animationPlayState = "running";
-        mainPics[currentIdx].style.animationPlayState = "running";
-      }, remainingTime);
+  function nextPic() {
+    pictures[currentIdx].classList.remove("active");
+    currentIdx = (currentIdx + 1) % pictures.length;
+    pictures[currentIdx].classList.add("active");
+  }
+
+  slideshowInterval = setInterval(nextPic, intervalTime);
+
+  function toggleBtn() {
+    let btn = document.querySelector(".main_toggle_btn");
+    let timer = document.querySelector(".timer");
+
+    if (timer.style.animationPlayState == "paused" && !slideshowInterval) {
+      timer.style.animationPlayState = "running";
+      btn.innerHTML = "||";
+      animationPaused = false;
+      timer.classList.remove("main_new_timer");
+      timer.classList.add("main_timer");
+      timer = document.querySelector(".main_timer");
+      slideshowInterval = setInterval(nextPic, intervalTime);
+    } else {
+      timer.style.animationPlayState = "paused";
+      btn.innerHTML = "▷";
+      animationPaused = true;
+      timer.classList.remove("main_timer");
+      timer.classList.add("main_new_timer");
+      timer = document.querySelector(".main_new_timer");
+
+      clearInterval(slideshowInterval);
+      slideshowInterval = null;
     }
   }
+  document
+    .querySelector(".main_toggle_btn")
+    .addEventListener("click", toggleBtn);
 }
+
+document.addEventListener("DOMContentLoaded", startSlideshow);

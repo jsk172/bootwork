@@ -4,6 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <title>책목록</title>
+	<style>
+		table tr, th, td{
+			padding: 10px;
+		}
+	</style>
 </head>
 <body>
 	<div id="container">
@@ -13,6 +18,7 @@
 				<tr>
 					<th>도서코드</th>
 					<th>서명</th>
+					<th>출판사</th>
 					<th>저자</th>
 					<th>ISBN</th>
 					<th>등록일</th>
@@ -23,6 +29,7 @@
 				<tr th:each="book : ${bookList}">
 					<td th:text="${book.bookId}"></td>
 					<td th:text="${book.bname}"></td>
+					<td th:text="${book.publisher}"></td>
 					<td th:text="${book.author}"></td>
 					<td th:text="${book.bnumber}"></td>
 					<td th:text="${#dates.format(book.createdDate, 'yyyy-MM-dd')}"></td>

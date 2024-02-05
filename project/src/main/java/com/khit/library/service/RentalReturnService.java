@@ -6,8 +6,10 @@ import com.khit.library.repository.RentalReturnRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,9 +28,22 @@ public class RentalReturnService {
         return rentalReturnDTOList;
     }
 
-    //책 대출
+    //도서 대출
     public void save(RentalReturnDTO rentalReturnDTO) {
         RentalReturn rentalReturn = RentalReturn.toSaveEntity(rentalReturnDTO);
         rentalReturnRepository.save(rentalReturn);
+    }
+
+    //도서반납
+    public void update(RentalReturnDTO rentalReturnDTO) {
+        RentalReturn rentalReturn = RentalReturn.toUpdateEntity(rentalReturnDTO);
+        rentalReturnRepository.save(rentalReturn);
+    }
+
+    public RentalReturnDTO findByRentalId(Long rentalId) {
+//        Optional<RentalReturn> rentalReturn = rentalReturnRepository.findByRentalId(rentalId);
+        RentalReturn rentalReturn = rentalReturnRepository.findByRentalId(rentalId);
+        RentalReturnDTO rentalReturnDTO = RentalReturnDTO.toSaveDTO(rentalReturn);
+        return rentalReturnDTO;
     }
 }

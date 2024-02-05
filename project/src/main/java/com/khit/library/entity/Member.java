@@ -3,12 +3,10 @@ package com.khit.library.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.khit.library.dto.MemberDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,13 +45,15 @@ public class Member extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     private Role role;
-    
+
     @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
     private List<HopeBoard> hopeBoardList = new ArrayList<>();
 
-//    @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
-//    private List<HopeReply> hopeReplyList = new ArrayList<>();
+
+    @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
+    private List<HopeReply> hopeReplyList = new ArrayList<>();
     
+
     public static Member toSaveEntity(MemberDTO memberDTO){
         Member member = Member.builder()
                 .mid(memberDTO.getMid())
@@ -87,9 +87,6 @@ public class Member extends BaseEntity{
     private List<RentalReturn> rentalReturnList = new ArrayList<>();
 
     /*@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<HopeBoard> hopeBoardList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<FreeBoard> freeBoardList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)

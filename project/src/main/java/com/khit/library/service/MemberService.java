@@ -28,6 +28,14 @@ public class MemberService {
         Member member = Member.toSaveEntity(memberDTO);
         memberRepository.save(member);
     }
+    public Member login(Member member){
+        Optional<Member> findMember = memberRepository.findByMid(member.getMid());
+        if(findMember.isPresent()){
+            return findMember.get();
+        }else{
+            return null;
+        }
+    }
 
     public MemberDTO findByMid(SecurityUser principal){
         Optional<Member> member = memberRepository.findByMid(principal.getUsername());

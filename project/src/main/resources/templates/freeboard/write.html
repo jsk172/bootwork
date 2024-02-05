@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="utf-8">
+<title>자유게시판...</title>
+</head>
+<body>
+	<h1>자유게시판</h1>
+	<div>
+		<form th:action="@{/freeboard/write}" method="post">
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<input type="text" name="fbtitle">
+						</td>
+					</tr>
+					<!-- <tr>
+						<td>
+							<div sec:authorize="isAuthenticated()">
+								<span sec:authentication="principal.member.name"></span>
+							</div>
+						</td>
+					</tr> -->
+					<tr>
+						<td>
+							<textarea rows="5" cols="30" name="fbcontent"></textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<button type="submit">작성하기</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,10 @@ public class MemberController {
     }
     //회원가입 처리
     @PostMapping("/member/join")
-    public String join(@Valid MemberDTO memberDTO){
+    public String join(@Valid MemberDTO memberDTO, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "member/join";
+        }
         memberService.save(memberDTO);
         return "redirect:/";
     }
