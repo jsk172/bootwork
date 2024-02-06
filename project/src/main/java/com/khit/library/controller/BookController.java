@@ -1,5 +1,6 @@
 package com.khit.library.controller;
 
+import com.khit.library.config.SecurityUser;
 import com.khit.library.dto.BookDTO;
 import com.khit.library.dto.MemberDTO;
 import com.khit.library.service.BookService;
@@ -19,6 +20,7 @@ import java.util.List;
 @RequestMapping("/book")
 public class BookController {
     private final BookService bookService;
+    private final MemberService memberService;
 
 
     //책등록 폼
@@ -41,10 +43,16 @@ public class BookController {
     }
     //책 상세
     @GetMapping("/detail/{bookId}")
-    public String detail(@PathVariable Long bookId, Model model){
+    public String detail(@PathVariable Long bookId, Model model, @AuthenticationPrincipal SecurityUser principal){
         BookDTO bookDTO = bookService.findById(bookId);
         model.addAttribute("book", bookDTO);
-        return "book/detail";
+        if(principal == null){
+            return "book/detail";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "book/detail";
+        }
     }
     //책 수정
     @GetMapping("/update/{bookId}")
@@ -64,6 +72,13 @@ public class BookController {
     public String delete(@PathVariable Long bookId){
         bookService.deleteById(bookId);
         return "redirect:/book/list";
+    }
+    //책 검색
+    @GetMapping("/search")
+    public String search(@RequestParam String keyword, Model model) {
+        List<BookDTO> searchResults = bookService.search(keyword);
+        model.addAttribute("searchResults", searchResults);
+        return "book/searchResults";
     }
 
 }

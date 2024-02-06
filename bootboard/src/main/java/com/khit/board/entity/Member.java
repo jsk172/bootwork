@@ -31,7 +31,7 @@ public class Member {
 	private String memberName;
 	@Column(nullable=false)
 	private int memberAge;
-	
+
 	//DTO를 매개변수로 받아서 entity에 저장하는 정적 매서드 생성
 	//회원가입
 	public static Member toSaveEntity(MemberDTO memberDTO) {

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -46,5 +48,9 @@ public class FreeBoardService {
 	public void update(FreeBoardDTO freeBoardDTO) {
 		FreeBoard freeBoard = FreeBoard.toUpdateEntity(freeBoardDTO);
 		freeBoardRepository.save(freeBoard);
+	}
+	public Page<FreeBoardDTO> search(String keyword, Pageable pageable) {
+	    Page<FreeBoard> searchResults = freeBoardRepository.findByFbtitleContainingOrFbcontentContaining(keyword, keyword, pageable);
+	    return searchResults.map(FreeBoardDTO::toSaveDTO);
 	}
 }

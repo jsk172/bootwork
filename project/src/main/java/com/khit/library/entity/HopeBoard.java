@@ -31,11 +31,18 @@ public class HopeBoard extends BaseEntity{
 	@Column
 	private Integer hbhit;  // 조회수
 	
+	@Column
+	private String hopeFilename;
+	@Column
+	private String hopeFilepath;
+	
+	
 	@ManyToOne(fetch = FetchType.LAZY)  // 글쓴이 - 외래키
-	@JoinColumn(name = "mId")
+	@JoinColumn(name="mid")
 	private Member member;
 	
 	@OneToMany(mappedBy="hopeboard", cascade = CascadeType.ALL)
+	@OrderBy("hrid desc")
 	private List<HopeReply> hopeReplyList;
 	
 	// dto -> entity
@@ -44,6 +51,8 @@ public class HopeBoard extends BaseEntity{
 		HopeBoard hopeBoard = HopeBoard.builder().hbtitle(hopeBoardDTO.getHbtitle())
 												 .hbcontent(hopeBoardDTO.getHbcontent())
 												 .hbhit(0)
+												 .hopeFilename(hopeBoardDTO.getHopeFilename())
+												 .hopeFilepath(hopeBoardDTO.getHopeFilepath())
 												 .member(hopeBoardDTO.getMember())
 												 .build();
 		return hopeBoard;
@@ -55,6 +64,8 @@ public class HopeBoard extends BaseEntity{
 												 .hbtitle(hopeBoardDTO.getHbtitle())
 												 .hbcontent(hopeBoardDTO.getHbcontent())
 												 .hbhit(hopeBoardDTO.getHbhit())
+												 .hopeFilename(hopeBoardDTO.getHopeFilename())
+												 .hopeFilepath(hopeBoardDTO.getHopeFilepath())
 												 .member(hopeBoardDTO.getMember())
 												 .build();
 		return hopeBoard;

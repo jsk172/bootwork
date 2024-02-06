@@ -122,8 +122,11 @@ public class BoardController {
 	}
 
 	@PostMapping("/update")
-	public String update(@ModelAttribute BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
-		boardService.update(boardDTO, boardFile);
-		return "redirect:/board/" + boardDTO.getId();
+	public String update(@ModelAttribute BoardDTO boardDTO, MultipartFile boardFile, Model model) throws Exception {
+
+		BoardDTO upBoardDTO = boardService.update(boardDTO, boardFile);
+		model.addAttribute("board", upBoardDTO);
+		return "board/detail";
+//		return "redirect:/board/" + boardDTO.getId();
 	}
 }

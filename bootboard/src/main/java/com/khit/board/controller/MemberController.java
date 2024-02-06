@@ -63,7 +63,7 @@ public class MemberController {
 	//로그인
 	@GetMapping("/member/login")
 	public String loginForm() {
-		return "login";
+		return "/member/login";
 	}
 	@PostMapping("/member/login")
 	public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, Model model) {
@@ -78,7 +78,7 @@ public class MemberController {
 			System.out.println("로그인 실패");
 			String error = "아이디나 비밀번호를 확인해 주세요.";
 			model.addAttribute("error", error);
-			return "login";
+			return "/member/login";
 		}
 	}
 	//로그아웃

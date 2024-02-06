@@ -4,6 +4,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="utf-8">
 <title>Hope for the library : DETAIL</title>
+<script
+src="https://code.jquery.com/jquery-3.7.1.js"
+integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+crossorigin="anonymous"></script>
 </head>
 <body>
 	<h1>Hope for the library : DETAIL</h1>
@@ -13,19 +17,66 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 				<td><input type="text" name="hbtitle" th:value="${hopeBoard.hbtitle}" readonly></td>			
 			</tr>
 			<tr>
-				<td><input type="text" name="member" th:value="${hopeBoard.member.name}" readonly></td>			
+				<td><input type="text" name="member" th:value="${hopeBoard.member.mid}" readonly></td>			
 			</tr>
 			<tr>
-				<td><textarea rows="5" cols="30" name="hbcontent" th:text="${hopeBoard.hbcontent}" readonly></textarea></td>
+				<td>
+					<textarea rows="5" cols="30" name="hbcontent" th:text="${hopeBoard.hbcontent}" readonly></textarea>
+					<img th:src="${hopeBoard.hopeFilepath}"/>
+				</td>
 			</tr>
 			<tr>
 				<td><p th:text="${hopeBoard.hbhit}"></td>
 			</tr>
 			<tr>
-				<td><p th:text="'date: ' + ${#dates.format(hopeBoard.createdDate, 'yyyy-MM-dd')}"></p>
+				<td>
+					<p th:if="${hopeBoard.updatedDate != empty}" th:text="'date: ' + ${#dates.format(hopeBoard.updatedDate, 'yyyy-MM-dd')}">
+					<p th:unless="${hopeBoard.updatedDate != empty}" th:text="'date: ' + ${#dates.format(hopeBoard.createdDate, 'yyyy-MM-dd')}">
+				</p>
 			</tr>
 		</tbody>
 	</table>
-	<a th:href="@{|/hopeboard/update/${hbid}|}">수정</a>
+	
+	<!-- 댓글 -->
+	<div class="hope_reply">
+		<div class="hope_reply_box" th:each="hopeReply:${hopeBoard.hopeReplyList}">
+			<p class="hope_reply_content" th:text="${hopeReply.hrcontent}">
+			</p>
+			<span class="hope_reply_writer" th:text="'작성자: ' + ${hopeReply.member.mid} + '(작성일: ' + ${hopeReply.createdDate} + ')'"></span>
+   		  	<th:block sec:authorize="isAuthenticated()"
+      		  	      th:if="${#authentication.getPrincipal.getUsername()} == ${hopeBoard.member.mid}">
+				<div class="hope_reply_update">
+					<p>
+						<a th:href="'#'" th:onClick="replyObject.updateReply([[${hopeBoard.hbid}]], [[${hopeReply.hrid}]])">수정</a> | 
+						<!-- 자바스크립트에서 자료형 값을 유지 해야 할 경우 = [[자료]] 의 형식으로 쓴다 -->
+						<a th:href="'#'" th:onClick="replyObject.deleteReply([[${hopeBoard.hbid}]], [[${hopeReply.hrid}]])">삭제</a>
+					</p>
+				</div>
+				<div id="replyModal" class="modal" style="display: none;">
+				  <div class="modal-content">
+				    <div style="display: none;" id="originalContent" th:text="${hopeReply.hrcontent}">
+				    </div> <!-- 기존 댓글 내용을 표시할 곳 -->
+				    <textarea id="replyContent" rows="4" cols="50"></textarea>
+				    <button id="updateReplyBtn_confirm">수정 확인</button>
+				    <button id="updateReplyBtn_cancel" type="reset">수정 취소</button>
+				  </div>
+				</div>
+			</th:block>
+		</div>
+	</div>
+	
+	<div class="hope_reply_insert">
+		<input type="hidden" id="board_id" th:value="${hopeBoard.hbid}">
+		<p>
+			<textarea id="reply_content" rows="3" cols="50" placeholder="댓글을 남겨주세요"></textarea>
+		</p>
+		<button id="save_reply_btn">댓글 등록</button>
+	</div>
+	
+	
+
+	<a th:href="@{|/hopeboard/update/${hbid}|}">게시글 수정</a>
+	<a th:href="@{|/hopeboard/delete/${hbid}|}">게시글 삭제</a>
+	<script th:src="@{/js/reply.js}"></script>
 </body>
 </html>

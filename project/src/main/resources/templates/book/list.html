@@ -41,5 +41,12 @@
 		</table>
 		<a th:href="@{/}"><button type="button">Home</button></a>
 	</div>
+	
+	<div class="main_search">
+    <form th:action="@{/book/search}" method="get">
+        <input class="main_search_input" type="text" name="keyword" placeholder="도서 검색">
+        <button type="submit">검색</button>
+    </form>
+</div>
 </body>
 </html>

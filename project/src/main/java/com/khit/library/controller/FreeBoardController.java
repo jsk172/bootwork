@@ -2,6 +2,8 @@ package com.khit.library.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.khit.library.config.SecurityUser;
 import com.khit.library.dto.FreeBoardDTO;
@@ -74,6 +77,13 @@ public class FreeBoardController {
     public String deleteFreeBoard(@PathVariable Long fbid) {
     	freeBoardService.deleteById(fbid);
     	return "redirect:/freeboard/pagelist";
+    }
+    // 글 검색
+    @GetMapping("/freeboard/search")
+    public String search(@RequestParam String keyword, Pageable pageable, Model model) {
+        Page<FreeBoardDTO> searchResults = freeBoardService.search(keyword, pageable);
+        model.addAttribute("freeBoardList", searchResults);
+        return "freeboard/pagelist";
     }
 }
 

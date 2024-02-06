@@ -8,7 +8,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <body>
 	<h1>Hope for the library : WRITE</h1>
 	<div>
-		<form th:action="@{/hopeboard/write}" method="post">
+		<form th:action="@{/hopeboard/write}" method="post" th:object=${hopeBoard}
+			  enctype="multipart/form-data">
 			<table>
 				<tbody>
 					<tr>
@@ -19,8 +20,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 					<tr>
 						<td>
 							<div sec:authorize="isAuthenticated()">
-								<span sec:authentication="principal.member.name"></span>
+								<span sec:authentication="principal.member.mid"></span>
 							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="file" name="hopeBoardFile">
 						</td>
 					</tr>
 					<tr>

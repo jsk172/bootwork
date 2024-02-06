@@ -16,19 +16,42 @@
             <div class="header_links">
                 <div class="header_link">
                     <div class="header_link_search">
-                        <a th:href="@{#}">도서검색</a>
+                        <a th:href="@{/}">도서검색</a>
+                        <div class="header_sub_link_search">
+                            <p><a th:href="@{/}">검색</a></p>
+                            <p><a th:href="@{/}">대출베스트(추천도서)</a></p>
+                            <p><a th:href="@{/}">희망 도서 신청</a></p>
+                        </div>
                     </div>
                     <div class="header_link_open_space">
-                        <a th:href="@{#}">열린공간</a>
+                        <a th:href="@{/}">열린공간</a>
+                        <div class="header_sub_link_open_space">
+                            <p><a th:href="@{/freeboard/pagelist}">자유게시판</a></p>
+                            <p><a th:href="@{/}">독서이벤트</a></p>
+                            <p><a th:href="@{/hopeboard/pagelist}">도서관에바란다</a></p>
+                            <p><a th:href="@{/}">자주하는 질문</a></p>
+                        </div>
                     </div>
                     <div class="header_link_library_info">
-                        <a th:href="@{#}">도서관안내</a>
+                        <a th:href="@{/}">도서관안내</a>
+                        <div class="header_sub_link_library_info">
+                            <p><a th:href="@{/notice/pagelist}">공지사항</a></p>
+                            <p><a th:href="@{/}">이용안내</a></p>
+                            <p><a th:href="@{/}">찾아오시는 길</a></p>
+                        </div>
                     </div>
                     <div class="header_link_study_room">
-                        <a th:href="@{#}">열람실</a>
+                        <a th:href="@{/}">열람실</a>
+                        <div class="header_sub_link_study_room">
+                            <p><a th:href="@{/}">자율학습실 현황</a></p>
+                        </div>
                     </div>
-                    <div class="header_link_my_labrary">
-                        <a th:href="@{#}">나의책숲</a>
+                    <div class="header_link_my_library">
+                        <a th:href="@{/}">나의책숲</a>
+                        <div class="header_sub_link_my_library">
+                            <p><a th:href="@{/book/list}">나의 서재</a></p>
+                            <p><a th:href="@{/member/update}">정보 수정</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -38,10 +61,12 @@
                     <a class="header_member_login" th:href="@{/member/join}">회원가입</a>
                 </th:block>
                 <th:block sec:authorize="isAuthenticated()">
-                    <a th:href="@{/board/write}"><button type="button">글쓰기</button></a>
-                    <a th:href="@{/logout}"><button type="button">로그아웃</button></a>
-                    <a th:href="@{/book/list}"><button type="button">책목록</button></a>
-                    <a th:href="@{/member/update}"><button type="button">나의정보</button></a>
+                    <!--<a class="header_member_join" th:href="@{/board/write}">글쓰기</a>-->
+                    <p class="header_member_join" th:text="${member.name} + '님 환영합니다.'"></p> |
+                    <a class="header_member_login" th:href="@{/logout}">로그아웃</a>
+                    <!-- <a th:href="@{/book/list}"><button type="button">책목록</button></a>
+                    <a th:href="@{/member/update}"><button type="button">나의정보</button></a> -->
+                    <br>
                     <a th:href="@{/rentalReturn/list}" sec:authorize="hasAnyAuthority('Admin')"><button type="button">대출정보</button></a>
                     <a th:href="@{/member/list}" sec:authorize="hasAnyAuthority('Admin')"><button type="button">회원목록</button></a> <!--관리자 로그인시 보임-->
                     <a th:href="@{/book/register}" sec:authorize="hasAnyAuthority('Admin')"><button type="button">책등록</button></a> <!--관리자 로그인시 보임-->

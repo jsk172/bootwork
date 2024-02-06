@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="utf-8">
 <title>자유게시판...</title>
 </head>
 <body>
 	<h1>자유게시판</h1>
-	
+	<div>
+		<form th:action="@{/freeboard/search}" method="get">
+			<input type="text" name="keyword" placeholder="검색어 입력">
+			<button type="submit">검색</button>
+		</form>
+	</div>
+
 	<div>
 		<table>
 			<thead>
@@ -22,13 +28,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="freeBoard : ${freeBoardList}">
+				<tr th:each="freeBoard : ${freeBoardList}"
+					th:onclick="@{|window.location='/freeboard/' + ${freeBoard.fbid}|}">
 					<td th:text="${freeBoard.fbid}"></td>
-					<td>
-						<a th:href="@{|/freeboard/${freeBoard.fbid}|}"
-						   th:text="${freeBoard.fbtitle}"></a>
-					</td>
-					<!-- <td th:text="${freeBoard.member.name}"></td> -->
+					<td th:text="${freeBoard.fbtitle}"></td>
 					<td th:text="${freeBoard.fbcontent}"></td>
 					<td th:text="${freeBoard.fbhit}"></td>
 					<td th:text="${#dates.format(freeBoard.createdDate, 'yyyy-MM-dd')}"></td>

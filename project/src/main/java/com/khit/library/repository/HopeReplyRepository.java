@@ -7,3 +7,4 @@ import com.khit.library.entity.HopeReply;
 public interface HopeReplyRepository extends JpaRepository<HopeReply, Long>{
 
 }
+	

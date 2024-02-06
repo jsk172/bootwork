@@ -23,10 +23,10 @@ public class Member extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
 
-    @Column(unique = true)
+    @Column(unique = true, name="mid")
     private String mid;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2000)
     private String password;
 
     @Column(nullable = false)
@@ -51,7 +51,7 @@ public class Member extends BaseEntity{
 
 
     @OneToMany(mappedBy="member", cascade = CascadeType.ALL)
-    private List<HopeReply> hopeReplyList = new ArrayList<>();
+    private List<HopeReply> hopeReplyList;
     
 
     public static Member toSaveEntity(MemberDTO memberDTO){

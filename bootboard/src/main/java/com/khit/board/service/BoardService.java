@@ -90,7 +90,7 @@ public class BoardService {
 	}
 
 	@Transactional
-	public void update(BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
+	public BoardDTO update(BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
 		//1. 파일을 서버에 저장하고,
 		if(!boardFile.isEmpty()){ //전달된 파일이 있으면
 			//저장 경로
@@ -108,12 +108,14 @@ public class BoardService {
 		}else{
 //			Board board = Board.toUpdateNoFile(boardDTO);
 //			boardRepository.save(board);
+			boardDTO.setFilename(findById(boardDTO.getId()).getFilename());
 			boardDTO.setFilepath(findById(boardDTO.getId()).getFilepath());
 		}
 		Board board = Board.toUpdateEntity(boardDTO);
 		boardRepository.save(board);
 		//save() - 삽입(id가 없고), 수정(id가 있음)
 		//dto -> entity 변환
+		return findById(boardDTO.getId());
 	}
 
 	public Page<BoardDTO> findListAll(Pageable pageable) {
