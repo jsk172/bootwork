@@ -2,9 +2,11 @@ package com.khit.library.controller;
 
 import com.khit.library.config.SecurityUser;
 import com.khit.library.dto.HopeBoardDTO;
+import com.khit.library.dto.MemberDTO;
 import com.khit.library.entity.HopeBoard;
 import com.khit.library.service.HopeBoardService;
 
+import com.khit.library.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
@@ -25,11 +27,18 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class HopeBoardController {
     private final HopeBoardService hopeBoardService;
+    private final MemberService memberService;
 
     // write page 글쓰기
     @GetMapping("/hopeboard/write")
-    public String writeForm() {
-        return "hopeboard/write";
+    public String writeForm(@AuthenticationPrincipal SecurityUser principal, Model model) {
+        if(principal == null){
+            return "hopeboard/write";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "hopeboard/write";
+        }
     }
     
     // 글쓰기 처리
@@ -41,46 +50,68 @@ public class HopeBoardController {
     	hopeBoard.setMember(principal.getMember());
     	hopeBoard.setHbhit(0);
     	hopeBoardService.save(hopeBoard, hopeBoardFile);
-    	return "redirect:/hopeboard/pagelist";
+
+        return "redirect:/hopeboard/pagelist";
     }
 
     // update page 글 수정
     @GetMapping("/hopeboard/update/{hbid}")
-    public String updateForm(@PathVariable Long hbid, Model model) {
+    public String updateForm(@PathVariable Long hbid, Model model, @AuthenticationPrincipal SecurityUser principal) {
     	HopeBoardDTO hopeBoardDTO = hopeBoardService.findById(hbid);
     	model.addAttribute("hopeBoard", hopeBoardDTO);
-    	return "hopeboard/update";
+        if(principal == null){
+            return "hopeboard/update";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "hopeboard/update";
+        }
     }
     
     // 글 수정 처리
-    @PostMapping("/hopeboard/update")
+    @PostMapping("/hopeboard/update/{hbid}")
     public String update(@ModelAttribute HopeBoardDTO hopeBoard,
+    					
     		             MultipartFile hopeBoardFile,
     		             @AuthenticationPrincipal SecurityUser principal,
     		             Model model) throws IOException, Exception {
     	hopeBoard.setMember(principal.getMember());
     	HopeBoardDTO upHopeBoard =  hopeBoardService.update(hopeBoard, hopeBoardFile);
     	model.addAttribute("hopeBoard", upHopeBoard);
-    	System.out.println("Received mid: " + hopeBoard.getMember().getMid());
-    	//return "redirect:/hopeboard/" + upHopeBoard.getHbid();
-    	return "hopeboard/detail";
+    	//System.out.println("Received mid: " + hopeBoard.getMember().getMid());
+    	return "redirect:/hopeboard/" + upHopeBoard.getHbid();
+    	//return "hopeboard/detail";
     }
     
     // 글 전체 목록
     @GetMapping("/hopeboard/pagelist")
-    public String getAllList(Model model) {
+    public String getAllList(Model model, @AuthenticationPrincipal SecurityUser principal) {
     	List<HopeBoardDTO> hopeBoardDTOList = hopeBoardService.findAll();
     	model.addAttribute("hopeBoardList", hopeBoardDTOList);
-    	return "hopeboard/pagelist";
+        if(principal == null){
+            return "hopeboard/pagelist";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "hopeboard/pagelist";
+        }
     }
     
     // 글 하나 상세보기
     @GetMapping("/hopeboard/{hbid}")
-    public String getDetail(@PathVariable Long hbid, Model model) {
+    public String getDetail(@PathVariable Long hbid, Model model,
+    						@AuthenticationPrincipal SecurityUser principal) {
     	hopeBoardService.updateHits(hbid);
     	HopeBoardDTO hopeBoardDTO = hopeBoardService.findById(hbid);
+    	hopeBoardDTO.setMember(principal.getMember());
     	model.addAttribute("hopeBoard", hopeBoardDTO);
-    	return "hopeboard/detail";
+        if(principal == null){
+            return "hopeboard/detail";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "hopeboard/detail";
+        }
     }
     
     // 글 삭제

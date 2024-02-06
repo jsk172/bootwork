@@ -24,8 +24,11 @@ public class HopeBoardService {
 	private final HopeBoardRepository hopeBoardRepository;
 
 	public void save(HopeBoard hopeBoard, MultipartFile hopeBoardFile) throws Exception, IOException {
-		String hopeFilepath = "C:\\Final_project\\final-project\\finalproject\\src\\main\\resources\\static\\upload\\";
-		UUID uuid = UUID.randomUUID();
+
+		if(!hopeBoardFile.isEmpty()) { 
+		/*String hopeFilepath = "C:\\Final_project\\final-project\\finalproject\\src\\main\\resources\\static\\upload\\";*/
+		String hopeFilepath = "C:\\final-project\\finalproject\\src\\main\\resources\\static\\upload";
+    UUID uuid = UUID.randomUUID();
 		String hopeFilename = uuid + "_" + hopeBoardFile.getOriginalFilename();
 		
 		File savedHopeFile = new File(hopeFilepath, hopeFilename);
@@ -33,7 +36,7 @@ public class HopeBoardService {
 		
 		hopeBoard.setHopeFilename(hopeFilename);
 		hopeBoard.setHopeFilepath("/upload/" + hopeFilename);
-		
+		}
 		
 		hopeBoardRepository.save(hopeBoard);
 	}
@@ -62,7 +65,7 @@ public class HopeBoardService {
 
 	public HopeBoardDTO update(HopeBoardDTO hopeBoardDTO, MultipartFile hopeBoardFile) throws Exception, IOException {
 		if(!hopeBoardFile.isEmpty()) {
-			String hopeFilepath = "C:\\Final_project\\final-project\\finalproject\\src\\main\\resources\\static\\upload\\";
+			String hopeFilepath = "C:\\final-project\\finalproject\\src\\main\\resources\\static\\upload";
 			UUID uuid = UUID.randomUUID();
 			String hopeFilename = uuid + "_" + hopeBoardFile.getOriginalFilename();
 			
@@ -72,6 +75,7 @@ public class HopeBoardService {
 			hopeBoardDTO.setHopeFilename(hopeFilename);
 			hopeBoardDTO.setHopeFilepath("/upload/" + hopeFilename);
 		}else {
+			hopeBoardDTO.setHopeFilename(findById(hopeBoardDTO.getHbid()).getHopeFilename());
 			hopeBoardDTO.setHopeFilepath(findById(hopeBoardDTO.getHbid()).getHopeFilepath());
 		}
 		HopeBoard hopeBoard = HopeBoard.toUpdateEntity(hopeBoardDTO);

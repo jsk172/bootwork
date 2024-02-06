@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
 <title>책목록</title>
-	<style>
-		table tr, th, td{
-			padding: 10px;
-		}
-	</style>
+<style>
+table tr, th, td {
+	padding: 10px;
+}
+</style>
 </head>
 <body>
 	<div id="container">
@@ -35,18 +35,21 @@
 					<td th:text="${#dates.format(book.createdDate, 'yyyy-MM-dd')}"></td>
 					<!-- 버티컬바(|)는 ${member.id}를 숫자로 유지시켜줌 -->
 					<td><a th:href="@{|/book/detail/${book.bookId}|}">조회</a></td>
-					<td><a th:href="@{|/book/delete/${book.bookId}|}" sec:authorize="hasAnyAuthority('Admin')" onclick="return confirm('삭제 하시겠습니까?')">삭제</a></td>
+					<td><a th:href="@{|/book/delete/${book.bookId}|}"
+						sec:authorize="hasAnyAuthority('Admin')"
+						onclick="return confirm('삭제 하시겠습니까?')">삭제</a></td>
 				</tr>
 			</tbody>
 		</table>
 		<a th:href="@{/}"><button type="button">Home</button></a>
 	</div>
-	
+
 	<div class="main_search">
-    <form th:action="@{/book/search}" method="get">
-        <input class="main_search_input" type="text" name="keyword" placeholder="도서 검색">
-        <button type="submit">검색</button>
-    </form>
-</div>
+		<form th:action="@{/book/search}" method="get">
+			<input class="main_search_input" type="text" name="keyword"
+				placeholder="도서 검색">
+			<button type="submit">검색</button>
+		</form>
+	</div>
 </body>
 </html>
