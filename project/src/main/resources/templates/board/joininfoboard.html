@@ -17,10 +17,10 @@
             <div class="page_top">
                 <div class="page_top_imgbox">
                     <div class="page_img">
-                        <img src="/img/main_library_picture1.PNG" alt="img">
+                        <img th:src="@{/images/main_library_picture4.PNG}" alt="img">
                     </div>
                     <div class="page_title">
-                        <p>이용안내</p>
+                        <p>회원가입안내</p>
                     </div>
                 </div>
             </div>
@@ -35,11 +35,10 @@
                         </div>
                         <div class="nav_content_mid">
                             <div class="nav_links">
-                                <a class="nav_menu" href="#">이용시간 및 휴관일</a>
-                                <a class="nav_menu selected_menu" href="#">회원가입안내</a>
-                                <a class="nav_menu" href="#">시설이용안내</a>
-                                <a class="nav_menu" href="#">자료이용안내</a>
-                                <a class="nav_menu" href="#">이용규정</a>
+                                <a class="nav_menu" th:href="@{/board/useinfoboard}">이용시간 및 휴관일</a>
+                                <a class="nav_menu selected_menu" th:href="@{/board/joininfoboard}">회원가입안내</a>
+                                <a class="nav_menu" th:href="@{/board/datauseinfoboard}">자료이용안내</a>
+                            	<a class="nav_menu" th:href="@{/board/hopebookboard}">도서신청안내</a>
                             </div>
                         </div>
                     </div>
@@ -83,7 +82,6 @@
             </div>
         </section>
     </div>
-	
 <div th:replace="~{footer::footer-fragment}"></div>
 </body>
 </html>

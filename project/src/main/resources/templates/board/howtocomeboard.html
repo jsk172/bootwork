@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>선유도서관_게시판</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
+    <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
+    <link th:href="@{https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{header::header-fragment}"></div>
+	<div id="container">
+        <section class="page">
+
+            <div class="page_top">
+                <div class="page_top_imgbox">
+                    <div class="page_img">
+                        <img th:src="@{/images/main_library_picture5.PNG}" alt="img">
+                    </div>
+                    <div class="page_title">
+                        <p>도서관 찾아오는 길</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page_content_box">
+                <nav class="page_side_nav">
+                    <div class="nav_content">
+                        <div class="nav_content_top">
+                            <div class="nav_top_title">
+                                <p>도서관 찾아오는 길</p>
+                            </div>
+                        </div>
+                        <div class="nav_content_mid">
+                            <div class="nav_links">
+                                <a class="nav_menu selected_menu" th:href="@{/board/howtocomeboard}">오시는 길</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+                <div class="page_content">
+                    <div class="page_content_top">
+                        <div class="page_menu_title">
+                        </div>
+                    </div>
+                    <div class="page_content_mid">
+                        	<div class="libarary_location_map_box">
+                        	
+                        	</div>
+                        <div class="page_content_box">
+                            <div class="page_info_box">
+                                <ul class="first_ul">
+                                    <li>주소 및 연락처
+                                        <ul class="second_ul">
+                                            <li>주소 : 서울 영등포구 선유동2로 57 이레빌딩 19층 선유책숲</li>
+                                            <li>우편번호 : 07212</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <ul class="first_ul">
+                                    <li>지하철 이용
+                                        <ul class="second_ul">
+                                            <li>지하철 2호선 : 당산역 1번 출구, 선유도역 5번 출구</li>
+                                            <li>지하철 9호선 : 당산역 12번 출구</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+<div th:replace="~{footer::footer-fragment}"></div>
+</body>
+</html>

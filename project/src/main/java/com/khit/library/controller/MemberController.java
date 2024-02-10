@@ -1,8 +1,12 @@
 package com.khit.library.controller;
 
 import com.khit.library.config.SecurityUser;
+import com.khit.library.dto.BookDTO;
 import com.khit.library.dto.MemberDTO;
+import com.khit.library.dto.RentalReturnDTO;
+import com.khit.library.service.BookService;
 import com.khit.library.service.MemberService;
+import com.khit.library.service.RentalReturnService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +23,7 @@ import java.util.List;
 @Slf4j
 public class MemberController {
     private final MemberService memberService;
+    private final RentalReturnService rentalReturnService;
 
     //헤더 로그인 맴버
     @GetMapping("/")
@@ -105,5 +110,14 @@ public class MemberController {
     public @ResponseBody String checkId(@RequestParam("mid") String mid){
         String resultText = memberService.checkId(mid);
         return resultText;
+    }
+
+    //나의 대출목록
+    @GetMapping("/member/rentallist")
+    public String rentalList(@AuthenticationPrincipal SecurityUser principal, Model model){
+        String mid = principal.getMember().getMid();
+        List<RentalReturnDTO> rentalReturnDTOList = rentalReturnService.findByMemberMid(mid);
+        model.addAttribute("rentalList", rentalReturnDTOList);
+        return "member/rentallist";
     }
 }

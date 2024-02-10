@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.khit.library.config.SecurityUser;
 import com.khit.library.dto.FreeBoardDTO;
+import com.khit.library.dto.MemberDTO;
 import com.khit.library.entity.FreeBoard;
 import com.khit.library.service.FreeBoardService;
+import com.khit.library.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,17 +28,24 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/freeboard")
 public class FreeBoardController {
 	private final FreeBoardService freeBoardService;
+	private final MemberService memberService;
 
 	// write page 글쓰기
 	@GetMapping("/write")
-	public String writeForm() {
-		return "freeboard/write";
+	public String writeForm(@AuthenticationPrincipal SecurityUser principal, Model model) {
+        if(principal == null){
+        	return "freeboard/write";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "freeboard/write";
+        }
 	}
 
 	// 글쓰기 처리
 	@PostMapping("/write")
 	public String write(@ModelAttribute FreeBoard freeBoard, @AuthenticationPrincipal SecurityUser principal) {
-//    	freeBoard.setMember(principal.getMember());
+    	freeBoard.setMember(principal.getMember());
 		freeBoard.setFbhit(0);
 		freeBoardService.save(freeBoard);
 		return "redirect:/freeboard/pagelist";
@@ -44,10 +53,16 @@ public class FreeBoardController {
 
 	// update page 글 수정
 	@GetMapping("/update/{fbid}")
-	public String updateForm(@PathVariable Long fbid, Model model) {
+	public String updateForm(@PathVariable Long fbid, @AuthenticationPrincipal SecurityUser principal, Model model) {
 		FreeBoardDTO freeBoardDTO = freeBoardService.findById(fbid);
 		model.addAttribute("freeBoard", freeBoardDTO);
-		return "freeboard/update";
+        if(principal == null){
+        	return "freeboard/update";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "freeboard/update";
+        }
 	}
 
 	// 글 수정 처리
@@ -59,18 +74,30 @@ public class FreeBoardController {
 
 	// 글 전체 목록
 	@GetMapping("/pagelist")
-	public String getAllList(Model model) {
+	public String getAllList(Model model, @AuthenticationPrincipal SecurityUser principal) {
 		List<FreeBoardDTO> freeBoardDTOList = freeBoardService.findAll();
 		model.addAttribute("freeBoardList", freeBoardDTOList);
-		return "freeboard/pagelist";
+        if(principal == null){
+            return "freeboard/pagelist";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "freeboard/pagelist";
+        }
 	}
 
 	// 글 하나 상세보기
 	@GetMapping("/{fbid}")
-	public String getDetail(@PathVariable Long fbid, Model model) {
+	public String getDetail(@AuthenticationPrincipal SecurityUser principal, @PathVariable Long fbid, Model model) {
 		FreeBoardDTO freeBoardDTO = freeBoardService.findById(fbid);
 		model.addAttribute("freeBoard", freeBoardDTO);
-		return "freeboard/detail";
+		if(principal == null){
+			return "freeboard/detail";
+		}else{
+			MemberDTO memberDTO = memberService.findByMid(principal);
+			model.addAttribute("member", memberDTO);
+			return "freeboard/detail";
+		}
 	}
 
 	// 글 삭제

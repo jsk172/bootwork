@@ -22,9 +22,9 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authroize -> authroize
-                        .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/error").permitAll()
-                        .requestMatchers("/hopeboard/write", "/member/update").authenticated()
-                        .requestMatchers("/member/list", "/book/register").hasAnyAuthority("Admin")
+                        .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/upload/**","/error").permitAll()
+                        .requestMatchers("/hopeboard/write", "/member/update", "/rentalReturn/rental", "member/rentallist").authenticated()
+                        .requestMatchers("/member/list", "/book/register", "/rentalReturn/list").hasAnyAuthority("Admin")
                         .requestMatchers("/member/**", "/hopeboard/**", "/book/**", "/rentalReturn/**").permitAll()
                         .anyRequest().authenticated()
                 )

@@ -53,7 +53,7 @@ public class FreeBoard extends BaseEntity {
 	// FreeBoard 엔터티에 작성자 정보 추가
 	// 작성자 - 외래키
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn
+	@JoinColumn(name="mid")
 	private Member member;
 
 	@OneToMany(mappedBy = "freeboard", cascade = CascadeType.ALL)

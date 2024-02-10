@@ -25,6 +25,9 @@ public class NoticeBoardDTO {
 	
 	private Integer nbhit;	//조회수
 	
+	private String noticeFilename;
+	private String noticeFilepath;
+	
 	private Member member;	//작성자 - 외래
 
 	//entity -> dto
@@ -36,6 +39,8 @@ public class NoticeBoardDTO {
 																.createdDate(noticeBoard.getCreatedDate())
 																.updatedDate(noticeBoard.getUpdatedDate())
 																.nbhit(noticeBoard.getNbhit())
+																.noticeFilename(noticeBoard.getNoticeFilename())
+																.noticeFilepath(noticeBoard.getNoticeFilepath())
 																.build();
 		return noticeBoardDTO;
 	}

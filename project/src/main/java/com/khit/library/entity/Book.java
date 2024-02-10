@@ -34,6 +34,9 @@ public class Book extends BaseEntity{
 
     @Column(nullable = false)
     private String publisher; //출판사
+    
+    @Column(nullable = false)
+    private String category; //책 카테고리
 
     @Column
     private String bfilename;
@@ -47,6 +50,7 @@ public class Book extends BaseEntity{
                 .bnumber(bookDTO.getBnumber())
                 .author(bookDTO.getAuthor())
                 .publisher(bookDTO.getPublisher())
+                .category(bookDTO.getCategory())
                 .bfilename(bookDTO.getBfilename())
                 .bfilepath(bookDTO.getBfilepath())
                 .rentalReturnList(bookDTO.getRentalReturnList())
@@ -59,6 +63,7 @@ public class Book extends BaseEntity{
                 .bname(bookDTO.getBname())
                 .bnumber(bookDTO.getBnumber())
                 .author(bookDTO.getAuthor())
+                .category(bookDTO.getCategory())
                 .publisher(bookDTO.getPublisher())
                 .bfilename(bookDTO.getBfilename())
                 .bfilepath(bookDTO.getBfilepath())

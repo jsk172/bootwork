@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="UTF-8">
+<title>나의 서재</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<style>
+table tr, th, td {
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+	<div id="container">
+		<h2>나의 서재</h2>
+		<table class="booklist">
+            <h3>대출현황</h3>
+			<thead>
+				<tr>
+					<th>도서코드</th>
+					<th>서명</th>
+					<th>저자</th>
+					<th>출판사</th>
+					<th>ISBN</th>
+					<th>대출일</th>
+					<th>반납마감일</th>
+					<th>대출상태</th>
+					<th>반납버튼</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="rental : ${rentalList}">
+                    <th:block th:if="${rental.returnDate} == null">
+                        <td th:text="${rental.book.bookId}"></td>
+                        <td th:text="${rental.book.bname}"></td>
+                        <td th:text="${rental.book.author}"></td>
+                        <td th:text="${rental.book.publisher}"></td>
+                        <td th:text="${rental.book.bnumber}"></td>
+                        <td th:text="${#dates.format(rental.rentalDate, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${#dates.format(rental.deadlineDate, 'yyyy-MM-dd')}"></td>
+                        <td th:if="${rental.returnDate == null}" th:text="대출중"></td>
+                        <td th:unless="${rental.returnDate == null}" th:text="반납완료"></td>
+                        <td>
+                            <input type="submit" th:value="반납" th:data-rental-id="${rental.rentalId}" class="returnBtn">
+                        </td>
+                    </th:block>
+				</tr>
+			</tbody>
+		</table>
+        <table class="booklist">
+            <h3>이전대출내역</h3>
+            <thead>
+            <tr>
+                <th>도서코드</th>
+                <th>서명</th>
+                <th>저자</th>
+                <th>출판사</th>
+                <th>ISBN</th>
+                <th>대출일</th>
+                <th>반납일</th>
+                <th>대출상태</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="rental : ${rentalList}">
+                <th:block th:unless="${rental.returnDate} == null">
+                    <td th:text="${rental.book.bookId}"></td>
+                    <td th:text="${rental.book.bname}"></td>
+                    <td th:text="${rental.book.author}"></td>
+                    <td th:text="${rental.book.publisher}"></td>
+                    <td th:text="${rental.book.bnumber}"></td>
+                    <td th:text="${#dates.format(rental.rentalDate, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(rental.returnDate, 'yyyy-MM-dd')}"></td>
+                    <td th:if="${rental.returnDate == null}" th:text="대출중"></td>
+                    <td th:unless="${rental.returnDate == null}" th:text="반납완료"></td>
+                </th:block>
+            </tr>
+            </tbody>
+        </table>
+		<a th:href="@{/}"><button type="button">Home</button></a>
+	</div>
+
+<script>
+    $(".returnBtn").click(function (){
+        let rentalId = $(this).data("rental-id");
+        let confirmed = confirm('반납하시겠습니까?');
+        if(confirmed) {
+            console.log(rentalId);
+            $.ajax({
+                type: "PUT",
+                contentType: 'application/json; charset=utf-8',
+                url: "/rentalReturn/return",
+                dataType: 'json',
+                data: JSON.stringify({
+                    rentalId: rentalId,
+                    returnDate: new Date()
+                }),
+                success: function (data) {
+                    console.log("반납완료 : " + data)
+                    console.log(data)
+                    location.href = "/member/rentallist";
+                },
+                error: function (response) {
+                    console.log("반납실패" + response);
+                }
+            });
+        } else{
+            console.log("취소");
+        }
+    })
+</script>
+</body>
+</html>

@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     String resourcePath = "/upload/**";
-    String savePath = "file:///C:/projectfiles/";
+    String savePath = "file:///C:/springfiles/";
 
     //매서드 재정의
     @Override

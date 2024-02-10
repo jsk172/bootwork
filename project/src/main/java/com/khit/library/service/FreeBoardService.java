@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.khit.library.dto.FreeBoardDTO;
 import com.khit.library.entity.FreeBoard;
 import com.khit.library.repository.FreeBoardRepository;
+
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -66,5 +68,11 @@ public class FreeBoardService {
         Page<FreeBoard> searchResults = freeBoardRepository.findByMember_NameContaining(author, pageable);
         return searchResults.map(FreeBoardDTO::toSaveDTO);
     }
+	
+	
+	@Transactional
+	public void updateHits(Long fbid) {
+		freeBoardRepository.updateHits(fbid);
+	}
 }
 

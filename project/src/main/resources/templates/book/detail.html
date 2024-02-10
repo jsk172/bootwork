@@ -67,10 +67,11 @@
                 success: function(data){
                     console.log("대출성공 : " + data)
                     console.log(data)
-                    location.href = "/rentalReturn/list";
+                    location.href = "/book/list";
                 },
                 error: function(response){
                     console.log("대출실패" + response);
+                    location.href= "/login"
                 }
             });
         } else{

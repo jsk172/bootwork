@@ -7,45 +7,25 @@
   <link rel="stylesheet" th:href="@{/css/style.css}">
   <link rel="preconnect" href="@{https://fonts.googleapis.com">
   <link rel="preconnect" href="@{https://fonts.gstatic.com}" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+  <link	href="@{https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap}" rel="stylesheet">
 
 </head>
 <body>
-
-<div th:replace="~{header::header-fragment}"></div>
-<div id="container">
-    <section class="main">
-        <div class="main_top">
-
-            <div class="main_pic_box">
-                <img class="main_pic active" th:src="@{/images/main_library_picture1.PNG}" alt="">
-                <img class="main_pic" th:src="@{/images/main_library_picture2.PNG}" alt="">
-                <img class="main_pic" th:src="@{/images/main_library_picture3.PNG}" alt="">
-                <img class="main_pic" th:src="@{/images/main_library_picture4.PNG}" alt="">
-                <img class="main_pic" th:src="@{/images/main_library_picture5.PNG}" alt="">
-            </div>
-
-            <div class="main_welcome">
-                <p class="main_big_welcome">
-                    도서관에서 여러분의 다음 책을 만나보세요
-                </p>
-                <p class="main_small_welcom">
-                    모든 이야기가 당신을 기다립니다
-                </p>
-            </div>
-
-            <div class="main_timer">
-                <div class="main_timer_pointer"></div>
-            </div>
-            <div class="main_timer_circle">
-                <button class="main_toggle_btn" onClick="togglePicture()">||</button>
-            </div>
-
-            <div class="main_search">
-                <input class="main_search_input" type="text" placeholder="Seacrh">
-                <img class="main_search_icon" th:src="@{/images/magnifying3.png}">
-            </div>
-
+	<div th:replace="~{header::header-fragment}"></div>
+	<div id="container">
+		<section class="main">
+      
+			<div class="main_top">
+				<div class="main_pic_box">
+					<img class="main_pic active"
+						th:src="@{/images/main_library_picture1.PNG}" alt=""> <img
+						class="main_pic" th:src="@{/images/main_library_picture2.PNG}"
+						alt=""> <img class="main_pic"
+						th:src="@{/images/main_library_picture3.PNG}" alt=""> <img
+						class="main_pic" th:src="@{/images/main_library_picture4.PNG}"
+						alt=""> <img class="main_pic"
+						th:src="@{/images/main_library_picture5.PNG}" alt="">
+				</div>
 
 				<div class="main_welcome">
 					<p class="main_big_welcome">도서관에서 여러분의 다음 책을 만나보세요</p>
@@ -56,23 +36,24 @@
 					<div class="main_timer_pointer"></div>
 				</div>
 				<div class="main_timer_circle">
-					<button class="main_toggle_btn">||</button>
+					<button class="main_toggle_btn" onClick="togglePicture()">||</button>
 				</div>
 
 				<div class="main_search">
 					<input class="main_search_input" type="text" placeholder="Seacrh">
 					<img class="main_search_icon" th:src="@{/images/magnifying3.png}">
 				</div>
+
 			</div>
 
-      <div class="main_mid">
+			<div class="main_mid">
 
 				<div class="main_mid_text_box">
 					<p class="main_mid_small_text">선유책방은 언제나 여러분을 환영합니다</p>
 					<p class="main_mid_big_text">
-						<img class="main_mid_text_img" th:src="@{/images/board_title_img.png}"
-							alt="#"> 언제나 열려있는 도서관<br> 내 방 같은 친근함<br> 선유책방에
-						오신것을 환영합니다
+						<img class="main_mid_text_img"
+							th:src="@{/images/board_title_img.png}" alt="#"> 언제나 열려있는
+						도서관<br> 내 방 같은 친근함<br> 선유책방에 오신것을 환영합니다
 					</p>
 				</div>
 
@@ -174,8 +155,8 @@
 
 					<div class="main_mid_free">
 						<p class="main_free_title">
-							게시판 <img class="main_openspace_mark" th:src="@{/images/main_boardimg.png}"
-								alt="">
+							게시판 <img class="main_openspace_mark"
+								th:src="@{/images/main_boardimg.png}" alt="">
 						</p>
 						<div class="main_free_board">
 							<table class="main_free_board_table">
@@ -222,31 +203,31 @@
 			<div class="main_icons">
 
 				<div class="main_use_info">
-					<a href="#"> <img class="use_info_icon"
+					<a th:href="@{/}"> <img class="use_info_icon"
 						th:src="@{/images/use_info_icon.png}" alt="#">
 						<p>이용안내</p>
 					</a>
 				</div>
 				<div class="main_reading_event">
-					<a href="#"> <img class="reading_event_icon"
+					<a th:href="@{/}"> <img class="reading_event_icon"
 						th:src="@{/images/event_icon.png}" alt="">
 						<p>독서 이벤트</p>
 					</a>
 				</div>
 				<div class="main_study_room">
-					<a href="#"> <img class="study_room_icon"
+					<a th:href="@{/}"> <img class="study_room_icon"
 						th:src="@{/images/study_room_icon.png}" alt="">
 						<p>자율 학습실</p>
 					</a>
 				</div>
 				<div class="main_request_book">
-					<a href="#"> <img class="request_book_icon"
+					<a th:href="@{/}"> <img class="request_book_icon"
 						th:src="@{/images/request_book_icon.png}" alt="">
 						<p>희망 도서 신청</p>
 					</a>
 				</div>
 				<div class="main_my_library">
-					<a href="#"> <img class="my_library_icon"
+					<a th:href="@{/}"> <img class="my_library_icon"
 						th:src="@{/images/my_library_icon.png}" alt="">
 						<p>나의 책숲</p>
 					</a>
@@ -257,37 +238,42 @@
 				<div class="main_bottom_text_box">
 					<p class="main_bottom_small_text">선유책방의 베스트 추천 도서입니다</p>
 					<p class="main_bottom_big_text">
-						<img class="main_bottom_text_img" th:src="@{/images/recommand_img.png}"
-							alt=""> 마음의 창을 열어주는 책<br>선유책방의 추천 도서를 통해<br>새로운
-						이야기들을 찾아보아요
+						<img class="main_bottom_text_img"
+							th:src="@{/images/recommand_img.png}" alt=""> 마음의 창을 열어주는 책<br>선유책방의
+						추천 도서를 통해<br>새로운 이야기들을 찾아보아요
 					</p>
 				</div>
 
 				<div class="main_bottom_recommand_books">
-					<div class="main_best_book best_book">
+					<div id="book1" class="main_best_book best_book">
 						<span class="best_mark">BEST★</span> <img
-							class="main_best_book_img" th:src="@{/images/best_book.jpg}" alt="#">
-						<a href=""><p class="main_best_book_title">가짜 모범생</p></a>
+							class="main_best_book_img" th:src="@{/images/best_book.jpg}"
+							alt="#"> <a th:href="@{/}"><p
+								class="main_best_book_title">가짜 모범생</p></a>
 						<p class="main_best_book_author">손현주</p>
 					</div>
-					<div class="main_best_book">
-						<img class="main_best_book_img" th:src="@{/images/book2.jpg}" alt="#">
-						<a href=""><p class="main_best_book_title">그곳에 네가 있어준다면</p></a>
+					<div id="book2" class="main_best_book">
+						<img class="main_best_book_img" th:src="@{/images/book2.jpg}"
+							alt="#"> <a th:href="@{/}"><p
+								class="main_best_book_title">그곳에 네가 있어준다면</p></a>
 						<p class="main_best_book_author">이하연</p>
 					</div>
-					<div class="main_best_book">
-						<img class="main_best_book_img" th:src="@{/images/book3.jpg}" alt="#">
-						<a href=""><p class="main_best_book_title">중세 유럽인 이야기</p></a>
+					<div id="book3" class="main_best_book">
+						<img class="main_best_book_img" th:src="@{/images/book3.jpg}"
+							alt="#"> <a th:href="@{/}"><p
+								class="main_best_book_title">중세 유럽인 이야기</p></a>
 						<p class="main_best_book_author">주경철</p>
 					</div>
-					<div class="main_best_book">
-						<img class="main_best_book_img" th:src="@{/images/book4.jpg}" alt="#">
-						<a href=""><p class="main_best_book_title">파견자들</p></a>
+					<div id="book4" class="main_best_book">
+						<img class="main_best_book_img" th:src="@{/images/book4.jpg}"
+							alt="#"> <a th:href="@{/}"><p
+								class="main_best_book_title">파견자들</p></a>
 						<p class="main_best_book_author">김초엽</p>
 					</div>
-					<div class="main_best_book">
-						<img class="main_best_book_img" th:src="@{/images/book5.jpg}" alt="#">
-						<a href="#"><p class="main_best_book_title">오직 나를 위한 미술관</p></a>
+					<div id="book5" class="main_best_book">
+						<img class="main_best_book_img" th:src="@{/images/book5.jpg}"
+							alt="#"> <a th:href="@{/}"><p
+								class="main_best_book_title">오직 나를 위한 미술관</p></a>
 						<p class="main_best_book_author">정여울</p>
 					</div>
 				</div>

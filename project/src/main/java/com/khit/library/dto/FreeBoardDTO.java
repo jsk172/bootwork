@@ -32,7 +32,7 @@ public class FreeBoardDTO {
 	public static FreeBoardDTO toSaveDTO(FreeBoard freeBoard) {
 		FreeBoardDTO freeBoardDTO = FreeBoardDTO.builder()
 				.fbid(freeBoard.getFbid())
-//				.member(freeBoard.getMember())
+				.member(freeBoard.getMember())
 				.fbtitle(freeBoard.getFbtitle())
 				.fbcontent(freeBoard.getFbcontent())
 				.fbhit(freeBoard.getFbhit())

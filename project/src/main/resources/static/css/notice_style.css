@@ -2282,9 +2282,8 @@ select:focus{
 }
 
 
-
-
 /* paging */
+/* 페이징 가로 정렬 */
 .pagination {
     display: flex;
     justify-content: center;
@@ -2358,13 +2357,6 @@ select:focus{
     padding-left: 20px;
 }
 
-.third_ul {
-	font-size: 0.9rem;
-	line-height: 2;
-	padding-left: 20px;
-}
-
-
 .page_info_box {
     margin-bottom: 50px;
    	width: 100%;
@@ -2432,39 +2424,6 @@ select:focus{
 	background: #ccc;
 	border-radius: 25px;
 }
-
-
-.hopebookboard_btn_box {
-	width: 100%;
-	margin-top: 50px;
-	display: flex;
-	justify-content: center;
-}
-
-.hopebookboard_btn_box button{
-	width: 200px;
-	padding: 10px;
-	margin: 20px;
-}
-
-.searching_before_request {
-	border-radius: 10px;
-	border: 1px solid #963;
-	background-color: #963;
-	color: #fff;
-}
-
-.hopebook_request {
-	border-radius: 10px;
-	border: 1px solid #9f9;
-	background-color: #9f9;
-}
-
-
-
-
-
-
 
 /* footer */
 #footer{
