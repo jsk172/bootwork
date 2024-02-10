@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+    <link rel="stylesheet" th:href="@{/css/join2.css}">
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id="container">
+        <div id="top">
+            <div class="join_header_wrap">
+                <div class="join_header_inner">
+                    <a th:href="@{/}" title="홈으로"><img class="join_logo" th:src="@{/images/join-logo1.png}"></a>
+                        <span>03.</span> 가입완료
+                </div>
+            </div>
+        </div>
+        <div id="mid">
+            <div class="member_wrap">
+                <div class="member_cont_join_ok">
+                    <div class="join_ok_box">
+                        <div class="join_ok_tit">
+                            <div class="check">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <p class="complete">회원가입이 <b>완료</b> 되었습니다.</p>
+                            <p>회원가입을 축하합니다.</p>
+                        </div>
+                        <div class="btn_member_sec">
+                            <a th:href="@{/}"><button type="button" class="btnHome">홈으로</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</body>
+</html>

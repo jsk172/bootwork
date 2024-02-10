@@ -18,7 +18,7 @@
                     <div class="header_link_search">
                         <a th:href="@{/}">도서검색</a>
                         <div class="header_sub_link_search">
-                            <p><a th:href="@{/}">검색</a></p>
+                            <p><a th:href="@{/book/list}">도서 목록</a></p>
                             <p><a th:href="@{/}">대출베스트(추천도서)</a></p>
                             <p><a th:href="@{/}">희망 도서 신청</a></p>
                         </div>
@@ -58,27 +58,20 @@
             <div class="header_member">
                 <th:block sec:authorize="isAnonymous()">
                     <a class="header_member_join" th:href="@{/login}">로그인</a> |
-                    <a class="header_member_login" th:href="@{/member/join}">회원가입</a>
+                    <a class="header_member_login" th:href="@{/member/join0}">회원가입</a>
                 </th:block>
                 <th:block sec:authorize="isAuthenticated()">
 
-
-                    <a class="header_member_join" th:href="'#'" th:text="${member.name} + '님 환영합니다.'"></a> |
-
-
                 <div class="admin_box">
-                  <a class="header_member_admin"  th:href="@{/member/detail}" sec:authorize="hasAnyAuthority('Admin')" th:text="관리자"></a> |
+                  <a class="header_member_admin"  th:href="@{/member/detail}" sec:authorize="hasAnyAuthority('Admin')" th:text="관리자"></a>
      	        	<div class="admin_menu">
         	            <a th:href="@{/rentalReturn/list}" sec:authorize="hasAnyAuthority('Admin')">대출정보</a>
     	                <a th:href="@{/member/list}" sec:authorize="hasAnyAuthority('Admin')">회원목록</a> <!--관리자 로그인시 보임-->
 	                    <a th:href="@{/book/register}" sec:authorize="hasAnyAuthority('Admin')">책등록</a> <!--관리자 로그인시 보임-->
                     </div>
                 </div>
-<!--                     <a class="header_member_join" th:href="@{/board/write}">글쓰기</a> |  -->
-
+                    <a class="header_member_join" th:href="'#'" th:text="${member.name} + '님 환영합니다.'"></a> |
                     <a class="header_member_login" th:href="@{/logout}">로그아웃</a>
-                    <!-- <a th:href="@{/book/list}"><button type="button">책목록</button></a>
-                    <a th:href="@{/member/update}"><button type="button">나의정보</button></a> -->
 
                 </th:block>
             </div>

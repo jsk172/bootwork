@@ -33,15 +33,15 @@ public class BookService {
     //책 등록
     public void save(BookDTO bookDTO, MultipartFile bookFile) throws Exception {
         if(!bookFile.isEmpty()){
-            String bfilepath = "C:\\bootworks\\project\\src\\main\\resources\\static\\upload\\";
             UUID uuid = UUID.randomUUID();
             String bfilename = uuid + "_" + bookFile.getOriginalFilename(); //원본파일
+            String bfilepath = "C:/projectfiles/" + bfilename;
 
-            File savedFile = new File(bfilepath, bfilename);
+            File savedFile = new File(bfilepath);
             bookFile.transferTo(savedFile);
 
             bookDTO.setBfilename(bfilename);
-            bookDTO.setBfilepath("/upload/" + bfilename);
+            bookDTO.setBfilepath(bfilename);
         }
         Book book = Book.toSaveEntity(bookDTO);
         bookRepository.save(book);
@@ -69,7 +69,21 @@ public class BookService {
         }
     }
     //책 수정
-    public void update(BookDTO bookDTO) {
+    public void update(BookDTO bookDTO, MultipartFile bookFile) throws Exception {
+        if(!bookFile.isEmpty()){
+            UUID uuid = UUID.randomUUID();
+            String bfilename = uuid + "_" + bookFile.getOriginalFilename(); //원본파일
+            String bfilepath = "C:/projectfiles/" + bfilename;
+
+            File savedFile = new File(bfilepath);
+            bookFile.transferTo(savedFile);
+
+            bookDTO.setBfilename(bfilename);
+            bookDTO.setBfilepath(bfilename);
+        }else{
+            bookDTO.setBfilename(findById(bookDTO.getBookId()).getBfilename());
+            bookDTO.setBfilepath(findById(bookDTO.getBookId()).getBfilepath());
+        }
         Book book = Book.toUpdateEntity(bookDTO);
         bookRepository.save(book);
     }

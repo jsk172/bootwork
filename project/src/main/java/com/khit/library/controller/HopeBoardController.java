@@ -103,7 +103,6 @@ public class HopeBoardController {
     						@AuthenticationPrincipal SecurityUser principal) {
     	hopeBoardService.updateHits(hbid);
     	HopeBoardDTO hopeBoardDTO = hopeBoardService.findById(hbid);
-    	hopeBoardDTO.setMember(principal.getMember());
     	model.addAttribute("hopeBoard", hopeBoardDTO);
         if(principal == null){
             return "hopeboard/detail";

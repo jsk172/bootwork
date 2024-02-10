@@ -37,7 +37,7 @@
 					<td th:unless="${rental.returnDate == null}" th:text="반납완료"></td>
 					<!-- 버티컬바(|)는 ${member.id}를 숫자로 유지시켜줌 -->
 					<td>
-						<input type="submit" th:value="반납" th:data-rental-id="${rental.rentalId}" id="returnBtn" onclick="return confirm('반납하시겠습니까?')">
+						<input type="submit" th:value="반납" th:data-rental-id="${rental.rentalId}" class="returnBtn">
 					</td>
 				</tr>
 			</tbody>
@@ -46,29 +46,33 @@
 	</div>
 
 	<script>
-		$(document).on("click", "#returnBtn", function() {
-			let rentalId = $(this).data("rental-id");
-			console.log(rentalId);
-			$.ajax({
-				type: "PUT",
-				contentType: 'application/json; charset=utf-8',
-				url: "/rentalReturn/return",
-				dataType: 'json',
-				data: JSON.stringify({
-					rentalId: rentalId,
-					returnDate : new Date()
-				}),
-				success: function(data){
-					console.log("반납완료 : " + data)
-					console.log(data)
-					location.href = "/rentalReturn/list";
-				},
-				error: function(response){
-					console.log("반납실패" + response);
-				}
-			});
-		});
-
+        $(".returnBtn").click(function (){
+            let rentalId = $(this).data("rental-id");
+            let confirmed = confirm('반납하시겠습니까?');
+            if(confirmed) {
+                console.log(rentalId);
+                $.ajax({
+                    type: "PUT",
+                    contentType: 'application/json; charset=utf-8',
+                    url: "/rentalReturn/return",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        rentalId: rentalId,
+                        returnDate: new Date()
+                    }),
+                    success: function (data) {
+                        console.log("반납완료 : " + data)
+                        console.log(data)
+                        location.href = "/rentalReturn/list";
+                    },
+                    error: function (response) {
+                        console.log("반납실패" + response);
+                    }
+                });
+            } else{
+                console.log("취소");
+            }
+        })
 	</script>
 </body>
 </html>

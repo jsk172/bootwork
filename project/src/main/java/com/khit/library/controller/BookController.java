@@ -63,8 +63,8 @@ public class BookController {
     }
     //책 수정 처리
     @PostMapping("/update")
-    public String update(@ModelAttribute BookDTO bookDTO){
-        bookService.update(bookDTO);
+    public String update(@ModelAttribute BookDTO bookDTO,MultipartFile bookFile) throws Exception {
+        bookService.update(bookDTO, bookFile);
         return "redirect:/book/list";
     }
     //책 삭제

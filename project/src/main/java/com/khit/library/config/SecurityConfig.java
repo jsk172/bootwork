@@ -23,9 +23,9 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authroize -> authroize
                         .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/error").permitAll()
-                        .requestMatchers("/board/write").authenticated()
+                        .requestMatchers("/hopeboard/write", "/member/update").authenticated()
                         .requestMatchers("/member/list", "/book/register").hasAnyAuthority("Admin")
-                        .requestMatchers("/member/**", "/board/**", "/book/**", "/rentalReturn/**").permitAll()
+                        .requestMatchers("/member/**", "/hopeboard/**", "/book/**", "/rentalReturn/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf().disable()

@@ -34,18 +34,26 @@ public class MemberController {
 
 
     //회원가입 폼
-    @GetMapping("/member/join")
+    @GetMapping("/member/join0")
+    public String joinForm0(MemberDTO memberDTO){
+        return "member/join0";
+    }
+    @GetMapping("/member/join1")
     public String joinForm(MemberDTO memberDTO){
-        return "member/join";
+        return "member/join1";
+    }
+    @GetMapping("/member/join2")
+    public String joinForm2(MemberDTO memberDTO){
+        return "member/join2";
     }
     //회원가입 처리
-    @PostMapping("/member/join")
+    @PostMapping("/member/join1")
     public String join(@Valid MemberDTO memberDTO, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return "member/join";
+            return "member/join1";
         }
         memberService.save(memberDTO);
-        return "redirect:/";
+        return "redirect:/member/join2";
     }
     //로그인 폼
     @GetMapping("/login")

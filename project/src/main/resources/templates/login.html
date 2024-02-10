@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
 	<div id="container">
@@ -23,12 +24,44 @@
 						<li>
 							<span th:text="${error}" class="error"></span>
 						</li>
+                        <p class="agree_box">
+                            <input type="checkbox" name="saveId" id="saveId">
+                            <label for="saveId"> 아이디 저장</label>
+                        </p>
 						<li>
-							<input type="submit" value="로그인">
-							<a href="/"><button type="button">취소</button></a>
-							<a href="/member/join"><button type="button">회원가입</button></a>
-						</li>
-					</ul>
+                            <div class="join_login">
+                                <button type="submit" class="loginBtn">로그인</button>
+                            </div>
+                            <div class="">
+                                <a th:href="@{/member/join0}">
+                                    <button type="button" id="btnJoinMember" class="joinBtn">회원가입</button>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="btn_member">
+                                <div>
+                                    <button id="btnFindId" class="btn_member_white">아이디 찾기</button>
+                                    <button id="btnFindPwd" class="btn_member_white">비밀번호 찾기</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="separator_box">
+                                <span class="separator" th:text="또는"></span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <button type="submit" class="naverlogin">
+                                <img th:src="@{/images/naver.PNG}">네이버로 로그인
+                            </button>
+                            <button type="submit" class="kakaologin">
+                                <img th:src="@{/images/kakao.PNG}">카카오로 로그인
+                            </button>
+                        </li>
+                    </ul>
+
 				</fieldset>		
 			</form>
 		</div>

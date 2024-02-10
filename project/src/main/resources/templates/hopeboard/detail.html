@@ -82,7 +82,7 @@ crossorigin="anonymous"></script>
                                         <td>
                                             <textarea rows="5" cols="30" name="hbcontent" th:text="${hopeBoard.hbcontent}" readonly></textarea>
                                             <div class="page_textarea_img_box">
-                                                <img th:src="${hopeBoard.hopeFilepath}"/>
+                                                <img th:src="@{|/upload/${hopeBoard.hopeFilename}|}"/>
                                             </div>
                                         </td>
                                     </tr>

@@ -1,6 +1,7 @@
 package com.khit.library.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.khit.library.dto.BookDTO;
 import jakarta.persistence.*;
@@ -15,6 +16,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Book extends BaseEntity{
 
     @Id
@@ -65,9 +67,9 @@ public class Book extends BaseEntity{
         return book;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
+    @JoinColumn
     private Member member;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
