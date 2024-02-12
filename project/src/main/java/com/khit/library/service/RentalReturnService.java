@@ -57,4 +57,12 @@ public class RentalReturnService {
         return rentalReturnDTOList;
     }
 
+    public int count(Long memberId){
+        return rentalReturnRepository.rentalCount(memberId);
+    }
+
+    public List<Integer> rentalAble(){
+        return rentalReturnRepository.rentalAble();
+    }
+
 }

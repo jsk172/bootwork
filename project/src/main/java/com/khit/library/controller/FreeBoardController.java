@@ -3,6 +3,7 @@ package com.khit.library.controller;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.khit.library.config.SecurityUser;
 import com.khit.library.dto.FreeBoardDTO;
 import com.khit.library.dto.MemberDTO;
+import com.khit.library.dto.NoticeBoardDTO;
 import com.khit.library.entity.FreeBoard;
 import com.khit.library.service.FreeBoardService;
 import com.khit.library.service.MemberService;
@@ -73,10 +75,31 @@ public class FreeBoardController {
 	}
 
 	// 글 전체 목록
-	@GetMapping("/pagelist")
-	public String getAllList(Model model, @AuthenticationPrincipal SecurityUser principal) {
-		List<FreeBoardDTO> freeBoardDTOList = freeBoardService.findAll();
-		model.addAttribute("freeBoardList", freeBoardDTOList);
+//	@GetMapping("/pagelist")
+//	public String getAllList(Model model, @AuthenticationPrincipal SecurityUser principal) {
+//		List<FreeBoardDTO> freeBoardDTOList = freeBoardService.findAll();
+//		model.addAttribute("freeBoardList", freeBoardDTOList);
+//        if(principal == null){
+//            return "freeboard/pagelist";
+//        }else{
+//            MemberDTO memberDTO = memberService.findByMid(principal);
+//            model.addAttribute("member", memberDTO);
+//            return "freeboard/pagelist";
+//        }
+//	}
+	
+	//페이징, 글 목록
+    @GetMapping("/pagelist")
+    public String pagelist(
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @AuthenticationPrincipal SecurityUser principal,
+            Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<FreeBoardDTO> freeBoardPage = freeBoardService.paging(pageable);
+        List<FreeBoardDTO> freeBoardDTOList = freeBoardService.findAll();
+        model.addAttribute("freeBoardPage", freeBoardPage);
+        model.addAttribute("freeBoardList", freeBoardDTOList);
         if(principal == null){
             return "freeboard/pagelist";
         }else{
@@ -84,7 +107,7 @@ public class FreeBoardController {
             model.addAttribute("member", memberDTO);
             return "freeboard/pagelist";
         }
-	}
+    }
 
 	// 글 하나 상세보기
 	@GetMapping("/{fbid}")

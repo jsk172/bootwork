@@ -39,8 +39,8 @@ table tr, th, td {
                         <td th:text="${rental.book.bnumber}"></td>
                         <td th:text="${#dates.format(rental.rentalDate, 'yyyy-MM-dd')}"></td>
                         <td th:text="${#dates.format(rental.deadlineDate, 'yyyy-MM-dd')}"></td>
-                        <td th:if="${rental.returnDate == null}" th:text="대출중"></td>
-                        <td th:unless="${rental.returnDate == null}" th:text="반납완료"></td>
+                        <td th:if="${rental.deadlineDate <= #dates.createNow()}" th:text="연체"></td>
+                        <td th:unless="${rental.deadlineDate <= #dates.createNow()}" th:text="대출중"></td>
                         <td>
                             <input type="submit" th:value="반납" th:data-rental-id="${rental.rentalId}" class="returnBtn">
                         </td>
@@ -72,8 +72,7 @@ table tr, th, td {
                     <td th:text="${rental.book.bnumber}"></td>
                     <td th:text="${#dates.format(rental.rentalDate, 'yyyy-MM-dd')}"></td>
                     <td th:text="${#dates.format(rental.returnDate, 'yyyy-MM-dd')}"></td>
-                    <td th:if="${rental.returnDate == null}" th:text="대출중"></td>
-                    <td th:unless="${rental.returnDate == null}" th:text="반납완료"></td>
+                    <td th:if="${rental.returnDate} != null" th:text="반납완료"></td>
                 </th:block>
             </tr>
             </tbody>

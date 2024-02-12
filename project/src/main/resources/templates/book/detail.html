@@ -51,6 +51,10 @@
 
 <script>
 	$("#rentalBtn").click(function(){
+        if([[${able}]].includes([[${member.memberId}]])){
+            alert("대출 불가능 상태입니다.");
+            return;
+        }
         let confirmed = confirm('대여하시겠습니까?');
         if(confirmed){
             $.ajax({
@@ -66,12 +70,11 @@
                 }),
                 success: function(data){
                     console.log("대출성공 : " + data)
-                    console.log(data)
-                    location.href = "/book/list";
+                    location.href = "/member/rentallist";
                 },
                 error: function(response){
                     console.log("대출실패" + response);
-                    location.href= "/login"
+                    location.href = "/member/rentallist";
                 }
             });
         } else{

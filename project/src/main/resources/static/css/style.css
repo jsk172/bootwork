@@ -59,36 +59,36 @@ a {
 
 
 /* header */
-#header{
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: space-around;
-    position: fixed;
-    z-index: 1;
+#header {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: space-around;
+	position: fixed;
+	z-index: 1;
 }
 
 .header {
-    width: 80%;
-    height: 100px;
-    margin: 0;
-    text-align: center;
-    justify-content: space-around;
-    display: flex;
-    align-items: center;
+	width: 80%;
+	height: 100px;
+	margin: 0;
+	text-align: center;
+	justify-content: space-around;
+	display: flex;
+	align-items: center;
 }
 
 /* header_logo */
 .header_logo_box {
-    width: 15%;
-    display: flex;
-    justify-content: center;
+	width: 15%;
+	display: flex;
+	justify-content: center;
 }
 
 .header_logo {
-    width: 180px;
+	width: 130px;
 }
 
 /* .header_library_name {
@@ -99,88 +99,107 @@ a {
 
 /* header_link */
 .header_links {
-    width: 70%;
-    display: flex;
-    justify-content: space-around;
-    height: 100%;
-    align-items: center;
+	width: 70%;
+	display: flex;
+	justify-content: space-around;
+	height: 100%;
+	align-items: center;
 }
 
 .header_link {
-    width: 60%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
+	width: 70%;
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+
 }
 
+/* header_top_menu (도서 검색, 도서관 안내 등) */
+.header_link_search > a, .header_link_open_space > a,
+.header_link_library_info > a, .header_link_study_room > a,
+.header_link_my_library > a {
+	font-weight: 600;
+	color: #6a5d3e;
+	text-decoration: none;
+}
 
-.header_link a {
-    font-weight: 600;
-    color: #7D704E;
-    text-decoration: none;
+/* header_sub_menu (자유게시판, 도서관에 바란다 등) */
+.header_sub_link_search a, .header_sub_link_open_space a,
+.header_sub_link_library_info a, .header_sub_link_study_room a,
+.header_sub_link_my_library a {
+	display: block;
+	color: #7D704E;
+	font-weight: 500;
+	font-size: 0.85em;
+	padding: 10px 0 10px 0;
+}
+
+.header_link_search, .header_link_open_space, .header_link_library_info,
+.header_link_study_room, .header_link_my_library {
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	position: relative;
+}
+
+.header_sub_link_search, .header_sub_link_open_space,
+	.header_sub_link_library_info, .header_sub_link_study_room,
+	.header_sub_link_my_library {
+/* 	position: absolute;
+	width: 200px;
+	display: none;
+	top: 75px; */
+	position: absolute;
+    width: 200px;
+    display: block;
+    top: 75px;
+    opacity: 0; /* 시작 시 투명하게 */
+    visibility: hidden; /* 시작 시 숨김 */
+    transform: translateY(-20px); /* 시작 시 약간 위에서 시작 */
+    transition: opacity 0.5s ease, visibility 0s linear, transform 0.5s ease; /* 애니메이션 적용 */
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 100; /* 다른 요소들 위에 표시되도록 z-index 설정 */
+}
+
+.header_link_search:hover .header_sub_link_search,
+.header_link_open_space:hover .header_sub_link_open_space,
+.header_link_library_info:hover .header_sub_link_library_info,
+.header_link_study_room:hover .header_sub_link_study_room,
+.header_link_my_library:hover .header_sub_link_my_library {
+	display: block;
+	/* background-color: #f4f4f6; */
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+	width: 135px;
+	height: 0 auto;
+	font-size: 0.9em;
+    opacity: 1; /* 호버 시 불투명하게 */
+    visibility: visible; /* 호버 시 보이게 */
+    transform: translateY(0); /* 원래 위치로 이동 */
+
 }
 
 /* header_member */
 .header_member {
-    width: 15%;
-    height: 100%;
-    color: #A5B569;
-    display: flex;
-    align-items: center;
+	width: 15%;
+	height: 100%;
+	color: #A5B569;
+	display: flex;
+	align-items: center;
 }
 
 .header_member a {
-    font-size: 0.7rem;
-    color: #A5B569;
-    text-decoration: none;
-    padding-right: 5px;
-    padding-left: 5px;
+	font-size: 0.7rem;
+	color: #A5B569;
+	text-decoration: none;
+	padding-right: 5px;
+	padding-left: 5px;
 }
 
-/* header_sub_menu */
-.header_link_search,
-.header_link_open_space,
-.header_link_library_info,
-.header_link_study_room,
-.header_link_my_library {
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-}
-
-.header_sub_link_search,
-.header_sub_link_open_space,
-.header_sub_link_library_info,
-.header_sub_link_study_room,
-.header_sub_link_my_library {
-    position: absolute;
-    width: 200px;
-    display: none;
-    top: 75px;
-}
-
-.header_link_search:hover .header_sub_link_search{
-    display: block;
-}
-.header_link_open_space:hover .header_sub_link_open_space{
-    display: block;
-}
-.header_link_library_info:hover .header_sub_link_library_info{
-    display: block;
-}
-.header_link_study_room:hover .header_sub_link_study_room{
-    display: block;
-}
-.header_link_my_library:hover .header_sub_link_my_library{
-    display: block;
-}
-
-/* ====================================================== */
-
-
+/* ============================================ */
 
 /* main */
 #container {
@@ -408,7 +427,7 @@ select:focus{
 }
 
 /* main_mid_schedule */
-.main_mid_schedule {
+/* .main_mid_schedule {
     width: 27.5%;
     height: 350px;
     background-color: #fff;
@@ -419,7 +438,7 @@ select:focus{
     padding-left: 10px;
     padding-bottom: 10px;
     box-shadow: 5px 5px 5px #ccc;
-}
+} */
 
 .main_schedule_title {
     border-bottom: 2px solid #555;
@@ -473,7 +492,7 @@ select:focus{
 }
 
 /* main_mid_openspace*/
-.main_mid_openspace {
+/* .main_mid_openspace {
     width: 27.5%;
     height: 350px;
     background-color: #fff;
@@ -484,8 +503,7 @@ select:focus{
     padding-left: 10px;
     padding-bottom: 10px;
     box-shadow: 5px 5px 5px #ccc;
-
-}
+} */
 
 .main_openspace_title {
     border-bottom: 2px solid #555;
@@ -531,7 +549,7 @@ select:focus{
 }
 
 /* main_mid_free */
-.main_mid_free {
+/* .main_mid_free {
     width: 27.5%;
     height: 350px;
     background-color: #fff;
@@ -541,7 +559,7 @@ select:focus{
     padding-left: 10px;
     padding-bottom: 10px;
     box-shadow: 5px 5px 5px #ccc;
-}
+} */
 
 .main_free_title {
     border-bottom: 2px solid #555;
@@ -642,7 +660,7 @@ select:focus{
     width: 70px;
     position: absolute;
     top: -10px;
-    left: 600px;
+    left: 650px;
 }
 
 .main_bottom_recommand_books {
@@ -1488,29 +1506,6 @@ select:focus{
 
 
 
-.main_mid_text_box {
-    width: 50%;
-    height: 250px;
-    margin-bottom: 100px;
-    color: #56432C;
-}
-
-.main_mid_small_text {
-    font-size: 0.9rem;
-    color: #7C9877;
-}
-
-.main_mid_big_text {
-    font-size: 3rem;
-    position: relative;
-}
-
-.main_mid_text_img {
-    width: 70px;
-    position: absolute;
-    top: 50px;
-    left: 500px;
-}
 
 .main_mid_board_box {
     width: 100%;
@@ -1985,73 +1980,6 @@ select:focus{
 
 
 
-.main_bottom_small_text {
-    font-size: 0.9rem;
-    color: #7C9877;
-}
-
-.main_bottom_big_text {
-    font-size: 3rem;
-    position: relative;
-}
-
-.main_bottom_text_img {
-    width: 70px;
-    position: absolute;
-    top: 50px;
-    left: 600px;
-}
-
-.main_bottom_recommand_books {
-    width: 100%;
-    height: 350px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.main_best_book {
-    padding: 10px;
-    width: 17.5%;
-    height: 350px;
-    background-color: #fff;
-    border-radius: 25px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 5px 5px 5px #ccc;
-}
-
-.main_best_book_img {
-    width: 60%;
-    height: 220px;
-}
-
-.main_best_book_title {
-    color: #56432C;
-    font-size: 1.1rem;
-    font-weight: 700;
-}
-
-.best_mark {
-    font-size: 0.7rem;
-    color: #dd9;
-}
-
-.best_book {
-    border: 4px solid #ffa;
-}
-
-.main_best_book_author {
-    font-size: 0.8rem;
-    color: #7C9877;
-}
-
-
-
-
-
 
 /* ====================================================== */
 
@@ -2284,60 +2212,50 @@ select:focus{
 
 
 
-/* paging */
+/* paging 스타일 */
 .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	list-style: none;
+	padding: 0;
+	margin-top: 20px;
 }
 
 .pagination ul {
 	display: flex; /* ul 내부를 가로로 정렬 */
-    padding: 0;
-    margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 .pagination li {
-    margin: 0;
-    text-align: center;
+	margin: 0;
+	text-align: center;
 }
 
 .pagination a {
-    display: block;
-    padding: 5px 10px;
-    background-color: grey;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+	display: block;
+	padding: 5px 10px;
+	color: grey;
+	text-decoration: none;
+	font-weight: 400;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
 }
 
 .pagination a:hover {
-    background-color: #999;
+	color: #b8be86;
 }
 
-/* 이전 및 다음 버튼 */
-.pagination .prev,
-.pagination .next {
-    background-color: #f1f1f1;
-    color: #333;
+.pagination a.current { /* 현재 페이지를 나타내는 링크 스타일 */
+	color: #666;
+	font-weight: 500;
 }
 
-/* 비활성화된 버튼 */
-.pagination .disabled {
-    pointer-events: none;
-    background-color: #ddd;
-    color: #999;
-}
-
-/* 목록 아이템의 마커 제거 */
-.pagination li {
-    margin: 0;
-    text-align: center;
-    list-style-type: none; /* 마커 제거 */
+.pagination li { /* 목록 아이템의 마커 제거 */
+	margin: 0;
+	text-align: center;
+	list-style-type: none; /* 마커 제거 */
 }
 
 /* join_info */
@@ -2460,8 +2378,101 @@ select:focus{
 	background-color: #9f9;
 }
 
+/* member_update */
+.member_update_form {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.member_update_form table {
+    width: 90%;
+    margin: 0 auto 20px;
+    border-collapse: collapse;
+    border-top: 3px solid #ddd;
+    border-bottom: 3px solid #ddd;
+}
+
+.member_update_form table tr td {
+    border-bottom: 2px solid #ddd;
+    padding: 10px;
+}
+
+.member_update_form table tr td:nth-child(1) {
+    width: 20%;
+    background-color: #efefef;
+}
+
+.member_update_form table tr td input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 3px;
+    border: none;
+}
+
+.member_update_form table tr td input:focus {
+    outline: none;
+}
+
+.member_update_form table tr:nth-child(4) input,
+.member_update_form table tr:nth-child(5) input,
+.member_update_form table tr:nth-child(6) input,
+.member_update_form table tr:nth-child(7) input {
+	color: #753;
+	font-weight: 600;
+    border-bottom: 2px solid #aaa;
+}
+
+.member_update_form table tr:nth-child(1) input,
+.member_update_form table tr:nth-child(2) input {
+    font-weight: 600;
+}
+
+.member_update_btn_box {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: right;
+}
+
+.member_update_btn_box button {
+    padding: 5px 15px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.member_update_confirm {
+    border: 1px solid #dcffe6;
+    background-color: #dcffe6;
+}
+
+.member_update_cancel {
+    border: #745b3d;
+    background-color: #745b3d;
+    color: #fff;
+}
+
+.user_update_icon{
+    width: 100%;
+    padding: 10px;
+    border: 5px solid #ddd;
+    background-color: #fff;
+}
 
 
+
+
+.book_img_preview {
+	border: 1px solid #efefef;
+	border-radius: 15px;
+	display: flex;
+	justify-content: center;
+	padding: 20px;
+	margin: 20px auto;
+}
+
+.book_img_preview img {
+	width: 50%;
+}
 
 
 

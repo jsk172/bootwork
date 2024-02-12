@@ -10,7 +10,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.khit.library.dto.FreeBoardDTO;
+import com.khit.library.dto.NoticeBoardDTO;
 import com.khit.library.entity.FreeBoard;
+import com.khit.library.entity.NoticeBoard;
 import com.khit.library.repository.FreeBoardRepository;
 
 import jakarta.transaction.Transactional;
@@ -74,5 +76,11 @@ public class FreeBoardService {
 	public void updateHits(Long fbid) {
 		freeBoardRepository.updateHits(fbid);
 	}
+
+	//페이징
+	public Page<FreeBoardDTO> paging(Pageable pageable) {
+        Page<FreeBoard> freeBoardPage = freeBoardRepository.findAll(pageable);
+        return freeBoardPage.map(freeBoard -> FreeBoardDTO.toSaveDTO(freeBoard));
+    }
 }
 

@@ -31,8 +31,8 @@
 						<div class="nav_content_mid">
 							<div class="nav_links">
 								<a class="nav_menu selected_menu" th:href="@{notice/pagelist}">공지사항</a>
-								<a class="nav_menu" th:href="@{#}">이용안내</a>
-								<a class="nav_menu" th:href="@{#}">오시는 길</a>
+								<a class="nav_menu" th:href="@{#}">이용안내</a> <a class="nav_menu"
+									th:href="@{#}">오시는 길</a>
 							</div>
 						</div>
 					</div>
@@ -69,20 +69,22 @@
 									</tr>
 								</thead>
 								<tbody class="page_table_body">
-				<tr th:each="noticeBoard : ${noticeBoardPage.content}">
-					<td th:text="${noticeBoard.nbid}"></td>
-					<td><a th:href="@{/notice/{nbid}(nbid=${noticeBoard.nbid})}"
-						th:text="${noticeBoard.nbtitle}"></a></td>
-					<td th:text="${noticeBoard.member.name}"></td>
-					<td
-						th:text="${#dates.format(noticeBoard.createdDate, 'yyyy-MM-dd')}"></td>
+									<tr th:each="noticeBoard : ${noticeBoardPage.content}">
+										<td th:text="${noticeBoard.nbid}"></td>
+										<td><a
+											th:href="@{/notice/{nbid}(nbid=${noticeBoard.nbid})}"
+											th:text="${noticeBoard.nbtitle}"></a></td>
+										<td th:text="${noticeBoard.member.name}"></td>
+										<td
+											th:text="${#dates.format(noticeBoard.createdDate, 'yyyy-MM-dd')}"></td>
 
-					<td th:text="${noticeBoard.nbhit}"></td>
-				</tr>
+										<td th:text="${noticeBoard.nbhit}"></td>
+									</tr>
 							</table>
-                            <div class="page_write_btn_box">
-                                <a th:href="@{/notice/write}"><button type="button" class="page_write_btn">글쓰기</button></a>
-                            </div>
+							<div class="page_write_btn_box">
+								<a th:href="@{/notice/write}"><button type="button"
+										class="page_write_btn">글쓰기</button></a>
+							</div>
 						</div>
 					</div>
 
@@ -91,22 +93,25 @@
 						<ul>
 							<!-- 이전 페이지 -->
 							<li th:if="${noticeBoardPage.hasPrevious()}"><a
-								th:href="@{|/notice/pagelist?page=${noticeBoardPage.pageable.pageNumber-1}|}">이전</a>
-							</li>
+								th:href="@{|/notice/pagelist?page=${noticeBoardPage.pageable.pageNumber-1}|}">
+									< </a></li>
 
 							<!-- 페이지 번호 -->
 							<li
 								th:each="pageNum : ${#numbers.sequence(0, noticeBoardPage.totalPages-1)}">
 								<a th:href="@{|/notice/pagelist?page=${pageNum}|}"
-								th:text="${pageNum + 1}"></a>
+								th:text="${pageNum + 1}"
+								th:classappend="${pageNum} == ${noticeBoardPage.pageable.pageNumber} ? 'current' : ''">
+							</a>
 							</li>
 
 							<!-- 다음 페이지 -->
 							<li th:if="${noticeBoardPage.hasNext()}"><a
-								th:href="@{|/notice/pagelist?page=${noticeBoardPage.pageable.pageNumber+1}|}">다음</a>
-							</li>
+								th:href="@{|/notice/pagelist?page=${noticeBoardPage.pageable.pageNumber+1}|}">
+									> </a></li>
 						</ul>
-					</div> <!-- 페이지네이션 끝 -->
+					</div>
+					<!-- 페이지네이션 끝 -->
 
 				</div>
 			</div>

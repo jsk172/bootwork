@@ -5,6 +5,7 @@ import com.khit.library.dto.BookDTO;
 import com.khit.library.dto.MemberDTO;
 import com.khit.library.service.BookService;
 import com.khit.library.service.MemberService;
+import com.khit.library.service.RentalReturnService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,12 +22,19 @@ import java.util.List;
 public class BookController {
     private final BookService bookService;
     private final MemberService memberService;
+    private final RentalReturnService rentalReturnService;
 
 
     //책등록 폼
     @GetMapping("/register")
-    public String insertFrom(){
-        return "book/register";
+    public String insertFrom(@AuthenticationPrincipal SecurityUser principal, Model model){
+        if(principal == null){
+        	return "book/register";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "book/register";
+        }
     }
     //책 등록 처리
     @PostMapping("/register")
@@ -36,10 +44,16 @@ public class BookController {
     }
     //책 리스트
     @GetMapping("/list")
-    public String getList(Model model) {
+    public String getList(Model model, @AuthenticationPrincipal SecurityUser principal) {
         List<BookDTO> bookDTOList = bookService.findAll();
         model.addAttribute("bookList", bookDTOList);
-        return "book/list";
+        if(principal == null){
+            return "book/list";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "book/list";
+        }
     }
     //책 상세
     @GetMapping("/detail/{bookId}")
@@ -51,34 +65,53 @@ public class BookController {
         }else{
             MemberDTO memberDTO = memberService.findByMid(principal);
             model.addAttribute("member", memberDTO);
+            model.addAttribute("able", rentalReturnService.rentalAble());
             return "book/detail";
         }
     }
     //책 수정
     @GetMapping("/update/{bookId}")
-    public String updateForm(@PathVariable Long bookId, Model model){
+    public String updateForm(@PathVariable Long bookId, Model model,
+    						@AuthenticationPrincipal SecurityUser principal){
         BookDTO bookDTO = bookService.findById(bookId);
         model.addAttribute("book", bookDTO);
-        return "book/update";
+        
+        if(principal == null){
+        	return "book/update";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "book/update";
+        }
+        
     }
+    
     //책 수정 처리
     @PostMapping("/update")
     public String update(@ModelAttribute BookDTO bookDTO,MultipartFile bookFile) throws Exception {
         bookService.update(bookDTO, bookFile);
         return "redirect:/book/list";
     }
+    
     //책 삭제
     @GetMapping("/delete/{bookId}")
     public String delete(@PathVariable Long bookId){
         bookService.deleteById(bookId);
         return "redirect:/book/list";
     }
+    
     //책 검색
     @GetMapping("/search")
-    public String search(@RequestParam String keyword, Model model) {
+    public String search(@RequestParam String keyword, Model model, @AuthenticationPrincipal SecurityUser principal) {
         List<BookDTO> searchResults = bookService.search(keyword);
         model.addAttribute("searchResults", searchResults);
-        return "book/searchResults";
+        if(principal == null){
+        	return "book/searchResults";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "book/searchResults";
+        }
     }
 
 }

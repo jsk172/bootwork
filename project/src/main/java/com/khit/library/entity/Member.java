@@ -34,15 +34,13 @@ public class Member extends BaseEntity{
 
     @Column(nullable = false)
     private String name;
-
-    @Column
+    /*@Column
     @Builder.Default
     private Integer rentalCount = 0;
 
     @Column
     @Builder.Default
-    private Boolean rentalAble = true;
-
+    private Boolean rentalAble = true;*/
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -61,6 +59,8 @@ public class Member extends BaseEntity{
                 .email(memberDTO.getEmail())
                 .name(memberDTO.getName())
                 .role(memberDTO.getRole())
+//                .rentalCount(memberDTO.getRentalCount())
+//                .rentalAble(memberDTO.getRentalAble())
                 .build();
         return member;
     }
@@ -72,8 +72,8 @@ public class Member extends BaseEntity{
                 .password(memberDTO.getPassword())
                 .email(memberDTO.getEmail())
                 .name(memberDTO.getName())
-                .rentalCount(memberDTO.getRentalCount())
-                .rentalAble(memberDTO.getRentalAble())
+//                .rentalCount(memberDTO.getRentalCount())
+//                .rentalAble(memberDTO.getRentalAble())
                 .role(memberDTO.getRole())
                 .build();
         return member;

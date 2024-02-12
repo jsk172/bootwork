@@ -40,7 +40,7 @@
 						<div class="nav_content_mid">
 							<div class="nav_links">
 								<a class="nav_menu selected_menu" th:href="@{/hopeboard/pagelist}">도서관에 바란다</a>
-								<a class="nav_menu" th:href="@{/freeboard/pagelist}">자유 게시판</a>
+								<a class="nav_menu" th:href="@{/freeboard/pagelist}">자유게시판</a>
 								<a class="nav_menu" th:href="@{#}">도서관 이벤트</a>
 							</div>
 						</div>
@@ -109,7 +109,9 @@
 							<li
 								th:each="pageNum : ${#numbers.sequence(0, hopeBoardPage.totalPages-1)}">
 								<a th:href="@{/hopeboard/pagelist?page=${pageNum}}"
-								th:text="${pageNum + 1}"></a>
+								th:text="${pageNum + 1}"
+								th:classappend="${pageNum} == ${hopeBoardPage.pageable.pageNumber} ? 'current' : ''">
+								</a>
 							</li>
 
 							<!-- 다음 페이지 -->

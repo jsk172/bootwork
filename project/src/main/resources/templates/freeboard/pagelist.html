@@ -41,7 +41,7 @@
 							<div class="nav_links">
 								<a class="nav_menu" th:href="@{/hopeboard/pagelist}">도서관에
 									바란다</a> <a class="nav_menu selected_menu"
-									th:href="@{/freeboard/pagelist}">자유 게시판</a> <a class="nav_menu"
+									th:href="@{/freeboard/pagelist}">자유게시판</a> <a class="nav_menu"
 									th:href="@{#}">도서관 이벤트</a>
 							</div>
 						</div>
@@ -80,19 +80,16 @@
 									</tr>
 								</thead>
 								<tbody class="page_table_body">
-									<tr th:each="freeBoard : ${freeBoardList}">
+										<tr th:each="freeBoard : ${freeBoardPage.content}">
 										<td th:text="${freeBoard.fbid}"></td>
-										<td><a th:href="@{|/freeboard/${freeBoard.fbid}|}"
+										<td><a
+											th:href="@{/freeboard/{fbid}(fbid=${freeBoard.fbid})}"
 											th:text="${freeBoard.fbtitle}"></a></td>
-											
-										<!-- Add the following line to display the content or author -->
-										
-										<td th:if="${searchType == 'content'}"
-											th:text="${freeBoard.fbcontent}"></td>
-										<td th:if="${searchType == 'author'}" th:text="${freeBoard.member.mid}"></td>
-										<td th:text="${#dates.format(freeBoard.createdDate, 'yyyy-MM-dd')}"></td>
+										<td th:text="${freeBoard.member.name}"></td>
+										<td
+											th:text="${#dates.format(freeBoard.createdDate, 'yyyy-MM-dd')}"></td>
+
 										<td th:text="${freeBoard.fbhit}"></td>
-										<!-- <td><a th:href="@{|/freeboard/delete/${freeBoard.fbid}|}">삭제</a></td> -->
 									</tr>
 								</tbody>
 							</table>
@@ -102,7 +99,32 @@
 							</div>
 						</div>
 					</div>
-					<div class="page_content_bottom">
+
+					<!-- 페이지네이션 -->
+					<div class="pagination">
+						<ul>
+							<!-- 이전 페이지 -->
+							<li th:if="${freeBoardPage.hasPrevious()}"><a
+								th:href="@{|/freeboard/pagelist?page=${freeBoardPage.pageable.pageNumber-1}|}"> < </a>
+							</li>
+
+							<!-- 페이지 번호 -->
+							<li
+								th:each="pageNum : ${#numbers.sequence(0, freeBoardPage.totalPages-1)}">
+								<a th:href="@{|/freeboard/pagelist?page=${pageNum}|}"
+								th:text="${pageNum + 1}"
+								th:classappend="${pageNum} == ${freeBoardPage.pageable.pageNumber} ? 'current' : ''">
+								</a>
+							</li>
+
+							<!-- 다음 페이지 -->
+							<li th:if="${freeBoardPage.hasNext()}"><a
+								th:href="@{|/freeboard/pagelist?page=${freeBoardPage.pageable.pageNumber+1}|}"> > </a>
+							</li>
+						</ul>
+					</div><!-- 페이지네이션 끝 -->
+
+					<!-- 					<div class="page_content_bottom">
 						<div class="page_paging">
 							<span class="page_paging_prev"> < </span> <span
 								class="page_paging_number"> <a th:href="@{*}">1</a> <a
@@ -111,7 +133,8 @@
 								th:href="@{*}">7</a> <a th:href="@{*}">8</a> <a th:href="@{*}">9</a>
 							</span> <span class="page_paging_next"> > </span>
 						</div>
-					</div>
+					</div> -->
+					
 				</div>
 			</div>
 

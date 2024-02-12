@@ -35,6 +35,7 @@ public class RentalReturnController {
     //도서대출
     @PostMapping("/rental")
     public @ResponseBody RentalReturnDTO rental(@RequestBody RentalReturnDTO rentalReturnDTO, @AuthenticationPrincipal SecurityUser user){
+        System.out.println(rentalReturnDTO);
         rentalReturnDTO.setMember(Member.builder().memberId(user.getMember().getMemberId()).build());
         rentalReturnDTO.setReturnDate(null);
         rentalReturnService.save(rentalReturnDTO);
@@ -50,5 +51,6 @@ public class RentalReturnController {
         rentalReturnService.update(findRentalId);
         return findRentalId;
     }
+
 
 }
