@@ -1,11 +1,20 @@
 @charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600&display=swap');
+@media (min-width: 1000px) {
+	.nav_content{
+		width: 200px;
+	}
+	.page_content{
+		width: 75%;
+	}
+}
 
 /* general */
 * {
-    margin: 0; 
-    padding: 0; 
-    font-family: "Noto Sans KR", sans-serif;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+	box-sizing: border-box;
 }
 
 select:focus{
@@ -19,7 +28,7 @@ select:focus{
     padding-right: 0;
     padding-left: 0;
     padding-bottom: 100px;
-    background-color: #f4f4f4;
+    background-color: #c5d077;
 }
 
 button:hover, a:hover {
@@ -39,22 +48,51 @@ a {
 }
 
 .admin_menu {
-	position: absolute;
+/* 	position: absolute;
 	width: 100px;
 	display: none;
     top: 75px;
-    left: -30px;
+    left: -30px; */
+    
+    position: absolute;
+    width: 200px;
+    display: block;
+    top: 75px;
+    opacity: 0; /* 시작 시 투명하게 */
+    visibility: hidden; /* 시작 시 숨김 */
+    transform: translateY(-20px); /* 시작 시 약간 위에서 시작 */
+    transition: opacity 0.5s ease, visibility 0s linear, transform 0.5s ease; /* 애니메이션 적용 */
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 100; /* 다른 요소들 위에 표시되도록 z-index 설정 */
 }
 
 .admin_box:hover .admin_menu {
-	width: 100px;
+/* 	width: 100px;
 	display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
+    
+    display: block;
+	/* background-color: #f4f4f6; */
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+	width: 135px;
+	height: 0 auto;
+	font-size: 0.9em;
+    opacity: 1; /* 호버 시 불투명하게 */
+    visibility: visible; /* 호버 시 보이게 */
+    transform: translateY(0); /* 원래 위치로 이동 */
 }
 
 .admin_box .admin_menu a {
-	font-size: 1rem;
+	/* font-size: 1rem; */
+	
+	display: block;
+	color: #7D704E;
+	font-weight: 500;
+	font-size: 0.85em;
+	padding: 10px 0 10px 0;
 }
 
 
@@ -189,6 +227,7 @@ a {
 	color: #A5B569;
 	display: flex;
 	align-items: center;
+	font-weight: bold;
 }
 
 .header_member a {
@@ -237,10 +276,14 @@ a {
     position: absolute;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+    
+    object-fit:cover;
 }
 
 .main_pic.active{
     opacity: 1;
+    
+    object-fit:cover;
 }
 
 
@@ -737,6 +780,7 @@ select:focus{
     width: 100%;
     height: 300px;
     border-radius: 50px;
+    object-fit:cover;
 }
 
 .page_title {
@@ -762,7 +806,7 @@ select:focus{
     margin-bottom: 0;
 
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 /* page_side_nav */
@@ -772,7 +816,9 @@ select:focus{
 }
 
 .nav_content {
-    width: 100%;
+    /* width: 80%; */
+    margin: 0 auto;
+    
     border-radius: 25px;
     background-color: #fff;
     padding: 10px;
@@ -780,14 +826,15 @@ select:focus{
 }
 
 .nav_top_title {
-    margin: 0 15px;
-    padding: 10px;
-    border-bottom: 2px solid #999;
+    margin: 10px 15px 0 15px;
+    padding: 15px;
+    border-bottom: 2px dotted #c6c6c6;
 }
 
 .nav_top_title p{
-    color: #0F6728;
+    color: #6a5d3e;
     font-size: 1.05rem;
+    font-weight: 600;
 }
 
 .nav_content_mid {
@@ -801,22 +848,19 @@ select:focus{
 }
 
 .nav_menu {
-    color: #7D704E;
+    color: #333;
     line-height: 32px;
 }
 
 .selected_menu {
-    color: #403A2A;
-    text-decoration: underline;
-    font-size: 1.2rem;
-    font-weight: 500;
+	color: #333;
+	background-color: rgba(200, 206, 122, 0.1);
+	border-radius: 10px;
 }
-
-
 
 /* page_content */
 .page_content {
-    width: 75%;
+    /* width: 75%; */
     border-radius: 25px;
     background-color: #fff;
     padding: 50px 6%;
@@ -852,7 +896,9 @@ select:focus{
     align-items: center;
 }
 
-.page_menu_search_select,
+.page_menu_search_select{
+	border: none;
+}
 .page_menu_search_input {
     border: none;
 }
@@ -2020,119 +2066,7 @@ select:focus{
 }
 
 
-/* page_content_box */
-.page_content_box {
-    width: 88.5%;
-    /* background-color: #000; */
-    margin-top: 50px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 0;
 
-    display: flex;
-    justify-content: space-around;
-}
-
-/* page_side_nav */
-.page_side_nav {
-    padding-top: 50px;
-    width: 15%;
-}
-
-.nav_content {
-    width: 100%;
-    border-radius: 25px;
-    background-color: #fff;
-    padding: 10px;
-    text-align: center;
-}
-
-.nav_top_title {
-    margin: 0 15px;
-    padding: 10px;
-    border-bottom: 2px solid #999;
-}
-
-.nav_top_title p{
-    color: #0F6728;
-    font-size: 1.05rem;
-}
-
-.nav_content_mid {
-    margin: 25px 10px;
-    font-size: 0.95rem;
-}
-
-.nav_links {
-    display: flex;
-    flex-direction: column
-}
-
-.nav_menu {
-    color: #7D704E;
-    line-height: 32px;
-}
-
-.selected_menu {
-    color: #403A2A;
-    text-decoration: underline;
-}
-
-
-
-/* page_content */
-.page_content {
-    width: 75%;
-    border-radius: 25px;
-    background-color: #fff;
-    padding: 50px 6%;
-}
-
-.page_content_top {
-    display: flex;
-    justify-content: right;
-}
-
-/* .page_menu_title {
-    font-size: 1.5rem;
-    color: #0F6728;
-    padding-top: 0px;
-    padding-right: 10%;
-    padding-left: 0;
-    padding-bottom: 10px;
-    text-align: right;
-} */
-
-.page_menu_search {
-    padding-top: 0;
-    padding-right: 0;
-    padding-left: 0;
-    padding-bottom: 10px;
-}
-
-.page_menu_search_box{
-    width: 100%;
-    border: 1px solid #ccc;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.page_menu_search_select,
-.page_menu_search_input {
-    border: none;
-}
-
-.page_menu_search_img {
-    width: 100%;
-    padding: 2px;
-}
-
-.page_menu_input_btn {
-    width: 25px;
-    border: none;
-    background: none;
-}
 
 
 
@@ -2458,9 +2392,6 @@ select:focus{
     background-color: #fff;
 }
 
-
-
-
 .book_img_preview {
 	border: 1px solid #efefef;
 	border-radius: 15px;
@@ -2474,6 +2405,216 @@ select:focus{
 	width: 50%;
 }
 
+.member_list_links {
+	display: flex;
+	justify-content: right;
+	padding-top: 10px;
+	padding-right: 30px;
+	padding-left: 0;
+	padding-bottom: 10px;
+}
+
+.member_list_links button {
+	padding: 10px 20px;
+	margin-right: 15px;
+	border: none;
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+
+
+/* rentallist style */
+.rental_state_page_title{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.rental_user_info {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 50px;
+    margin-left: 20px;
+}
+
+.rental_user_info ul li {
+    margin-left: 20px;
+    color: #753;
+}
+
+.rental_state_page_title img {
+    width: 25px;
+    margin-right: 10px;
+}
+
+
+.user_rental_state_title,
+.user_rental_past_title {
+    width: 15%;
+    text-align: center;
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    background-color: #531;
+    color: #eee;
+    border-radius: 10px;
+    line-height: 32px;
+}
+
+.user_rental_state_box,
+.user_rental_past_list_box {
+    border: 1px solid #fafafa;
+    background-color: #fafafa;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 70px;
+}
+
+.user_rental_state_tbl table,
+.user_rental_past_list_tbl table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.user_rental_state_tbl tbody tr td img,
+.user_rental_past_list_tbl tbody tr td img {
+    width: 50px;
+    height: 75px;
+    background-color: #000;
+}
+
+.user_rental_state_tbl table thead,
+.user_rental_past_list_tbl table thead {
+    background-color: #efffef;
+}
+
+.user_rental_state_tbl table thead tr th,
+.user_rental_past_list_tbl table thead tr th {
+    padding: 5px;
+}
+
+.user_rental_state_tbl table thead tr th:nth-child(1),
+.user_rental_past_list_tbl table thead tr th:nth-child(1) {
+    border-radius: 10px 0 0 10px;
+}
+.user_rental_state_tbl table thead tr th:last-child,
+.user_rental_past_list_tbl table thead tr th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.user_rental_state_tbl table tbody tr td,
+.user_rental_past_list_tbl table tbody tr td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #ccc;
+
+}
+
+.user_rental_state_tbl table tbody tr td input {
+    padding: 3px;
+    border: 1px solid #eda;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    background-color: #fff;
+    color: #753;
+    cursor: pointer;
+}
+
+
+
+
+/* bookdetail style */
+.book_detail_table_box {
+    width: 100%;
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.book_detail_table_box .first_table {
+    width: 100%;
+    border: 2px solid #efefef;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.book_detail_table_box .first_table tbody tr .first_table_td {
+    width: 40%;
+    padding: 15px;
+}
+
+.book_detail_table_box .first_table tbody tr td img {
+    width: 100%;
+    border: 2px solid #efefef;
+}
+
+.book_detail_table_box table tbody tr .book_detail_title {
+    border-bottom: 2px solid #efefef;
+    height: 150px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.second_table_box_td {
+    display: flex;
+    justify-content: center;
+}
+
+.book_detail_info_box {
+    width: 80%;
+}
+
+.second_table {
+    width: 80%;
+    margin-top: 50px;
+    margin-right: 0;
+    margin-bottom: 50px;
+    margin-left: 30px;
+    border: none;
+    text-align: left;
+}
+
+.second_table td {
+    padding: 10px;
+    border-bottom: 1px solid #efefef;
+}
+
+.book_detail_btn_box {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.book_detail_btn_box div button {
+    width: 75px;
+    height: 75px;
+    border-radius: 100%;
+    margin: 0 10px;
+    font-size: 0.8rem;
+}
+
+.book_detail_rental_btn {
+    border: 1px solid #cfc;
+    background-color: #efe;
+}
+
+.book_detail_go_list {
+    border: 1px solid #feb;
+    background-color: #dca;
+}
+
+.book_detail_update_btn {
+    border: 1px solid #543;
+    background-color: #754;
+    color: #eee;
+}
 
 
 

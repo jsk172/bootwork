@@ -29,7 +29,6 @@
 				</div>
 			</div>
 
-
 			<div class="page_content_box">
 				<nav class="page_side_nav">
 					<div class="nav_content">
@@ -41,7 +40,7 @@
 						<div class="nav_content_mid">
 							<div class="nav_links">
 								<a class="nav_menu selected_menu" th:href="@{#}">도서 등록</a> 
-                                <a class="nav_menu" th:href="@{#}">도서 목록</a>
+                                <a class="nav_menu" th:href="@{/book/list}">도서 목록</a>
 							</div>
 						</div>
 					</div>
@@ -92,6 +91,11 @@
                                         <tr>
                                             <td>
                                                 <input class="write_page_title_input" type="text" name="bnumber" id="bnumber" placeholder="'고유번호'를 입력해주세요" autofocus>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input class="write_page_title_input" type="text" name="category" id="category" placeholder="카테고리" autofocus>
                                             </td>
                                         </tr>
                                     </tbody>

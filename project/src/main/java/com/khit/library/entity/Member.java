@@ -86,6 +86,9 @@ public class Member extends BaseEntity{
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<RentalReturn> rentalReturnList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<ReadingRoom> readingRoomList = new ArrayList<>();
+
     /*@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<FreeBoard> freeBoardList = new ArrayList<>();
 

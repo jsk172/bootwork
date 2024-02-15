@@ -70,5 +70,16 @@ public class BoardController {
     		return "board/hopebookboard";
     	}
     }
+    
+    @GetMapping("/faq/pagelist")
+    public String faq(@AuthenticationPrincipal SecurityUser principal, Model model) {
+    	if(principal == null){
+    		return "faq/pagelist";
+    	}else{
+    		MemberDTO memberDTO = memberService.findByMid(principal);
+    		model.addAttribute("member", memberDTO);
+    		return "faq/pagelist";
+    	}
+    }
 
 }

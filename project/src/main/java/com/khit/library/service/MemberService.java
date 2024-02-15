@@ -61,7 +61,7 @@ public class MemberService {
     public void update(MemberDTO memberDTO) {
         String encPw = pwEncoder.encode(memberDTO.getPassword());
         memberDTO.setPassword(encPw);
-        memberDTO.setRole(Role.Member);
+        memberDTO.setRole(Role.Admin);
 
         Member member = Member.toUpdateEntity(memberDTO);
         memberRepository.save(member);

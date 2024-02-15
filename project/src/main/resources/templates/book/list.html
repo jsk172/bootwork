@@ -4,52 +4,106 @@
 <head>
 <meta charset="UTF-8">
 <title>책목록</title>
-<style>
-table tr, th, td {
-	padding: 10px;
-}
-</style>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
+<link rel="preconnect" th:href="@{https://fonts.gstatic.com}"
+	crossorigin>
+<link
+	th:href="@{https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap}"
+	rel="stylesheet">
 </head>
 <body>
+	<div th:replace="~{header::header-fragment}"></div>
 	<div id="container">
-		<h2>책목록</h2>
-		<table class="booklist">
-			<thead>
-				<tr>
-					<th>도서코드</th>
-					<th>서명</th>
-					<th>출판사</th>
-					<th>저자</th>
-					<th>ISBN</th>
-					<th>등록일</th>
-					<th>조회</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="book : ${bookList}">
-					<td th:text="${book.bookId}"></td>
-					<td th:text="${book.bname}"></td>
-					<td th:text="${book.publisher}"></td>
-					<td th:text="${book.author}"></td>
-					<td th:text="${book.bnumber}"></td>
-					<td th:text="${#dates.format(book.createdDate, 'yyyy-MM-dd')}"></td>
-					<!-- 버티컬바(|)는 ${member.id}를 숫자로 유지시켜줌 -->
-					<td><a th:href="@{|/book/detail/${book.bookId}|}">조회</a></td>
-					<td><a th:href="@{|/book/delete/${book.bookId}|}"
-						sec:authorize="hasAnyAuthority('Admin')"
-						onclick="return confirm('삭제 하시겠습니까?')">삭제</a></td>
-				</tr>
-			</tbody>
-		</table>
-		<a th:href="@{/}"><button type="button">Home</button></a>
+		<section class="page">
+		
+			<div class="page_top">
+				<div class="page_top_imgbox">
+					<div class="page_img">
+						<img th:src="@{/images/main_library_picture1.PNG}" alt="img">
+					</div>
+					<div class="page_title">
+						<p>자료검색</p>
+					</div>
+				</div>
+			</div>
+		
+		
+			<div class="page_content_box">
+				<nav class="page_side_nav">
+					<div class="nav_content">
+						<div class="nav_content_top">
+							<div class="nav_top_title">
+								<p>자료 검색</p>
+							</div>
+						</div>
+						<div class="nav_content_mid">
+							<div class="nav_links">
+								<a class="nav_menu selected_menu" th:href="@{/book/list}">자료검색</a>
+								<a class="nav_menu" th:href="@{#}">대출 베스트</a>
+								<a class="nav_menu" th:href="@{#}">희망도서 신청</a>
+							</div>
+						</div>
+					</div>
+				</nav>
+				<div class="page_content">
+					<div class="page_content_top">
+						<div class="page_menu_search">
+							<div class="page_menu_search_box">
+								<form th:action="@{/book/search}" method="get">
+									<input class="page_menu_search_input" type="text"
+										name="keyword">
+<!-- 									<button class="page_menu_input_btn" type="submit"> -->
+										<img class="page_menu_search_img"
+											th:src="@{/images/magnifying4.png}" alt="">
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="page_content_mid">
+						<div class="page_table_box">
+							<table class="page_table">
+								<thead class="page_table_head">
+									<tr>
+										<th>도서코드</th>
+										<th>서명</th>
+										<th>출판사</th>
+										<th>저자</th>
+										<th>ISBN</th>
+										<th>카테고리</th>
+										<th>등록일</th>
+										<th>조회</th>
+									</tr>
+								</thead>
+								<tbody class="page_table_body" id="searchResultsContainer">
+									<tr th:each="book : ${bookList}">
+										<td th:text="${book.bookId}" ></td>
+										<td th:text="${book.bname}" ></td>
+										<td th:text="${book.publisher}" ></td>
+										<td th:text="${book.author}" ></td>
+										<td th:text="${book.bnumber}" ></td>
+										<td th:text="${book.category}" ></td>
+										<td th:text="${#dates.format(book.createdDate, 'yyyy-MM-dd')}" ></td>
+										<!-- 버티컬바(|)는 ${member.id}를 숫자로 유지시켜줌 -->
+										<td><a th:href="@{|/book/detail/${book.bookId}|}" >조회</a></td>
+										<td><a th:href="@{|/book/delete/${book.bookId}|}"
+											sec:authorize="hasAnyAuthority('Admin')"
+											onclick="return confirm('삭제 하시겠습니까?')">삭제</a></td>
+									</tr>
+								</tbody>
+                            </table>
+                            <a th:href="@{/book/register}" sec:authorize="hasAnyAuthority('Admin')">책등록</a>
+
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+		</section>
 	</div>
 
-	<div class="main_search">
-		<form th:action="@{/book/search}" method="get">
-			<input class="main_search_input" type="text" name="keyword"
-				placeholder="도서 검색">
-			<button type="submit">검색</button>
-		</form>
-	</div>
+<div th:replace="~{footer::footer-fragment}"></div>
 </body>
 </html>

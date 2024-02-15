@@ -1,25 +1,71 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"><head>
 <meta charset="EUC-KR">
-<title>Book Search</title>
-<style>
-table tr, th, td {
-	padding: 10px;
-}
-</style>
+<title>도서검색</title>
 </head>
 <body>
-	<div id="container">
-		<h2>도서 검색</h2>
-		<div class="main_search">
+	 <!-- 검색어 입력 폼 -->
+    <form id="searchForm">
+        <input type="text" id="keyword" name="keyword" required>
+        <button type="button" onclick="searchBooks()">검색</button>
+    </form>
+    
+    <div id="searchResultsContainer">
+        <!-- 여기에 검색 결과가 동적으로 추가됩니다. -->
+    </div>
+    	<div class="main_search">
 			<form th:action="@{/book/search}" method="get">
 				<input class="main_search_input" type="text" name="keyword"
 					placeholder="도서 검색">
 				<button type="submit">검색</button>
 			</form>
 		</div>
-	</div>
+		<table class="booklist">
+			<thead>
+				<tr>
+					<th>도서코드</th>
+					<th>서명</th>
+					<th>출판사</th>
+					<th>저자</th>
+					<th>ISBN</th>
+					<th>등록일</th>
+					<th>조회</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="book : ${bookList}">
+					<td th:text="${book.bookId}"></td>
+					<td th:text="${book.bname}"></td>
+					<td th:text="${book.publisher}"></td>
+					<td th:text="${book.author}"></td>
+					<td th:text="${book.bnumber}"></td>
+					<td th:text="${#dates.format(book.createdDate, 'yyyy-MM-dd')}"></td>
+					<!-- 버티컬바(|)는 ${member.id}를 숫자로 유지시켜줌 -->
+					<td><a th:href="@{|/book/detail/${book.bookId}|}">조회</a></td>
+					<td><a th:href="@{|/book/delete/${book.bookId}|}"
+						sec:authorize="hasAnyAuthority('Admin')"
+						onclick="return confirm('삭제 하시겠습니까?')">삭제</a></td>
+				</tr>
+			</tbody>
+		</table>
+    
+ <script>
+        function searchBooks() {
+            var keyword = document.getElementById("keyword").value;
+            
+            // Ajax 요청
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // 검색 결과를 업데이트
+                    document.getElementById("searchResultsContainer").innerHTML = xhr.responseText;
+                }
+            };
+            
+            xhr.open("GET", "/search?keyword=" + keyword, true);
+            xhr.send();
+        }
+    </script>    
 </body>
 </html>

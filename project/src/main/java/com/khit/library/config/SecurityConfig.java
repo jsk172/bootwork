@@ -24,8 +24,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authroize -> authroize
                         .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/upload/**","/error").permitAll()
                         .requestMatchers("/hopeboard/write", "/member/update", "/rentalReturn/rental", "member/rentallist").authenticated()
-                        .requestMatchers("/member/list", "/book/register", "/rentalReturn/list").hasAnyAuthority("Admin")
-                        .requestMatchers("/member/**", "/hopeboard/**", "/book/**", "/rentalReturn/**").permitAll()
+                        .requestMatchers("/member/list", "/book/register", "/rentalReturn/list", "/notice/write").hasAnyAuthority("Admin")
+                        .requestMatchers("/member/**", "/hopeboard/**", "/book/**", "/rentalReturn/**", "/readingRoom/**",
+                                "/freeboard/**", "/notice/**", "/board/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf().disable()
@@ -35,15 +36,15 @@ public class SecurityConfig {
                                 .permitAll()
                 );
 
-            //접근권한 페이지
-            http.exceptionHandling().accessDeniedPage("/auth/accessDenied");
-            http.logout().logoutUrl("/logout")
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .invalidateHttpSession(true)
-                    .logoutSuccessUrl("/");
+        //접근권한 페이지
+        http.exceptionHandling().accessDeniedPage("/auth/accessDenied");
+        http.logout().logoutUrl("/logout")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/");
         return http.build();
     }
-    
+
     //암호화 설정
     @Bean
     PasswordEncoder passwordEncoder(){

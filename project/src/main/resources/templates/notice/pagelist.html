@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <title>공지사항</title>
-<link rel="stylesheet" th:href="@{/css/notice_style.css}">
+<link rel="stylesheet" th:href="@{/css/style_hr.css}">
 </head>
 <body>
 	<div th:replace="~{header::header-fragment}"></div>
@@ -13,7 +13,7 @@
 			<div class="page_top">
 				<div class="page_top_imgbox">
 					<div class="page_img">
-						<img th:src="@{/images/main_library_picture1.PNG}" alt="img">
+						<img th:src="@{/images/header-image2.jpg}" alt="img">
 					</div>
 					<div class="page_title">
 						<p>공지사항</p>
@@ -25,14 +25,14 @@
 					<div class="nav_content">
 						<div class="nav_content_top">
 							<div class="nav_top_title">
-								<p>도서관 안내</p>
+								<p>도서관안내</p>
 							</div>
 						</div>
 						<div class="nav_content_mid">
 							<div class="nav_links">
 								<a class="nav_menu selected_menu" th:href="@{notice/pagelist}">공지사항</a>
 								<a class="nav_menu" th:href="@{#}">이용안내</a> <a class="nav_menu"
-									th:href="@{#}">오시는 길</a>
+									th:href="@{#}">오시는길</a>
 							</div>
 						</div>
 					</div>

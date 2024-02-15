@@ -40,7 +40,7 @@ public class BookController {
     @PostMapping("/register")
     public String insert(@ModelAttribute BookDTO bookDTO, MultipartFile bookFile) throws Exception{
         bookService.save(bookDTO, bookFile);
-        return "redirect:/";
+        return "redirect:/book/list";
     }
     //책 리스트
     @GetMapping("/list")

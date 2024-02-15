@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="UTF-8">
+<title>열람실</title>
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{header::header-fragment}"></div>
+	<div id="container">
+		<h2>열람실 현황</h2>
+		<table class="booklist">
+			<thead>
+				<tr>
+					<th>좌석</th>
+					<th>사용자</th>
+                    <th>사용현황</th>
+                    <th>사용/반납</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="seat : ${seatList}">
+					<td th:text="${seat.seat}"></td>
+                    <td th:text="${seat.member != null ? seat.member.mid : '-'}"></td>
+                    <td th:text="${seat.seatAvailable == true} ? '사용 가능' : '사용중'"></td>
+                    <td>
+                        <form th:if="${seat.seatAvailable == false}" th:action="@{/readingRoom/checkout}" method="post">
+                            <input type="hidden" th:name="readingId" th:value="${seat.readingId}">
+                            <input type="submit" value="반납" class="returnBtn" onclick="return confirm('반납 하시겠습니까?')">
+                        </form>
+                        <form th:if="${seat.seatAvailable == true}" th:action="@{/readingRoom/select}" method="post">
+                            <input type="hidden" th:name="readingId" th:value="${seat.readingId}">
+                            <input type="submit" value="사용" class="returnBtn" onclick="return confirm('사용 하시겠습니까?')">
+                        </form>
+                    </td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/}"><button type="button" >Home</button></a>
+	</div>
+</body>
+</html>

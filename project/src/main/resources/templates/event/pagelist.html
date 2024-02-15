@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 목록</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
+    <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
+    <link th:href="@{https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap}" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="~{header::header-fragment}"></div>
+    <div id="container">
+        <section class="page">
+            <div class="page_top">
+                <div class="page_top_imgbox">
+                    <div class="page_img">
+                        <img th:src="@{/images/main_library_picture1.PNG}" alt="img">
+                    </div>
+                    <div class="page_title">
+                        <p>이벤트 목록</p>
+                    </div>
+                </div>
+            </div>
+            <div class="page_content_box">
+                <!-- 이벤트 목록을 나열하는 코드 -->
+                <div class="event_list">
+                    <ul>
+                        <li th:each="event : ${eventList}">
+                            <a th:href="@{|/event/detail/${event.id}|}" th:text="${event.title}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div th:replace="~{footer::footer-fragment}"></div>
+</body>
+</html>

@@ -13,10 +13,10 @@
             <div class="page_top">
                 <div class="page_top_imgbox">
                     <div class="page_img">
-                        <img th:src="@{/images/main_library_picture1.PNG}" alt="img">
+                        <img th:src="@{/images/header-image2.jpg}" alt="img">
                     </div>
                     <div class="page_title">
-                        <p>나의 정보</p>
+                        <p>내정보수정</p>
                     </div>
                 </div>
             </div>
@@ -26,13 +26,15 @@
                     <div class="nav_content">
                         <div class="nav_content_top">
                             <div class="nav_top_title">
-                                <p>나의 책숲</p>
+                                <p>나의책숲</p>
                             </div>
                         </div>
                         <div class="nav_content_mid">
                             <div class="nav_links">
+
                                 <a class="nav_menu" th:href="@{/member/rentallist}">나의 서재</a>
-                                <a class="nav_menu selected_menu" th:href="@{/member/update}">나의 정보</a>
+                                <a class="nav_menu selected_menu" th:href="@{|/member/update/${member.memberId}|}">나의 정보</a>
+
                             </div>
                         </div>
                     </div>
@@ -53,7 +55,7 @@
                             <form th:action="@{/member/update}" method="post" th:object="${memberDTO}" class="member_update_form">
                                 <input type="hidden" name="memberId" th:value="${member.memberId}">
                                     <table>
-									<tbody>
+									                      <tbody>
                                             <tr>
                                                 <td rowspan="3"><img class="user_update_icon" th:src="@{/images/user.png}" alt=""></td>
                                             </tr>
@@ -266,7 +268,6 @@
 	            nameMessage.css("color", "green");
 	        }
 	    })
-
 </script>
 </body>
 </html>
