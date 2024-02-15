@@ -7,10 +7,16 @@ import com.khit.library.dto.RentalReturnDTO;
 import com.khit.library.service.BookService;
 import com.khit.library.service.MemberService;
 import com.khit.library.service.RentalReturnService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -105,6 +111,31 @@ public class MemberController {
         memberService.deleteById(memberId);
         return "redirect:/member/list";
     }
+
+    //회원 탈퇴
+    @GetMapping("/member/withdrawal/{memberId}")
+    public String withdrawalForm(@AuthenticationPrincipal SecurityUser principal, @PathVariable Long memberId, Model model, MemberDTO memberDTO, BindingResult bindingResult){
+        if(bindingResult.hasErrors() || principal == null){
+            return "member/withdrawal";
+        }else {
+            memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "member/withdrawal";
+        }
+    }
+    //회원 탈퇴 처리
+    @PostMapping("/member/withdrawal")
+    public String Withdrawal(@RequestParam String password, Model model, Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        boolean result = memberService.withdrawal(userDetails.getUsername(), password);
+        if(result){
+            return "redirect:/logout";
+        }else{
+            model.addAttribute("wrongPassword", "비밀번호가 맞지 않습니다.");
+            return "member/withdrawal";
+        }
+    }
+
     //회원수정 폼
     @GetMapping("/member/update/{memberId}")
     public String updateForm(@AuthenticationPrincipal SecurityUser principal, @PathVariable Long memberId, Model model,

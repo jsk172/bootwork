@@ -122,7 +122,8 @@
                                         <button type="reset" class="member_update_cancel">취소</button>
                                         <button type="submit" class="member_update_confirm">수정</button>
                                     </div>
-                                </form>
+                            </form>
+                            <a th:href="@{|/member/withdrawal/${member.memberId}|}"><button type="button" class="member_update_confirm">탈퇴</button></a>
                         </div>
                     </div>
                 </div>

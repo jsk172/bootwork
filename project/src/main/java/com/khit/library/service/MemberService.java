@@ -96,4 +96,19 @@ public class MemberService {
             return "NO";
         }
     }
+
+    public boolean withdrawal(String username, String password) {
+        Optional<Member> optionalMember = memberRepository.findByMid(username);
+        if(optionalMember.isPresent()){
+            Member member = optionalMember.get();
+            if(pwEncoder.matches(password, member.getPassword())){
+                memberRepository.deleteById(member.getMemberId());
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
 }
