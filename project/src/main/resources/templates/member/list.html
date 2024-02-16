@@ -31,8 +31,9 @@
                         </div>
                         <div class="nav_content_mid">
                             <div class="nav_links">
-                                <a class="nav_menu" href="@{/book/list}">도서 목록</a>
-                                <a class="nav_menu selected_menu" th:href="@{/member/update}">회원 목록</a>
+                                <a class="nav_menu" th:href="@{/rentalReturn/list}">대출정보</a>
+                                <a class="nav_menu selected_menu" th:href="@{/member/list}">회원목록</a>
+                                <a class="nav_menu" th:href="@{/book/register}">도서등록</a>
                             </div>
                         </div>
                     </div>
@@ -52,8 +53,6 @@
                         <div class="page_table_box">
                             <form th:action="@{/member/update}" method="post" th:object="${memberDTO}" class="member_update_form">
                                 <input type="hidden" name="memberId" th:value="${member.memberId}">
-                                <input type="hidden" name="rentalCount" id="rentalCount" th:value="${member.rentalCount}" readonly>
-                                <input type="hidden" name="rentalAble" id="rentalAble" th:value="${member.rentalAble}" readonly>
                                     <table th:each="member: ${memberList}">
 									<tbody>
                                             <tr>

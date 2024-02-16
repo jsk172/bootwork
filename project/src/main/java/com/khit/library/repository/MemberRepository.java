@@ -10,4 +10,8 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Optional<Member> findByMid(String string);
+
+    Member findByEmail(String email);
+
+    Member findByEmailAndMid(String email, String mid);
 }

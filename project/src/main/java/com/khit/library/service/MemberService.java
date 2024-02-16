@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +20,7 @@ import java.util.Optional;
 public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder pwEncoder;
+    private final EmailService emailService;
 
     //회원가입
     public void save(MemberDTO memberDTO) {
@@ -66,7 +68,7 @@ public class MemberService {
         Member member = Member.toUpdateEntity(memberDTO);
         memberRepository.save(member);
     }
-    
+
     //회원상세보기
     public MemberDTO findById(Long memberId) {
         Optional<Member> findMember = memberRepository.findById(memberId);
@@ -97,6 +99,7 @@ public class MemberService {
         }
     }
 
+    //회원 탈퇴
     public boolean withdrawal(String username, String password) {
         Optional<Member> optionalMember = memberRepository.findByMid(username);
         if(optionalMember.isPresent()){
@@ -110,5 +113,45 @@ public class MemberService {
         }else{
             return false;
         }
+    }
+
+    //아이디 찾기
+    public String findIdByEmail(String email) {
+        Member member = memberRepository.findByEmail(email);
+        if(member != null){
+            return member.getMid();
+        }else{
+            return null;
+        }
+    }
+
+    //이메일 아이디 일치여부 확인
+    public boolean isEmailAndMidMatch(String email, String mid) {
+        Member member = memberRepository.findByEmailAndMid(email, mid);
+        return member != null;
+    }
+
+    //임시 비밀번호 생성, 이메일 전송
+    public void sendTemporaryPassword(String email){
+        String temporaryPassword = generateTemporaryPassword();
+        emailService.sendTemporaryPassword(email, temporaryPassword);
+    }
+    public String generateTemporaryPassword(){
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        int length = 10;
+        StringBuilder temporaryPassword = new StringBuilder(length);
+        SecureRandom random = new SecureRandom();
+        for(int i=0; i<length; i++){
+            int randomIndex = random.nextInt(characters.length());
+            temporaryPassword.append(characters.charAt(randomIndex));
+        }
+
+        return temporaryPassword.toString();
+    }
+    //임시비밀번호 저장
+    public MemberDTO findByMid2(String mid) {
+        Member member = memberRepository.findByMid(mid).get();
+        MemberDTO memberDTO = MemberDTO.toSaveDTO(member);
+        return memberDTO;
     }
 }

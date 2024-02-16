@@ -17,14 +17,18 @@
 					<th>좌석</th>
 					<th>사용자</th>
                     <th>사용현황</th>
+                    <th>발급일시</th>
+                    <th>만료시간</th>
                     <th>사용/반납</th>
-				</tr>
+                </tr>
 			</thead>
 			<tbody>
 				<tr th:each="seat : ${seatList}">
 					<td th:text="${seat.seat}"></td>
                     <td th:text="${seat.member != null ? seat.member.mid : '-'}"></td>
                     <td th:text="${seat.seatAvailable == true} ? '사용 가능' : '사용중'"></td>
+                    <td th:text="${#dates.format(seat.enter, 'yyyy-MM-dd hh:mm')}"></td>
+                    <td th:text="${#dates.format(seat.checkOut, 'yyyy-MM-dd hh:mm')}"></td>
                     <td>
                         <form th:if="${seat.seatAvailable == false}" th:action="@{/readingRoom/checkout}" method="post">
                             <input type="hidden" th:name="readingId" th:value="${seat.readingId}">
@@ -35,7 +39,7 @@
                             <input type="submit" value="사용" class="returnBtn" onclick="return confirm('사용 하시겠습니까?')">
                         </form>
                     </td>
-				</tr>
+                </tr>
 			</tbody>
 		</table>
 		<a th:href="@{/}"><button type="button" >Home</button></a>

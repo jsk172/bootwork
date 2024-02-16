@@ -29,9 +29,6 @@ public class MemberDTO {
     @Pattern(regexp = "^[가-힣]*$", message = "이름은 한글만 입력해 주세요.")
     private String name;
 
-    private Integer rentalCount;
-
-    private Boolean rentalAble;
     private Role role;
 
     private Timestamp createdDate;

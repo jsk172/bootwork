@@ -1,28 +1,26 @@
 package com.khit.library.controller;
 
 import com.khit.library.config.SecurityUser;
-import com.khit.library.dto.BookDTO;
 import com.khit.library.dto.MemberDTO;
 import com.khit.library.dto.RentalReturnDTO;
-import com.khit.library.service.BookService;
+import com.khit.library.entity.Member;
+import com.khit.library.service.EmailService;
 import com.khit.library.service.MemberService;
 import com.khit.library.service.RentalReturnService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,6 +28,8 @@ import java.util.List;
 public class MemberController {
     private final MemberService memberService;
     private final RentalReturnService rentalReturnService;
+    private final EmailService emailService;
+
 
     //헤더 로그인 맴버
     @GetMapping("/")
@@ -112,7 +112,7 @@ public class MemberController {
         return "redirect:/member/list";
     }
 
-    //회원 탈퇴
+    //회원 탈퇴 폼
     @GetMapping("/member/withdrawal/{memberId}")
     public String withdrawalForm(@AuthenticationPrincipal SecurityUser principal, @PathVariable Long memberId, Model model, MemberDTO memberDTO, BindingResult bindingResult){
         if(bindingResult.hasErrors() || principal == null){
@@ -125,14 +125,56 @@ public class MemberController {
     }
     //회원 탈퇴 처리
     @PostMapping("/member/withdrawal")
-    public String Withdrawal(@RequestParam String password, Model model, Authentication authentication){
+    public String Withdrawal(MemberDTO memberDTO,@RequestParam String password, Authentication authentication, RedirectAttributes redirectAttributes){
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         boolean result = memberService.withdrawal(userDetails.getUsername(), password);
         if(result){
             return "redirect:/logout";
         }else{
-            model.addAttribute("wrongPassword", "비밀번호가 맞지 않습니다.");
-            return "member/withdrawal";
+            redirectAttributes.addFlashAttribute("wrongPassword", "비밀번호가 일치하지 않습니다.");
+            return "redirect:/member/withdrawal/" + memberDTO.getMemberId();
+        }
+    }
+
+    //아이디 찾기
+    @GetMapping("/member/searchId")
+    public String searchForm(){
+        return "member/searchid";
+    }
+    @PostMapping("/member/searchId")
+    public String searchId(@RequestParam("email") String email, Model model){
+        String foundId = memberService.findIdByEmail(email);
+        if(foundId != null){
+            model.addAttribute("foundId", foundId);
+            return "member/searchresult";
+        }else{
+            model.addAttribute("notFound", "찾으시는 아이디가 없습니다.");
+            return "member/searchid";
+        }
+    }
+    //비밀번호 재설정
+    @GetMapping("/member/resetPassword")
+    public String resetForm(MemberDTO memberDTO){
+        return "member/resetpassword";
+    }
+    @GetMapping("/member/resetPassword2")
+    public String resetForm2(){
+        return "member/resetpassword2";
+    }
+    @PostMapping("/member/resetPassword")
+    public String resetPassword(MemberDTO memberDTO, Model model){
+        boolean isMatch = memberService.isEmailAndMidMatch(memberDTO.getEmail(), memberDTO.getMid());
+        if(isMatch){
+            String temporaryPassword = memberService.generateTemporaryPassword();
+            emailService.sendTemporaryPassword(memberDTO.getEmail(), temporaryPassword);
+            //임시 비밀번호를 DB에 저장
+            MemberDTO memberDTO2 = memberService.findByMid2(memberDTO.getMid());
+            memberDTO2.setPassword(temporaryPassword);
+            memberService.update(memberDTO2);
+            return "redirect:/member/resetPassword2";
+        }else{
+            model.addAttribute("error", "일치하는 정보가 없습니다.");
+            return "member/resetpassword";
         }
     }
 
@@ -172,7 +214,6 @@ public class MemberController {
         String resultText = memberService.checkId(mid);
         return resultText;
     }
-
 
     //나의 대출목록
     @GetMapping("/member/rentallist")

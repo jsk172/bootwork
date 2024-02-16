@@ -2617,6 +2617,143 @@ select:focus{
 }
 
 
+.member_rental_info_box {
+    width: 100%;
+    display: block;
+}
+
+.member_rental_info {
+    width: 100%;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0;
+    border-collapse: collapse;
+    border-top: 2px solid #efefef;
+    border-bottom: 2px solid #efefef;
+}
+
+
+.member_rental_info_img_box {
+    width: 15%;
+    background-color: #efefef;
+    padding: 10px;
+}
+
+.member_rental_info tr td {
+    padding-left: 10px;
+}
+.member_rental_info_img_box div {
+    background-color: #efefef;
+    display: flex;
+}
+
+.member_rental_info_img_box img {
+    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.member_rental_info tr:nth-child(1) td:nth-child(2),
+.member_rental_info tr:nth-child(2) td:nth-child(1) {
+    width: 20%;
+    background-color: #efefef;
+}
+
+.member_rental_info tr:nth-child(1) td:nth-child(3),
+.member_rental_info tr:nth-child(2) td:nth-child(2) {
+    padding-left: 20px;
+}
+
+
+.member_rental_info tr:nth-child(1) {
+    border-bottom: 1px solid #ddd;
+}
+
+.member_rental_btn_box {
+    width: 15%;
+    text-align: center;
+}
+
+.member_rental_info_toggle_btn {
+    padding: 13px 5px;
+    border-radius: 10px;
+    border: 1px solid #efefef;
+    background-color: #efefef;
+}
+
+.member_rental_list_box {
+    width: 100%;
+    background-color: #efefef;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.1s ease, padding 0.1s ease;
+}
+
+.member_rental_list_second_box {
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 15px;
+
+}
+
+.member_rental_list {
+    width: 100%;
+    background-color: #fff;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.member_rental_list tbody tr td {
+    font-size: 0.8rem;
+    padding: 3px;
+}
+
+.member_rental_list thead tr th {
+    font-size: 0.8rem;
+    background-color: #efe;
+    padding: 3px;
+}
+
+.member_rental_list thead tr th:nth-child(1) {
+    border-radius: 5px 0 0 5px;
+}
+
+.member_rental_list thead tr th:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.list_toggle_active {
+    max-height: 100%;
+    padding: 15px;
+    transition: max-height 1s ease, padding 1s ease;
+}
+
+.member_rental_list tbody tr td input {
+    padding: 2px;
+    font-size: 0.5rem;
+    border: 1px solid #7D704E;
+    background-color: #7D704E;
+    color: #fff;
+    font-weight: 600;
+   	cursor: pointer;
+}
+
+.member_rental_page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.withdrawalError{
+    padding-top: 10px;
+    padding-left: 5px;
+    color: red;
+}
+
+
+
 
 /* footer */
 #footer{

@@ -75,7 +75,7 @@
      	        	<div class="admin_menu">
         	            <a th:href="@{/rentalReturn/list}" sec:authorize="hasAnyAuthority('Admin')">대출정보</a>
     	                <a th:href="@{/member/list}" sec:authorize="hasAnyAuthority('Admin')">회원목록</a> <!--관리자 로그인시 보임-->
-	                    <a th:href="@{/book/register}" sec:authorize="hasAnyAuthority('Admin')">책등록</a> <!--관리자 로그인시 보임-->
+	                    <a th:href="@{/book/register}" sec:authorize="hasAnyAuthority('Admin')">도서등록</a> <!--관리자 로그인시 보임-->
                     </div>
                 </div>
                     <a class="header_member_join" th:href="'#'" th:text="${member.name} + '님'"></a> |

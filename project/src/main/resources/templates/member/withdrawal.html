@@ -59,6 +59,7 @@
                                                 <td><label for="password">비밀번호 (<span class="required">*</span>)</label></td>
                                                 <td colspan="2">
                                                     <input type="password" name="password" id="password" placeholder="현재 비밀번호를 입력해 주세요.">
+                                                    <p th:if="${not #strings.isEmpty(wrongPassword)}" th:text="${wrongPassword}" class="withdrawalError"></p>
                                                 </td>
                                             </tr>
                                         </tbody>

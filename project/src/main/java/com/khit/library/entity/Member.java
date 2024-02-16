@@ -29,11 +29,12 @@ public class Member extends BaseEntity{
     @Column(nullable = false, length = 2000)
     private String password;
 
-    @Column(nullable = false)
+    @Column(unique = true ,nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String name;
+    
     /*@Column
     @Builder.Default
     private Integer rentalCount = 0;
@@ -78,7 +79,19 @@ public class Member extends BaseEntity{
                 .build();
         return member;
     }
-
+    public static Member toEmailEntity(MemberDTO memberDTO){
+        Member member = Member.builder()
+                .memberId(memberDTO.getMemberId())
+                .mid(memberDTO.getMid())
+                .password(memberDTO.getPassword())
+                .email(memberDTO.getEmail())
+                .name(memberDTO.getName())
+//                .rentalCount(memberDTO.getRentalCount())
+//                .rentalAble(memberDTO.getRentalAble())
+                .role(memberDTO.getRole())
+                .build();
+        return member;
+    }
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Book> bookList = new ArrayList<>();

@@ -26,10 +26,21 @@ public class RentalReturnController {
 
     //대출리스트
     @GetMapping("/list")
-    public String getList(Model model){
+    public String getList(@AuthenticationPrincipal SecurityUser principal,Model model){
         List<RentalReturnDTO> rentalReturnDTOList = rentalReturnService.findAll();
         model.addAttribute("rentalList", rentalReturnDTOList);
-        return "rental/list";
+        //model.addAttribute("rentalCount", rentalReturnService.count(memberId));
+        model.addAttribute("able", rentalReturnService.rentalAble());
+        
+        List<MemberDTO> memberDTOList = memberService.findAll();
+        model.addAttribute("memberList", memberDTOList);
+        if(principal == null){
+        	return "rental/list";
+        }else{
+            MemberDTO memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
+            return "rental/list";
+        }
     }
 
     //도서대출

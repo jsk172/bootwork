@@ -20,12 +20,12 @@ public class ReadingRoomDTO {
     private Member member;
 
     public static ReadingRoomDTO toSaveDTO(ReadingRoom readingRoom){
-        Timestamp enterTimestamp = readingRoom.getEnter() != null ? readingRoom.getEnter() : new Timestamp(System.currentTimeMillis());
-        Timestamp checkOutTimestamp = new Timestamp(enterTimestamp.getTime() + (6 * 60 * 60 * 1000));
+//        Timestamp enterTimestamp = readingRoom.getEnter() != null ? readingRoom.getEnter() : new Timestamp(System.currentTimeMillis());
+//        Timestamp checkOutTimestamp = new Timestamp(enterTimestamp.getTime() + (6 * 60 * 60 * 1000));
         ReadingRoomDTO readingRoomDTO = ReadingRoomDTO.builder()
                 .readingId(readingRoom.getReadingId())
-                .enter(enterTimestamp)
-                .checkOut(checkOutTimestamp)
+                .enter(readingRoom.getEnter())
+                .checkOut(readingRoom.getCheckOut())
                 .seat(readingRoom.getSeat())
                 .seatAvailable(readingRoom.isSeatAvailable())
                 .member(readingRoom.getMember())

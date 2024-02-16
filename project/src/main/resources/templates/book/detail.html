@@ -112,33 +112,45 @@
     </div>
 <div th:replace="~{footer::footer-fragment}"></div>
 <script>
-    $(".returnBtn").click(function (){
-        let rentalId = $(this).data("rental-id");
-        let confirmed = confirm('반납하시겠습니까?');
-        if(confirmed) {
-            console.log(rentalId);
+
+    $("#rentalBtn").click(function(){
+        let able = $("#able").val();
+        let memberId = $("#memberId").val();
+        if(able.includes(memberId)){
+            alert("대출 불가능 상태입니다.");
+            return;
+        }
+        let confirmed = confirm('대여하시겠습니까?');
+
+        if (confirmed) {
             $.ajax({
-                type: "PUT",
+                type: "post",
                 contentType: 'application/json; charset=utf-8',
-                url: "/rentalReturn/return",
+                url: "/rentalReturn/rental",
                 dataType: 'json',
                 data: JSON.stringify({
-                    rentalId: rentalId,
-                    returnDate: new Date()
+                    book: {
+
+                        bookId : [[${book.bookId}]]
+                    },
+                    rentalDate : new Date(),
                 }),
-                success: function (data) {
-                    console.log("반납완료 : " + data)
-                    console.log(data)
+                success: function(data){
+                    console.log("대출성공 : " + data)
                     location.href = "/member/rentallist";
+
                 },
                 error: function (response) {
-                    console.log("반납실패" + response);
+                    console.log("대출실패" + response);
+
+                    location.href = "/member/rentallist";
+
                 }
             });
-        } else{
+        } else {
             console.log("취소");
         }
-    })
+    });
 </script>
 </body>
 </html>

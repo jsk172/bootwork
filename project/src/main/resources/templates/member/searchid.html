@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>아이디 찾기</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id="container">
+		<section id="login">
+		<h2>아이디 찾기</h2>
+		<div class="login">
+			<form th:action="@{/member/searchId}" method="post" class="loginform">
+				<fieldset>
+					<ul>
+						<li>
+							<label for="email">이메일</label>
+							<input type="text" name="email" id="email" placeholder="이메일 확인">
+                            <p th:if="${not #strings.isEmpty(notFound)}" th:text="${notFound}" class="withdrawalError"></p>
+						</li>
+						<li>
+                            <div class="join_login">
+                                <button type="submit" class="loginBtn">아이디 찾기</button>
+                            </div>
+                        </li>
+                    </ul>
+				</fieldset>
+			</form>
+		</div>
+		</section>
+	</div>
+</body>
+</html>

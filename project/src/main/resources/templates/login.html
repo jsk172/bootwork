@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>로그인</title>
     <link rel="stylesheet" th:href="@{/css/login.css}">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div id="container">
@@ -41,8 +42,8 @@
                         <li>
                             <div class="btn_member">
                                 <div>
-                                    <button id="btnFindId" class="btn_member_white">아이디 찾기</button>
-                                    <button id="btnFindPwd" class="btn_member_white">비밀번호 찾기</button>
+                                    <button id="btnFindId" class="btn_member_white" onclick="findId()">아이디 찾기</button>
+                                    <button id="btnFindPwd" class="btn_member_white" onclick="resetPassword()">비밀번호 찾기</button>
                                 </div>
                             </div>
                         </li>
@@ -67,5 +68,13 @@
 		</div>
 		</section>
 	</div>
+<script>
+    function findId(){
+        window.open('/member/searchId', '_blank', 'width = 600, height = 350');
+    }
+    function resetPassword(){
+        window.open('/member/resetPassword', '_blank', 'width = 600, height = 350');
+    }
+</script>
 </body>
 </html>
