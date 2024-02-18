@@ -56,6 +56,7 @@ public class ReadingRoomController {
             readingRoomDTO.setSeatAvailable(false);
             readingRoomService.select(readingRoomDTO);
             attributes.addFlashAttribute("readingId", readingId);
+
             return "redirect:/readingRoom/room";
         }else{
             attributes.addFlashAttribute("message", "이미 대여중인 좌석이 있습니다.");

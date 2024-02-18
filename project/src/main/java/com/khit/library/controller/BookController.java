@@ -3,6 +3,7 @@ package com.khit.library.controller;
 import com.khit.library.config.SecurityUser;
 import com.khit.library.dto.BookDTO;
 import com.khit.library.dto.MemberDTO;
+import com.khit.library.entity.Book;
 import com.khit.library.service.BookService;
 import com.khit.library.service.MemberService;
 import com.khit.library.service.RentalReturnService;
@@ -102,6 +103,14 @@ public class BookController {
     public String delete(@PathVariable Long bookId){
         bookService.deleteById(bookId);
         return "redirect:/book/list";
+    }
+
+    //대출 베스트
+    @GetMapping("/rentalbest")
+    public String bestList(Model model){
+        List<BookDTO> bookDTOList = bookService.findOrderByRentalCount();
+        model.addAttribute("book", bookDTOList);
+        return "book/rentalbest";
     }
     
     //책 검색

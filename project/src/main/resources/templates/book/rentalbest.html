@@ -3,7 +3,7 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
-<title>책목록</title>
+<title>대출베스트</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
 <link rel="preconnect" th:href="@{https://fonts.gstatic.com}"
@@ -23,7 +23,7 @@
 						<img th:src="@{/images/main_library_picture1.PNG}" alt="img">
 					</div>
 					<div class="page_title">
-						<p>자료검색</p>
+						<p>대출 베스트</p>
 					</div>
 				</div>
 			</div>
@@ -76,7 +76,7 @@
 									</tr>
 								</thead>
 								<tbody class="page_table_body" id="searchResultsContainer">
-									<tr th:each="book : ${bookList}">
+									<tr th:each="book : ${book}">
 										<td th:text="${book.bookId}" ></td>
 										<td th:text="${book.bname}" ></td>
 										<td th:text="${book.publisher}" ></td>

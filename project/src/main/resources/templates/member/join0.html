@@ -136,5 +136,15 @@
 	        </div>
 	    </section>
 	</div>
+<script>
+    $(document).ready(function () {
+        $('.join_btn').click(function () {
+            if (!$('#use_agree').is(':checked') || !$('#person_agree1').is(':checked') || !$('#person_agree2').is(':checked')) {
+                alert('모든 약관에 동의해야 합니다.');
+                return false;
+            }
+        });
+    });
+</script>
 </body>
 </html>

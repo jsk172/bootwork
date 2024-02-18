@@ -1,5 +1,6 @@
 package com.khit.library.repository;
 
+import com.khit.library.dto.BookDTO;
 import com.khit.library.entity.RentalReturn;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,5 +24,8 @@ public interface RentalReturnRepository extends JpaRepository<RentalReturn, Long
             "or (r1.deadlineDate < current_date() and r1.returnDate is null) " +
             "group by r1.member.memberId")
     public List<Integer> rentalAble();
+
+    @Query("select r.book.bookId, count(*) as rental_count from RentalReturn r group by r.book.bookId order by rental_count desc limit 10")
+    List<BookDTO> findOrderByRentalCount();
 }
 

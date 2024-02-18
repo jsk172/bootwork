@@ -1,5 +1,6 @@
 package com.khit.library.repository;
 
+import com.khit.library.dto.BookDTO;
 import com.khit.library.entity.Book;
 
 import org.springframework.data.domain.Page;
@@ -17,5 +18,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     
     @Query("SELECT b FROM Book b WHERE LOWER(b.bname) LIKE LOWER(CONCAT('%', :keyword, '%')) OR LOWER(b.author) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     Page<Book> findByBnameContainingIgnoreCaseOrAuthorContainingIgnoreCase(@Param("keyword") String keyword, Pageable pageable);
+
 }
 

@@ -58,14 +58,12 @@
                         </li>
 
                         <li>
-                            <button type="submit" class="naverlogin">
-                                <a th:href="@{|${naverUrl}|}">
-                                    <img th:src="@{/images/naver.PNG}">네이버로 로그인
-                                </a>
-                            </button>
-                            <button type="submit" class="kakaologin">
-                                <img th:src="@{/images/kakao.PNG}">카카오로 로그인
-                            </button>
+                            <a th:href="@{/naver/login}">
+                                <button type="button" class="naverlogin"><img th:src="@{/images/naver.PNG}">네이버로 로그인</button>
+                            </a>
+                            <a th:href="@{/kakao/login}">
+                                <button type="button" class="kakaologin"><img th:src="@{/images/kakao.PNG}">카카오로 로그인</button>
+                            </a>
                         </li>
                     </ul>
 

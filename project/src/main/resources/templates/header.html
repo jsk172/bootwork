@@ -21,7 +21,7 @@
 
 
                             <p><a th:href="@{/book/list}">자료검색</a></p>
-                            <p><a th:href="@{/}">대출베스트(추천도서)</a></p>
+                            <p><a th:href="@{/book/rentalbest}">대출베스트(추천도서)</a></p>
                             <p><a th:href="@{/wantbook/write}">희망도서신청</a></p>
                             <p><a th:href="@{/wantbook/pagelist}" sec:authorize="hasAnyAuthority('Admin')">희망도서신청내역</a></p>
                         </div>
