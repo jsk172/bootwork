@@ -9,8 +9,10 @@ import com.khit.library.entity.RentalReturn;
 import com.khit.library.exception.FinalException;
 import com.khit.library.repository.BookRepository;
 import com.khit.library.repository.RentalReturnRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -96,14 +98,10 @@ public class BookService {
     }
     
     //검색
-    public List<BookDTO> search(String keyword) {
-        List<Book> searchResults = bookRepository.findByBnameContainingIgnoreCaseOrAuthorContainingIgnoreCase(keyword);
-        List<BookDTO> bookDTOList = new ArrayList<>();
-
-        for (Book book : searchResults) {
-            BookDTO bookDTO = BookDTO.toSaveDTO(book);
-            bookDTOList.add(bookDTO);
-        }
-        return bookDTOList;
+    public Page<BookDTO> search(String keyword, Pageable pageable) {
+        Page<Book> searchResults = bookRepository.findByBnameContainingIgnoreCaseOrAuthorContainingIgnoreCase(keyword, pageable);
+        
+        // Page<Book>를 Page<BookDTO>로 변환
+        return searchResults.map(BookDTO::toSaveDTO);
     }
 }

@@ -1,16 +1,21 @@
 package com.khit.library.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.khit.library.dto.FreeBoardDTO;
 import com.khit.library.dto.NoticeBoardDTO;
+import com.khit.library.entity.FreeBoard;
 import com.khit.library.entity.FreeBoard;
 import com.khit.library.entity.NoticeBoard;
 import com.khit.library.repository.FreeBoardRepository;
@@ -23,7 +28,22 @@ import lombok.RequiredArgsConstructor;
 public class FreeBoardService {
 	private final FreeBoardRepository freeBoardRepository;
 
-	public void save(FreeBoard freeBoard) {
+	public void save(FreeBoard freeBoard, MultipartFile freeBoardFile) throws Exception, IOException {
+		
+		if(!freeBoardFile.isEmpty()) {
+            UUID uuid = UUID.randomUUID();
+            String freeFilename = uuid + "_" + freeBoardFile.getOriginalFilename();
+
+            String freeFilepath ="C:/projectfiles/" + freeFilename;
+            /*String freeFilepath ="/Users/Healer/springfiles/" + freeFilename; //희린 전용*/
+
+            File savedFreeFile = new File(freeFilepath); //실제 저장된 파일
+            freeBoardFile.transferTo(savedFreeFile);
+
+            freeBoard.setFreeFilename(freeFilename);
+            freeBoard.setFreeFilepath(freeFilepath); //파일 경로 설정
+		}
+		
 		freeBoardRepository.save(freeBoard);
 	}
 
@@ -49,27 +69,38 @@ public class FreeBoardService {
 		freeBoardRepository.deleteById(fbid);
 	}
 
-	public void update(FreeBoardDTO freeBoardDTO) {
+	public FreeBoardDTO update(FreeBoardDTO freeBoardDTO, MultipartFile freeBoardFile) throws Exception, IOException {
+		if(!freeBoardFile.isEmpty()) {
+            UUID uuid = UUID.randomUUID();
+            String freeFilename = uuid + "_" + freeBoardFile.getOriginalFilename();
+            String freeFilepath ="C:/projectfiles/" + freeFilename;
+
+            File savedFreeFile = new File(freeFilepath); //실제 저장된 파일
+            freeBoardFile.transferTo(savedFreeFile);
+
+			freeBoardDTO.setFreeFilename(freeFilename);
+			freeBoardDTO.setFreeFilepath(freeFilepath);
+		}else {
+			freeBoardDTO.setFreeFilename(findById(freeBoardDTO.getFbid()).getFreeFilename());
+			freeBoardDTO.setFreeFilepath(findById(freeBoardDTO.getFbid()).getFreeFilepath());
+		}
 		FreeBoard freeBoard = FreeBoard.toUpdateEntity(freeBoardDTO);
 		freeBoardRepository.save(freeBoard);
+		return findById(freeBoardDTO.getFbid());
+		
+	}
+	
+	public Page<FreeBoardDTO> searchByTitle(String keyword, Pageable pageable) {
+	    return freeBoardRepository.findByFbtitleContaining(keyword, pageable)
+	            .map(freeBoard -> FreeBoardDTO.toSaveDTO(freeBoard));
 	}
 
-	public Page<FreeBoardDTO> search(String keyword, Pageable pageable) {
-		Page<FreeBoard> searchResults = freeBoardRepository.findByFbtitleContainingOrFbcontentContaining(keyword,
-				keyword, pageable);
-		return searchResults.map(FreeBoardDTO::toSaveDTO);
+	public Page<FreeBoardDTO> searchByContent(String keyword, Pageable pageable) {
+	    return freeBoardRepository.findByFbcontentContaining(keyword, pageable)
+	            .map(freeBoard -> FreeBoardDTO.toSaveDTO(freeBoard));
 	}
 
-	public Page<FreeBoardDTO> searchByTitle(String title, Pageable pageable) {
-		Page<FreeBoard> searchResults = freeBoardRepository.findByFbtitleContaining(title, pageable);
-		return searchResults.map(FreeBoardDTO::toSaveDTO);
-	}
-
-	public Page<FreeBoardDTO> searchByAuthor(String author, Pageable pageable) {
-        // 수정된 부분: findByMember_NameContaining으로 변경
-        Page<FreeBoard> searchResults = freeBoardRepository.findByMember_NameContaining(author, pageable);
-        return searchResults.map(FreeBoardDTO::toSaveDTO);
-    }
+	
 	
 	
 	@Transactional

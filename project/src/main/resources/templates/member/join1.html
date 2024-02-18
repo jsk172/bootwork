@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-    <link rel="stylesheet" th:href="@{/css/join1.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 <!--    <script th:src="@{/js/join1.js}"></script>-->
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div id="container">
+	<section id="joinform0">
         <div id="top">
             <div class="join_header_wrap">
                 <div class="join_header_inner">
@@ -18,8 +19,8 @@
             </div>
         </div>
 		<!--<h2>회원가입</h2>-->
-		<form th:action="@{/member/join1}" method="post" th:object="${memberDTO}" class="joinform">
-			<fieldset>
+		<form th:action="@{/member/join1}" method="post" th:object="${memberDTO}" class="joinform1">
+			<fieldset class="joinform1_fieldset">
 				<ul class="input-wrapper">
 					<li>
                         <div class="idCheck">
@@ -63,6 +64,7 @@
                 <a th:href="@{/member/join1}"><button type="submit" class="join_btn">가입</button></a>
             </div>
 		</form>
+		</section>
 	</div>
 <script>
     const hideErrorMessage = (inputField) => {

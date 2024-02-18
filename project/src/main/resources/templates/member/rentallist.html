@@ -67,9 +67,12 @@
                             <ul>
                                 <li>이용자 이름: <span th:text="${member.name}"></span></li>
                                 <li>이용자 이메일: <span th:text="${member.email}"></span></li>
-                                <li>회원상태: <span th:text="${member.rentalCount}"></span>권 대출 중, <span th:text="${member.rentalAble}"></span></li>
-                                <!--                                     <li>일괄반납연기는 현재 보이는 페이지만 해당이 됩니다. 2페이지 이상일 경우 다음 페이지는 따로 일괄반납연기 해주시기 바랍니다</li>
-                                 -->                                </ul>
+                                <li>회원상태: <span th:text="${rental}"></span>권 대출 중,
+                                    <span th:if="${!#strings.contains(able, member.memberId)}">대출 가능</span>
+                                    <span th:unless="${!#strings.contains(able, member.memberId)}">대출 불가능</span>
+                                </li>
+                                <li>일괄반납연기는 현재 보이는 페이지만 해당이 됩니다. 2페이지 이상일 경우 다음 페이지는 따로 일괄반납연기 해주시기 바랍니다</li>
+                            </ul>
                         </div>
 
                     </div>

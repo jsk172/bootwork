@@ -39,7 +39,7 @@
 								<a class="nav_menu" th:href="@{/hopeboard/pagelist}">도서관에
 									바란다</a> <a class="nav_menu selected_menu"
 									th:href="@{/freeboard/pagelist}">자유게시판</a> <a class="nav_menu"
-									th:href="@{#}">도서관 이벤트</a>
+									th:href="@{/event/pagelist}">도서관 이벤트</a>
 							</div>
 						</div>
                     </div>
@@ -82,7 +82,7 @@
                                 </table>
                                 <div class="write_form_btn_box">
                                     <button type="submit" class="write_btn">등록</button>
-                                    <a th:href="@{/freeboard/pagelist}"><button class="cancel_btn">취소</button></a>
+                                    <a th:href="@{/freeboard/pagelist}"><button type="button" class="cancel_btn">취소</button></a>
                                 </div>
                             </form>
                         </div>

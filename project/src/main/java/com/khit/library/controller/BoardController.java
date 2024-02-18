@@ -71,6 +71,7 @@ public class BoardController {
     	}
     }
     
+    //자주하는질문 페이지
     @GetMapping("/faq/pagelist")
     public String faq(@AuthenticationPrincipal SecurityUser principal, Model model) {
     	if(principal == null){
@@ -81,5 +82,4 @@ public class BoardController {
     		return "faq/pagelist";
     	}
     }
-
 }

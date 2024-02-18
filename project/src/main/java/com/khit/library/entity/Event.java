@@ -17,40 +17,40 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "event")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-@Data
-@Table(name = "event")
-public class Event extends BaseEntity{
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long evid; // 이벤트 글 번호
+public class Event extends BaseEntity {
 
-	@Column(nullable = false)
-	private String evtitle; // 이벤트 제목
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long evid;
 
-	@Column(length = 2000, nullable = false)
-	private String evcontent; // 이벤트 내용
+    @Column(nullable = false)
+    private String evtitle;
 
-	@Column
-	private Integer evhit; // 조회수
-	
-	@Column
-	private String eventFilename;
-	@Column
-	private String eventFilepath;
-	
-	@ManyToOne(fetch = FetchType.LAZY)	//글쓴이 - 외래
-	@JoinColumn(name = "mid")
-	private Member member;
+    @Column(length = 2000, nullable = false)
+    private String evcontent;
 
-	// dto -> entity
-	//insert
-	public static Event toSaveEntity(EventDTO eventDTO) {
-		Event event = Event.builder().evid(eventDTO.getEvid())
+    @Column
+    private Integer evhit;
+
+    @Column
+    private String eventFilename;
+
+    @Column
+    private String eventFilepath;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mid")
+    private Member member;
+
+    // DTO에서 엔티티로 변환하는 로직
+    public static Event toSaveEntity(EventDTO eventDTO) {
+    	Event event = Event.builder().evid(eventDTO.getEvid())
 				.evtitle(eventDTO.getEvtitle()).evcontent(eventDTO.getEvcontent())
 				.evhit(0)
 				.eventFilename(eventDTO.getEventFilename())
@@ -73,6 +73,5 @@ public class Event extends BaseEntity{
 
 		return event;
 	}
-	
-	
+
 }

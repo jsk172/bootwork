@@ -30,9 +30,9 @@
 						</div>
 						<div class="nav_content_mid">
 							<div class="nav_links">
-								<a class="nav_menu selected_menu" th:href="@{notice/pagelist}">공지사항</a>
-								<a class="nav_menu" th:href="@{#}">이용안내</a> <a class="nav_menu"
-									th:href="@{#}">오시는길</a>
+								<a class="nav_menu selected_menu" th:href="@{/notice/pagelist}">공지사항</a>
+								<a class="nav_menu" th:href="@{/board/useinfoboard}">이용안내</a> <a class="nav_menu"
+									th:href="@{/board/howtocomeboard}">오시는길</a>
 							</div>
 						</div>
 					</div>
@@ -69,12 +69,14 @@
 									</tr>
 								</thead>
 								<tbody class="page_table_body">
-									<tr th:each="noticeBoard : ${noticeBoardPage.content}">
+									<!-- <tr th:each="noticeBoard : ${noticeBoardPage.content}"> -->
+									<tr th:each="noticeBoard : ${noticeBoardList}">
 										<td th:text="${noticeBoard.nbid}"></td>
+										<!-- th:href="@{/notice/{nbid}(nbid=${noticeBoard.nbid})}" -->
 										<td><a
-											th:href="@{/notice/{nbid}(nbid=${noticeBoard.nbid})}"
+											th:href="@{|/notice/${noticeBoard.nbid}|}"
 											th:text="${noticeBoard.nbtitle}"></a></td>
-										<td th:text="${noticeBoard.member.name}"></td>
+										<td th:text="${noticeBoard.member.mid}"></td>
 										<td
 											th:text="${#dates.format(noticeBoard.createdDate, 'yyyy-MM-dd')}"></td>
 
@@ -82,8 +84,7 @@
 									</tr>
 							</table>
 							<div class="page_write_btn_box">
-								<a th:href="@{/notice/write}"><button type="button"
-										class="page_write_btn">글쓰기</button></a>
+								<a th:href="@{/notice/write}"><button type="button" class="page_write_btn" sec:authorize="hasAnyAuthority('Admin')">글쓰기</button></a>
 							</div>
 						</div>
 					</div>

@@ -7,6 +7,7 @@ import com.khit.library.entity.Member;
 import com.khit.library.service.MemberService;
 import com.khit.library.service.ReadingRoomService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/readingRoom")
+@Slf4j
 public class ReadingRoomController {
 
     private final ReadingRoomService readingRoomService;
@@ -46,16 +48,19 @@ public class ReadingRoomController {
 
         MemberDTO memberDTO = memberService.findByMid(principal);
         readingRoomDTO.setMember(Member.builder().memberId(memberDTO.getMemberId()).build());
-
-        if(readingRoomDTO.getEnter() == null){
-            readingRoomDTO.setEnter(new Timestamp(System.currentTimeMillis()));
+        String result = readingRoomService.seat(principal.getMember().getMemberId());
+        if("OK".equals(result)){
+            if(readingRoomDTO.getEnter() == null){
+                readingRoomDTO.setEnter(new Timestamp(System.currentTimeMillis()));
+            }
+            readingRoomDTO.setSeatAvailable(false);
+            readingRoomService.select(readingRoomDTO);
+            attributes.addFlashAttribute("readingId", readingId);
+            return "redirect:/readingRoom/room";
+        }else{
+            attributes.addFlashAttribute("message", "이미 대여중인 좌석이 있습니다.");
+            return "redirect:/readingRoom/room";
         }
-        readingRoomDTO.setSeatAvailable(false);
-        readingRoomService.select(readingRoomDTO);
-
-        attributes.addFlashAttribute("readingId", readingId);
-
-        return "redirect:/readingRoom/room";
     }
 
     //좌석 반납

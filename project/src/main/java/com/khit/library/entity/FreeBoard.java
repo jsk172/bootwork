@@ -62,7 +62,7 @@ public class FreeBoard extends BaseEntity {
 	// insert
 	public static FreeBoard toSaveEntity(FreeBoardDTO freeBoardDTO) {
 		FreeBoard freeBoard = FreeBoard.builder().fbtitle(freeBoardDTO.getFbtitle())
-				.fbcontent(freeBoardDTO.getFbcontent()).fbhit(freeBoardDTO.getFbhit())
+				.fbcontent(freeBoardDTO.getFbcontent()).fbhit(0)
 				.freeFilename(freeBoardDTO.getFreeFilename()).freeFilepath(freeBoardDTO.getFreeFilepath())
 				.member(freeBoardDTO.getMember()).build();
 		return freeBoard;
@@ -71,7 +71,10 @@ public class FreeBoard extends BaseEntity {
 	// update
 	public static FreeBoard toUpdateEntity(FreeBoardDTO freeBoardDTO) {
 		FreeBoard freeBoard = FreeBoard.builder().fbid(freeBoardDTO.getFbid()).fbtitle(freeBoardDTO.getFbtitle())
-				.fbcontent(freeBoardDTO.getFbcontent()).fbhit(freeBoardDTO.getFbhit()).member(freeBoardDTO.getMember())
+				.fbcontent(freeBoardDTO.getFbcontent()).fbhit(freeBoardDTO.getFbhit())
+				.freeFilename(freeBoardDTO.getFreeFilename())
+				.freeFilepath(freeBoardDTO.getFreeFilepath())
+				.member(freeBoardDTO.getMember())
 				.build();
 		return freeBoard;
 	}
@@ -87,5 +90,5 @@ public class FreeBoard extends BaseEntity {
 
 	 public String getMid() {
 	        return member != null ? member.getMid() : null;
-	    }
+	}
 }

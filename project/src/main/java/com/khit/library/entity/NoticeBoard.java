@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class NoticeBoard extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long nbid; // 공지사항 글 번
+	private Long nbid; // 공지사항 글 번호
 
 	@Column(nullable = false)
 	private String nbtitle; // 공지사항 제목

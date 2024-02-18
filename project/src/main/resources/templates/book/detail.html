@@ -116,6 +116,7 @@
     $("#rentalBtn").click(function(){
         let able = $("#able").val();
         let memberId = $("#memberId").val();
+
         if(able.includes(memberId)){
             alert("대출 불가능 상태입니다.");
             return;

@@ -78,7 +78,7 @@ public class MemberController {
     }
     //회원목록
     @GetMapping("/member/list")
-    public String getList(@AuthenticationPrincipal SecurityUser principal, Model model/*, @PathVariable Long memberId*/){
+    public String getList(@AuthenticationPrincipal SecurityUser principal, Model model){
         List<MemberDTO> memberDTOList = memberService.findAll();
         model.addAttribute("memberList", memberDTOList);
         if(principal == null){
@@ -86,7 +86,7 @@ public class MemberController {
         }else{
             MemberDTO memberDTO = memberService.findByMid(principal);
             model.addAttribute("member", memberDTO);
-//            model.addAttribute("rental", rentalReturnService.count(memberId));
+            model.addAttribute("rental", rentalReturnService.count(memberDTO.getMemberId()));
             model.addAttribute("able", rentalReturnService.rentalAble());
             return "member/list";
         }
@@ -229,6 +229,8 @@ public class MemberController {
         }else{
             MemberDTO memberDTO = memberService.findByMid(principal);
             model.addAttribute("member", memberDTO);
+            model.addAttribute("rental", rentalReturnService.count(memberDTO.getMemberId()));
+            model.addAttribute("able", rentalReturnService.rentalAble());
             return "member/rentallist";
         }
     }

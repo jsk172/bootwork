@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
-body {
+#login {
+	width: 100%;
+	height: 100vh;
 	font-family: Arial, sans-serif;
 	background-color: #f4f4f4;
 	display: flex;
@@ -8,16 +10,15 @@ body {
 	justify-content: center;
 	margin: 0;
 }
-fieldset{
+.login_fieldset{
     border: none;
 }
-fieldset ul{
+.login_fieldset ul{
     padding: 0;
 }
 
 .login {
 	width: 500px;
-	margin-top: 30px;
 	background-color: #fff;
 	padding: 30px;
 	border-radius: 20px;
@@ -32,12 +33,7 @@ fieldset ul{
 	margin-bottom: 30px;
 }
 
-.logo {
-	max-width: 100%;
-	height: auto;
-}
-
-input {
+.login_fieldset input {
 	width: 100%;
 	padding: 15px;
 	margin-bottom: 20px;
@@ -45,7 +41,8 @@ input {
 	border: 2px solid #c3c7bd;
 	border-radius: 6px;
 }
-.loginBtn{
+
+.join_login .loginBtn{
     width: 100%;
     padding: 15px;
     background-color: #799c4b;
@@ -55,7 +52,7 @@ input {
     cursor: pointer;
     font-size: 16px;
 }
-.joinBtn{
+.join_join .joinBtn{
     width: 100%;
     padding: 15px;
     background-color: #6A5C40;
@@ -66,7 +63,7 @@ input {
     font-size: 16px;
 }
 
-.naverlogin{
+.login_fieldset li .naverlogin{
     width: 100%;
     margin: 10px 0;
     background-color: #03c75a;
@@ -76,7 +73,7 @@ input {
     cursor: pointer;
     font-size: 16px;
 }
-.kakaologin{
+.login_fieldset li .kakaologin{
     width: 100%;
     margin: 10px 0;
     background-color: #fee500;
@@ -93,7 +90,8 @@ input {
     width: 15px;
     margin-right: 5px;
 }
-button {
+.login_fieldset div button,
+.login_fieldset li button {
     margin: 10px 10px 0px 0;
 	width: 100%;
 	padding: 15px;
@@ -105,7 +103,8 @@ button {
 	font-size: 16px;
 }
 
-button:hover {
+.login_fieldset div button:hover,
+.login_fieldset li button:hover {
 	background-color: #ac9;
 }
 
@@ -194,7 +193,7 @@ button:hover {
     justify-content: space-between;
     margin-left: 307px;
 }
-.btn_member_white {
+.login_fieldset .btn_member .btn_member_white {
     width: 70px;
     padding: 3px;
     border: none;
@@ -210,9 +209,9 @@ button:hover {
 	color: #fff;
 }
 
-.btn_member_white:hover{
+.login_fieldset .btn_member .btn_member_white:hover{
     background-color: #bdc3c7;
 }
-.btn_member_gray:hover {
+.login_fieldset .btn_member .btn_member_gray:hover {
 	background-color: #bdc3c7;
 }

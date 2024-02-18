@@ -19,4 +19,7 @@ public interface ReadingRoomRepository extends JpaRepository<ReadingRoom, Long> 
     @Modifying
     @Query("update ReadingRoom set member.memberId = null , enter = null , checkOut = null, seatAvailable = true where seat = :seat")
     public void checkout(Integer seat);
+
+    @Query("select count(*) from ReadingRoom rr where rr.member.memberId = :memberId")
+    public int countSeatsByMemberId(Long memberId);
 }

@@ -8,13 +8,7 @@
     top: 0;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-#container{
+#joinform0{
     max-width: 800px;
     margin: 50px auto;
     background-color: #fff;
@@ -22,6 +16,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .join_header_inner {
     color: #779c4b;
     font-size: 24px;
@@ -33,6 +28,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 #top {
     margin-bottom: 20px;
 }
@@ -45,14 +41,15 @@ body {
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
-fieldset {
+
+#joinform0 fieldset {
     padding: 10px 20px 30px 20px;
     border-radius: 10px;
     line-height: 2;
     width: 750px;
     text-align: left;
 }
-fieldset legend {
+#joinform0 fieldset legend {
     display: inline-block;
     padding: 10px;
     border-radius: 15px;
@@ -60,7 +57,7 @@ fieldset legend {
     font-size: 1.2rem;
 }
 
-.textbox {
+#joinform0 fieldset .textbox {
     width: 730px;
     height: 300px;
     padding: 15px;
@@ -74,13 +71,14 @@ fieldset legend {
     font-weight: bold;
     margin-right: 20px;
 }
-.btnbox {
+#joinform0 .btnbox {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-.reset_btn, .join_btn {
+#joinform0 .btnbox .reset_btn, 
+#joinform0 .btnbox .join_btn {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -90,15 +88,16 @@ fieldset legend {
     transition: background-color 0.3s ease;
 }
 
-.reset_btn {
+#joinform0 .btnbox .reset_btn {
     background-color: #ccc;
 }
 
-.join_btn {
+#joinform0 .btnbox .join_btn {
     background-color: #799c4b;
 }
 
-.reset_btn:hover, .join_btn:hover {
+#joinform0 .btnbox .reset_btn:hover, 
+#joinform0 .btnbox .join_btn:hover {
     background-color: #5e7e39;
 }
 

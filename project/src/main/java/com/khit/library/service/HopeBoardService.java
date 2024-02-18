@@ -86,6 +86,10 @@ public class HopeBoardService {
 		return findById(hopeBoardDTO.getHbid());
 	}
 
+	
+	
+	
+
 	@Transactional
 	public void updateHits(Long hbid) {
 		hopeBoardRepository.updateHits(hbid);
