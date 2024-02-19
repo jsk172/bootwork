@@ -56,7 +56,7 @@ public class WantbookBoardController {
             MemberDTO memberDTO = memberService.findByMid(principal);
             model.addAttribute("member", memberDTO);
         }
-        return "redirect:/wantbook/pagelist";
+        return "redirect:/book/list";
     }
 
 	// 글 목록

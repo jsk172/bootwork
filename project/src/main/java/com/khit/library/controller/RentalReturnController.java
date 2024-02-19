@@ -34,11 +34,11 @@ public class RentalReturnController {
         model.addAttribute("rentalList", rentalReturnDTOList);
         //model.addAttribute("rentalCount", rentalReturnService.count(memberId));
         model.addAttribute("able", rentalReturnService.rentalAble());
-        
+
         List<MemberDTO> memberDTOList = memberService.findAll();
         model.addAttribute("memberList", memberDTOList);
         if(principal == null){
-        	return "rental/list";
+            return "rental/list";
         }else{
             MemberDTO memberDTO = memberService.findByMid(principal);
             model.addAttribute("member", memberDTO);

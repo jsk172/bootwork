@@ -5,6 +5,8 @@ import com.khit.library.dto.RentalReturnDTO;
 import com.khit.library.entity.RentalReturn;
 import com.khit.library.repository.RentalReturnRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -66,6 +68,7 @@ public class RentalReturnService {
     public List<Integer> rentalAble(){
         return rentalReturnRepository.rentalAble();
     }
+
 
     /*public List<BookDTO> findOrderByRentalCount() {
         return rentalReturnRepository.findOrderByRentalCount();

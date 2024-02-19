@@ -2,37 +2,101 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
-  <meta charset="UTF-8">
-  <title>선유도서관</title>
-  <link rel="stylesheet" th:href="@{/css/style.css}">
-  <link rel="preconnect" href="@{https://fonts.googleapis.com">
-  <link rel="preconnect" href="@{https://fonts.gstatic.com}" crossorigin>
-  <link	href="@{https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap}" rel="stylesheet">
+<meta charset="UTF-8">
+<title>선유도서관</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="preconnect" href="@{https://fonts.googleapis.com">
+<link rel="preconnect" href="@{https://fonts.gstatic.com}" crossorigin>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script th:src="@{/js/script.js}"></script>
+<script>
+	// 검색어 입력란에서 Enter 키를 누르면 네이버 검색 페이지로 이동하는 함수
+	function handleSearchKeyPress(event) {
+		if (event.key === 'Enter') {
+			searchNaver();
+		}
+	}
+
+	function searchNaver() {
+		var searchInput = document.getElementById('searchInput');
+		var searchTerm = searchInput.value.trim();
+
+		if (searchTerm !== '') {
+			window.location.href = 'https://search.naver.com/search.naver?query='
+					+ encodeURIComponent(searchTerm);
+		}
+	}
+	function handleSearchKeyPress(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // 폼 제출 방지
+            submitSearchForm();
+        }
+    }
+
+    function submitSearchForm() {
+        var searchInput = document.getElementById('searchInput');
+        var searchForm = document.getElementById('searchForm');
+
+        // 검색어가 비어있지 않은 경우에만 검색 수행
+        if (searchInput.value.trim() !== '') {
+            searchForm.submit();
+        }
+    }
+
+    $.ajax({
+        url: "/notice/main",
+        method : "GET",
+        success : function (data) {
+            console.log(data)
+            for(let i = 0; i < data.length; i++) {
+                $(".main_openspace_board_table").find("tbody").append(
+                    "<tr>" +
+                    "<td>" + data[i].nbid + "</td>" +
+                    "<td><a href='/notice/" + data[i].nbid + "'>" + data[i].nbtitle + "</a></td>" +
+                    "<td>" + moment(data[i].createdDate).format("YYYY-MM-DD") + "</td>" +
+                    "</tr>"
+                )
+            }
+        }
+    })
+
+    $.ajax({
+        url: "/freeboard/main",
+        method : "GET",
+        success : function (data) {
+            console.log(data)
+            for(let i = 0; i < data.length; i++) {
+                $(".main_free_board_table").find("tbody").append(
+                    "<tr>" +
+                    "<td>" + data[i].fbid + "</td>" +
+                    "<td><a href='/freeboard/" + data[i].fbid + "'>" + data[i].fbtitle + "</a></td>" +
+                    "<td>" + moment(data[i].createdDate).format("YYYY-MM-DD") + "</td>" +
+                    "</tr>"
+                )
+            }
+        }
+    })
+</script>
+<style type="text/css">
+</style>
 </head>
 <body>
 	<div th:replace="~{header::header-fragment}"></div>
 	<div id="container">
 		<section class="main">
-      
+
 			<div class="main_top">
 				<div class="main_pic_box">
-<!--					<img class="main_pic active"
- 						th:src="@{/images/main_library_picture1.PNG}" alt=""> <img
-						class="main_pic" th:src="@{/images/main_library_picture2.PNG}"
-						alt=""> <img class="main_pic"
-						th:src="@{/images/main_library_picture3.PNG}" alt=""> <img
-						class="main_pic" th:src="@{/images/main_library_picture4.PNG}"
-						alt=""> <img class="main_pic"
-						th:src="@{/images/main_library_picture5.PNG}" alt=""> -->
-						
-						<img class="main_pic active" th:src="@{/images/main-photo1.jpg}" alt="">
-						<img class="main_pic" th:src="@{/images/main-photo2.jpg}" alt="">
-						<img class="main_pic" th:src="@{/images/main_library_picture3.PNG}" alt=""> 
-						
+						<img class="main_pic active" th:src="@{/images/main-pic1.jpg}" alt="">
+						<img class="main_pic" th:src="@{/images/main-pic3.jpg}" alt="">
+						<img class="main_pic" th:src="@{/images/main-pic5.jpg}" alt=""> 
 				</div>
 
 				<div class="main_welcome">
-					<p class="main_big_welcome">도서관에서 여러분의 <br>다음 책을 만나보세요</p>
+					<p class="main_big_welcome">
+						도서관에서 여러분의 <br>다음 책을 만나보세요
+					</p>
 					<p class="main_small_welcom">모든 이야기가 당신을 기다립니다</p>
 				</div>
 
@@ -43,21 +107,28 @@
 					<button class="main_toggle_btn" onClick="togglePicture()">||</button>
 				</div>
 
-				<div class="main_search">
-					<input class="main_search_input" type="text" placeholder="Seacrh">
-					<img class="main_search_icon" th:src="@{/images/magnifying3.png}">
-				</div>
+				<form id="searchForm" action="https://search.naver.com/search.naver"
+					method="get" target="_blank">
+					<div class="main_search">
+						<input id="searchInput" class="main_search_input" type="text"
+							name="query" placeholder="검색"
+							onkeydown="handleSearchKeyPress(event)">
+						<button class="main_input_btn" type="submit">
+							<img class="main_search_icon" th:src="@{/images/magnifying3.png}">
+						</button>
+					</div>
+				</form>
 
 			</div>
 
 			<div class="main_mid">
 
 				<div class="main_mid_text_box">
-					<p class="main_mid_small_text">선유책방은 언제나 여러분을 환영합니다</p>
+					<p class="main_mid_small_text">선유책숲을 소개합니다</p>
 					<p class="main_mid_big_text">
 						<img class="main_mid_text_img"
 							th:src="@{/images/board_title_img.png}" alt="#"> 언제나 열려있는
-						도서관<br> 내 방 같은 친근함<br> 선유책방에 오신것을 환영합니다
+						도서관<br> 내 방처럼 친근한<br> 선유책숲에 오신 것을 환영합니다
 					</p>
 				</div>
 
@@ -75,28 +146,28 @@
 									<tr>
 										<th>구분</th>
 										<th>이용대상</th>
-										<th>월~금요일</th>
-										<th>토,일요일</th>
+										<th>주중</th>
+										<th>주말</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td>문헌정보실</td>
-										<td>중학생이상</td>
+										<td>중학생 이상</td>
 										<td>09:00~20:00</td>
 										<td>09:00~17:00</td>
 									</tr>
 									<tr>
 										<td>어린이실</td>
-										<td>초등학생이하</td>
+										<td>초등학생 이하</td>
 										<td>09:00~18:00</td>
 										<td>09:00~17:00</td>
 									</tr>
 									<tr>
 										<td>열람실</td>
-										<td>중학생이상</td>
-										<td colspan="2">(3월~10월)07:00~22:00 <br>
-											(11월~2월)08:00~22:00
+										<td>중학생 이상</td>
+										<td colspan="2">07:00~22:00 (3~10월) <br>
+											08:00~22:00 (11~2월)
 										</td>
 									</tr>
 									<tr>
@@ -112,9 +183,8 @@
 					</div>
 
 					<div class="main_mid_openspace">
-						<p class="main_openspace_title">
-							공지 사항 <img class="main_openspace_mark"
-								th:src="@{/images/main_boardimg.png}" alt="">
+						<p class="main_openspace_title"> 공지 사항
+                            <img class="main_openspace_mark" th:src="@{/images/main_boardimg.png}" alt="">
 						</p>
 						<div class="main_openspace_board">
 							<table class="main_openspace_board_table">
@@ -127,31 +197,6 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>17</td>
-										<td>독서이벤트! 사자성어 퀴즈 왕~</td>
-										<td>2024.01.31</td>
-									</tr>
-									<tr>
-										<td>16</td>
-										<td>화장실 단수 공지</td>
-										<td>2024.01.29</td>
-									</tr>
-									<tr>
-										<td>15</td>
-										<td>휴게실 보수 공사 안내</td>
-										<td>2024.01.25</td>
-									</tr>
-									<tr>
-										<td>14</td>
-										<td>유선전화 상담 시 주의사항 안내</td>
-										<td>2024.01.21</td>
-									</tr>
-									<tr>
-										<td>13</td>
-										<td>분실물 습득시 행동요령</td>
-										<td>2024.01.15</td>
-									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -173,31 +218,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>68</td>
-										<td>공사 언제 끝나나요..</td>
-										<td>2024.01.31</td>
-									</tr>
-									<tr>
-										<td>67</td>
-										<td>혹시 지갑 줏으신분 ㅠㅠ</td>
-										<td>2024.01.30</td>
-									</tr>
-									<tr>
-										<td>66</td>
-										<td>점심 같이 드실분?</td>
-										<td>2024.01.30</td>
-									</tr>
-									<tr>
-										<td>65</td>
-										<td>혹시...........</td>
-										<td>2024.01.29</td>
-									</tr>
-									<tr>
-										<td>64</td>
-										<td>코딩 넘 잼따 히히히힣</td>
-										<td>2024.01.28</td>
-									</tr>
+                                </tbody>
 							</table>
 						</div>
 					</div>
@@ -205,7 +226,7 @@
 			</div>
 
 			<div class="main_icons">
-
+				<img class="icons_background" th:src="@{/images/background.jpg}">
 				<div class="main_use_info">
 					<a th:href="@{/}"> <img class="use_info_icon"
 						th:src="@{/images/use_info_icon.png}" alt="#">
@@ -240,11 +261,11 @@
 
 			<div class="main_bottom">
 				<div class="main_bottom_text_box">
-					<p class="main_bottom_small_text">선유책방의 베스트 추천 도서입니다</p>
+					<p class="main_bottom_small_text">선유책숲의 추천 도서</p>
 					<p class="main_bottom_big_text">
 						<img class="main_bottom_text_img"
-							th:src="@{/images/recommand_img.png}" alt=""> 마음의 창을 열어주는 책<br>선유책방의
-						추천 도서를 통해<br>새로운 이야기들을 찾아보아요
+							th:src="@{/images/recommand_img.png}" alt=""> 마음의 창을 열어주는 책<br>선유책숲의
+						추천 도서를 통해<br>새로운 이야기들을 찾아보세요
 					</p>
 				</div>
 

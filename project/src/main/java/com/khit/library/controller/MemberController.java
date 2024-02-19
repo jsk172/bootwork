@@ -104,7 +104,7 @@ public class MemberController {
             return "member/detail";
         }
     }
-  
+
     //회원삭제
     @GetMapping("/member/delete/{memberId}")
     public String delete(@PathVariable Long memberId){
@@ -181,32 +181,32 @@ public class MemberController {
     //회원수정 폼
     @GetMapping("/member/update/{memberId}")
     public String updateForm(@AuthenticationPrincipal SecurityUser principal, @PathVariable Long memberId, Model model,
-    						MemberDTO memberDTO, BindingResult bindingResult){
+                             MemberDTO memberDTO, BindingResult bindingResult){
         if(bindingResult.hasErrors() || principal == null){
             return "member/update";
         }else {
-        	memberDTO = memberService.findByMid(principal);
-        	model.addAttribute("member", memberDTO);
+            memberDTO = memberService.findByMid(principal);
+            model.addAttribute("member", memberDTO);
             model.addAttribute("rental", rentalReturnService.count(memberId));
             model.addAttribute("able", rentalReturnService.rentalAble());
-        	return "member/update";
+            return "member/update";
         }
     }
 
     //회원수정 처리
     @PostMapping("/member/update")
     public String update(@ModelAttribute MemberDTO memberDTO, Model model,  @AuthenticationPrincipal SecurityUser principal, BindingResult bindingResult){
-    	memberService.update(memberDTO);
-    	log.info("dto : " + memberDTO);
-    	
-    	if(bindingResult.hasErrors()){
+        memberService.update(memberDTO);
+        log.info("dto : " + memberDTO);
+
+        if(bindingResult.hasErrors()){
             return "member/update";
         }
-            memberDTO = memberService.findByMid(principal);
-            model.addAttribute("member", memberDTO);
-            return "redirect:/member/update/" + memberDTO.getMemberId();
+        memberDTO = memberService.findByMid(principal);
+        model.addAttribute("member", memberDTO);
+        return "redirect:/member/update/" + memberDTO.getMemberId();
     }
-    
+
 
     //아이디 중복검사
     @PostMapping("/member/check-id")
@@ -223,7 +223,7 @@ public class MemberController {
         List<RentalReturnDTO> rentalReturnDTOList = rentalReturnService.findByMemberMid(mid);
 
         model.addAttribute("rentalList", rentalReturnDTOList);
-        
+
         if(principal == null){
             return "member/rentallist";
         }else{

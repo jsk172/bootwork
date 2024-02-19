@@ -6,11 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.khit.library.entity.FreeBoard;
 import com.khit.library.entity.HopeBoard;
-import com.khit.library.entity.NoticeBoard;
 
 public interface HopeBoardRepository extends JpaRepository<HopeBoard, Long>{
+	
+	Page<HopeBoard> findByHbtitleContaining(String keyword, Pageable pageable);
+
+	Page<HopeBoard> findByHbcontentContaining(String keyword, Pageable pageable);
 	
 	
 	@Modifying
@@ -18,4 +20,6 @@ public interface HopeBoardRepository extends JpaRepository<HopeBoard, Long>{
 	public void updateHits(Long hbid);
 	
 	Page<HopeBoard> findAll(Pageable pageable); // 페이징 처리를 위한 메서드
+
+	
 }

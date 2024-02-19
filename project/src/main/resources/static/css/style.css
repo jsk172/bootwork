@@ -717,6 +717,11 @@
 	
 	}
 	
+	.header_menu_toggle_box {
+		display: none;
+	}
+	
+	
 	/* header_member */
 	.header_member {
 		width: 15%;
@@ -1277,13 +1282,33 @@
 	
 	/* main_icons */
 	.main_icons {
-	    width: 83.5%;
+	    width: 100%;
 	    padding: 0 50px;
-	    height: 300px;
+	    height: 400px;
 	    margin: 0 auto;
 	    display: flex;
 	    justify-content: space-around;
 	    align-items: center;
+	    position: relative;
+	}
+	
+	.icons_background {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0.2;
+	}
+	
+	.icons_background_visible {
+	    opacity: 0.2;
+		transform: translateX(0);
+		transition: opacity 1s ease, transform 1s ease;	
+	}
+	
+	.icons_background_hidden {
+	    opacity: 0;
+	    transform: translateX(200px);
+	    transition: opacity 0.5s ease, transform 0.5s ease;
 	}
 	
 	.main_icons div img {
@@ -2748,7 +2773,7 @@
 	
 	.seats_section {
 	    width: 100%;
-	    border-bottom: 3px solid #ccc;
+	    border-bottom: 1px solid #ccc;
 	    padding: 15px;
 	    margin-bottom: 50px;
 	    height: 550px;
@@ -3673,6 +3698,10 @@
 	
 	}
 	
+	.header_menu_toggle_box {
+		display: none;
+	}
+	
 	/* header_member */
 	.header_member {
 		width: 20%;
@@ -3793,7 +3822,6 @@
 	    color: #fff;
 	    font-size: 3.5rem;
 	    line-height: 64px;
-	    text-shadow: 2px 2px 5px #aaa;
 	}
 	
 	.main_small_welcom {
@@ -4249,13 +4277,33 @@
 	
 	/* main_icons */
 	.main_icons {
-	    width: 85.5%;
+	    width: 100%;
 	    padding: 0;
 	    height: 300px;
 	    margin: 0 auto;
 	    display: flex;
-	    justify-content: space-between;
+	    justify-content: space-around;
 	    align-items: center;
+	    position: relative;
+	}
+	
+	.icons_background {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0.2;
+	}
+	
+	.icons_background_visible {
+	    opacity: 0.2;
+		transform: translateX(0);
+		transition: opacity 1s ease, transform 1s ease;	
+	}
+	
+	.icons_background_hidden {
+	    opacity: 0;
+	    transform: translateX(200px);
+	    transition: opacity 0.5s ease, transform 0.5s ease;
 	}
 	
 	.main_icons div img {
@@ -4551,7 +4599,6 @@
 	.page_title p {
 	    font-size: 2.5rem;
 	    color: #fff;
-	    text-shadow: 3px 3px 5px #555;
 	}
 	
 	
@@ -4775,14 +4822,21 @@
 	}
 	
 	.page_write_btn {
-	    border: 1px solid #cfc;
-	    border-radius: 15px 5px 15px 10px;
-	    padding: 5px;
-	    background-color: #fff;
-	    color: #543;
-	    font-size: 0.8rem;
-	    font-weight: 500;
-	    box-shadow: 1px 1px 3px #543;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		padding: 6px;
+		background-color: #fff;
+		color: #777;
+		font-size: 0.8rem;
+		box-shadow: 3px 3px 3px #eee;
+		cursor: pointer;
+	}
+	
+	.page_write_btn:hover {
+		background-color: rgba(200, 206, 122, 0.1);
+		border: 1px solid rgba(200, 206, 122, 0.1);
+		color: #777;
+		box-shadow: 3px 3px 3px #eee;
 	}
 	
 	.page_textarea_img_box {
@@ -5784,50 +5838,62 @@
 	    align-items: center;
 	}
 	
-	.seats_info_board {
-	    width: 90%;
-	    height: 150px;
-	    background-color: #efefef;
-	    border-radius: 15px;
-	    margin-bottom: 30px;
-	    display: flex;
-	    flex-direction: column;
-	    align-items: center;
-	    justify-content: center;
-	}
+.seats_info_board {
+	width: 80%;
+	height: 150px;
+	/* background-color: rgba(244, 244, 244, 0.5); */
+	border-radius: 15px;
+	margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(200, 206, 122, 0.1);
+}
+
+.seats_info_board h3 {
+	margin-bottom: 10px;
+}
+
+.seats_info_board div, .seats_info_board div table {
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+.readingroom_h3 {
+	font-weight: 400;
+	font-size: 16px;
+	color: #333;
+}
+
+.seats_info_board div table thead tr th {
+	border-bottom: 1px solid #ccc;
+	padding: 3px;
+	font-weight: 400;
+	font-size: 15px;
+	color: #333;
+}
+
+.seats_info_board div table tbody tr td {
+	padding-top: 10px;
+	font-weight: 200;
+	font-size: 15px;
+	color: #333;
+}
 	
-	.seats_info_board h3 {
-	    margin-bottom: 10px;
-	}
-	
-	.seats_info_board div,
-	.seats_info_board div table {
-	    width: 90%;
-	    margin: 0 auto;
-	    text-align: center;
-	    border-collapse: collapse;
-	}
-	
-	.seats_info_board div table thead tr th {
-	    border-bottom: 1px solid #ccc;
-	    padding: 3px;
-	}
-	
-	.seats_info_board div table tbody tr td {
-	    padding-top: 10px;
-	}
-	
-	.seats_using_board {
-	    width: 90%;
-	    height: 380px;
-	    background-color: #efefef;
-	    border-radius: 15px;
-	    padding-bottom: 30px;
-	    display: flex;
-	    flex-direction: column;
-	    align-items: center;
-	    margin-bottom: 75px;
-	}
+.seats_using_board {
+	width: 80%;
+	height: 380px;
+	background-color: rgba(244, 244, 244, 0.4);
+	border-radius: 15px;
+	padding: 0 5px 30px 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 75px;
+}
 	
 	.seats_using_info {
 	    width: 100%;
@@ -5844,23 +5910,23 @@
 	    background-color: #fff;
 	}
 	
-	.seat_form input{
-	    margin: 5px 10px;
-	    width: 6vw;
-	    height: 50px;
-	    padding: 5px 20px;
-	    font-size: 1.5rem;
-	    background-color: #efe;
-	    color: #754;
-	    border: none;
-	    cursor: pointer;
-	}
-	
-	.seat_form input:hover {
-	    border: 3px solid #754;
-	    box-sizing: border-box;
-	    cursor: pointer;
-	}
+.seat_form input {
+	margin: 5px 10px;
+	width: 6vw;
+	height: 50px;
+	padding: 5px 20px;
+	font-size: 14px;
+	background-color: rgba(200, 206, 122, 0.1);
+	color: #754;
+	border: none;
+	cursor: pointer;
+}
+
+.seat_form input:hover {
+	border: 1px solid #754;
+	box-sizing: border-box;
+	cursor: pointer;
+}
 	
 	form[action="/readingRoom/checkout"] input {
 	    background-color: #543;
@@ -6583,7 +6649,7 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
-	
+		font-size: 0.8rem;
 	}
 	
 	/* header_top_menu (도서 검색, 도서관 안내 등) */
@@ -6650,6 +6716,10 @@
 	    visibility: visible; /* 호버 시 보이게 */
 	    transform: translateY(0); /* 원래 위치로 이동 */
 	
+	}
+	
+	.header_menu_toggle_box {
+		display: none;
 	}
 	
 	/* header_member */
@@ -7228,13 +7298,33 @@
 	
 	/* main_icons */
 	.main_icons {
-	    width: 85.5%;
+	    width: 100%;
 	    padding: 0;
-	    height: 300px;
+	    height: 280px;
 	    margin: 0 auto;
 	    display: flex;
-	    justify-content: space-between;
+	    justify-content: space-around;
 	    align-items: center;
+		position: relative;
+	}
+	
+	.icons_background {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0.2;
+	}
+	
+	.icons_background_visible {
+	    opacity: 0.2;
+		transform: translateX(0);
+		transition: opacity 1s ease, transform 1s ease;	
+	}
+	
+	.icons_background_hidden {
+	    opacity: 0;
+	    transform: translateX(200px);
+	    transition: opacity 0.5s ease, transform 0.5s ease;
 	}
 	
 	.main_icons div img {
@@ -9560,15 +9650,32 @@
 		height: 100%;
 		align-items: center;
 		font-size: 0.8rem;
+		position: relative;
 	}
 	
 	.header_link {
-		width: 90%;
-		height: 100%;
-		display: flex;
+		width: 140px;
+		display: none;
 		justify-content: space-around;
+		flex-direction: column;
 		align-items: center;
+		position: absolute;
+		top: 40px;
+		z-index:2;
+		border-radius: 15px;
+		background-color: #fff;
+		opacity: 0.8;
+		padding: 5px;
+	}
 	
+	.header_link div {
+		padding: 5px;
+	}
+	
+	.header_link div:hover {
+		width: 100%;
+		background-color: #eee;
+		border-radius: 10px;
 	}
 	
 	/* header_top_menu (도서 검색, 도서관 안내 등) */
@@ -9610,7 +9717,8 @@
 		position: absolute;
 	    width: 200px;
 	    display: block;
-	    top: 35px;
+	    top: -10px;
+	    left: 100px;
 	    opacity: 0; /* 시작 시 투명하게 */
 	    visibility: hidden; /* 시작 시 숨김 */
 	    transform: translateY(-20px); /* 시작 시 약간 위에서 시작 */
@@ -9634,8 +9742,37 @@
 	    opacity: 1; /* 호버 시 불투명하게 */
 	    visibility: visible; /* 호버 시 보이게 */
 	    transform: translateY(0); /* 원래 위치로 이동 */
-	
 	}
+	
+	.header_link_search .header_sub_link_search p:hover,
+	.header_link_open_space .header_sub_link_open_space p:hover,
+	.header_link_library_info .header_sub_link_library_info p:hover,
+	.header_link_study_room .header_sub_link_study_room p:hover,
+	.header_link_my_library .header_sub_link_my_library p:hover {
+		background-color: #eee;
+		border-radius: 10px;
+	}
+	
+	.header_menu_active {
+		display: flex;
+	}
+	
+	.header_menu_toggle_box {
+		height: 100%;
+	}
+	
+	.header_menu_toggle_btn {
+		height: 100%;
+		border: none;
+		background-color: #f4f4f4;
+		font-size: 0.5rem;
+		color: #999;
+	}
+	
+	.header_menu_toggle_btn span {
+		margin: 0 3px;
+	}
+	
 	
 	/* header_member */
 	.header_member {
@@ -10227,7 +10364,26 @@
     	align-items: center;
     	flex-wrap: wrap;
 	    align-content: space-around;
-
+	    position: relative;
+	}
+	
+	.icons_background {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0.2;
+	}
+	
+	.icons_background_visible {
+	    opacity: 0.2;
+		transform: translateX(0);
+		transition: opacity 1s ease, transform 1s ease;	
+	}
+	
+	.icons_background_hidden {
+	    opacity: 0;
+	    transform: translateX(200px);
+	    transition: opacity 0.5s ease, transform 0.5s ease;
 	}
 	
 	.main_icons div img {
@@ -11768,103 +11924,124 @@
 	}
 	
 	.seats_info_board {
-	    width: 80%;
-	    height: 150px;
-	    background-color: #efefef;
-	    border-radius: 15px;
-	    margin-bottom: 30px;
-	    display: flex;
-	    flex-direction: column;
-	    align-items: center;
-	    justify-content: center;
-	}
-	
-	.seats_info_board h3 {
-	    margin-bottom: 10px;
-	}
-	
-	.seats_info_board div,
-	.seats_info_board div table {
-	    width: 90%;
-	    margin: 0 auto;
-	    text-align: center;
-	    border-collapse: collapse;
-	}
-	
-	.seats_info_board div table thead tr th {
-	    border-bottom: 1px solid #ccc;
-	    padding: 3px;
-	}
-	
-	.seats_info_board div table tbody tr td {
-	    padding-top: 10px;
-	}
-	
-	.seats_using_board {
-	    width: 80%;
-	    height: 330px;
-	    background-color: #efefef;
-	    border-radius: 15px;
-	    padding-bottom: 30px;
-	    display: flex;
-	    flex-direction: column;
-	    align-items: center;
-	    margin-bottom: 75px;
-	}
-	
-	.seats_using_info {
-	    width: 100%;
-	    height: 50px;
-	    display: flex;
-	    justify-content: center;
-	    align-items: center;
-	}
-	
-	.seats_using_list {
-	    width: 90%;
-	    height: 250px;
-	    border-radius: 10px;
-	    background-color: #fff;
-	}
-	
-	.seat_form input{
-	    margin: 5px 10px;
-	    width: 9.3vw;
-	    height: 40px;
-	    font-size: 1rem;
-	    background-color: #efe;
-	    color: #754;
-	    border: none;
-	    cursor: pointer;
-	}
-	
-	.seat_form input:hover {
-	    border: 3px solid #754;
-	    box-sizing: border-box;
-	    cursor: pointer;
-	}
-	
-	form[action="/readingRoom/checkout"] input {
-	    background-color: #543;
-	    color: #cfc;
-	}
-	
-	.seats_using_list table {
-	    width: 100%;
-	    text-align: center;
-	}
-	
-	.seats_using_list table thead th {
-	    padding: 10px;
-	    border-bottom: 1px solid #efefef;
-	    font-size: 0.9rem;
-	}
-	.seats_using_list table tbody td {
-	    padding: 5px;
-	    border-bottom: 1px dotted #efefef;
-	    font-size: 0.85rem;
-	}
-	
+	width: 80%;
+	height: 150px;
+	/* background-color: rgba(244, 244, 244, 0.5); */
+	border-radius: 15px;
+	margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(200, 206, 122, 0.1);
+}
+
+.seats_info_board h3 {
+	margin-bottom: 10px;
+}
+
+.seats_info_board div, .seats_info_board div table {
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+.readingroom_h3 {
+	font-weight: 400;
+	font-size: 16px;
+	color: #333;
+}
+
+.seats_info_board div table thead tr th {
+	border-bottom: 1px solid #ccc;
+	padding: 3px;
+	font-weight: 400;
+	font-size: 15px;
+	color: #333;
+}
+
+.seats_info_board div table tbody tr td {
+	padding-top: 10px;
+	font-weight: 200;
+	font-size: 15px;
+	color: #333;
+}
+
+.seats_using_board {
+	width: 80%;
+	height: 380px;
+	background-color: rgba(244, 244, 244, 0.4);
+	border-radius: 15px;
+	padding: 0 5px 30px 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 75px;
+}
+
+.seats_using_info {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.seats_using_list {
+	width: 90%;
+	padding: 5px;
+	height: 300px;
+	border-radius: 10px;
+	background-color: rgba(244, 244, 244, 0.2);
+	/* 스크롤 */
+	overflow-y: auto;
+	max-height: 280px;
+}
+
+.seat_form input {
+	margin: 5px 10px;
+	width: 6vw;
+	height: 50px;
+	padding: 5px 20px;
+	font-size: 14px;
+	background-color: rgba(200, 206, 122, 0.1);
+	color: #754;
+	border: none;
+	cursor: pointer;
+}
+
+.seat_form input:hover {
+	border: 1px solid #754;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+
+form[action="/readingRoom/checkout"] input {
+	background-color: #543;
+	color: rgba(200, 206, 122);
+}
+
+.seats_using_list table {
+	width: 100%;
+	text-align: center;
+}
+
+.seats_using_list table thead th {
+	padding: 10px;
+	border-bottom: 1px solid #efefef;
+	font-weight: 400;
+	font-size: 15px;
+	color: #333;
+}
+
+.seats_using_list table tbody td {
+	padding: 5px;
+	border-bottom: 1px dotted #efefef;
+	font-weight: 200;
+	font-size: 15px;
+	color: #333;
+}
 	
 	
 	

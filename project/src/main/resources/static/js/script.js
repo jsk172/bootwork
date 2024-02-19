@@ -186,3 +186,17 @@ window.addEventListener("scroll", function () {
     book5.classList.add("book5_hidden");
   }
 });
+
+window.addEventListener("scroll", function () {
+  let scrollPosition = window.scrollY;
+  let bookTextBox = document.querySelector(".icons_background");
+  let triggerPosition = 1100; // 원하는 스크롤 위치
+
+  if (scrollPosition > triggerPosition) {
+    bookTextBox.classList.add("icons_background_visible");
+    bookTextBox.classList.remove("icons_background_hidden");
+  } else {
+    bookTextBox.classList.remove("icons_background_visible");
+    bookTextBox.classList.add("icons_background_hidden");
+  }
+});

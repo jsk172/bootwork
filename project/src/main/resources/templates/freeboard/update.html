@@ -3,7 +3,7 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
-<title>Free Board : Update</title>
+<title>자유게시판</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
 <link rel="preconnect" th:href="@{https://fonts.gstatic.com}"
@@ -20,7 +20,7 @@
 			<div class="page_top">
 				<div class="page_top_imgbox">
 					<div class="page_img">
-						<img th:src="@{/images/main_library_picture1.PNG}" alt="img">
+						<img th:src="@{/images/header-image2.jpg}" alt="img">
 					</div>
 					<div class="page_title">
 						<p>도서관에 바란다</p>
@@ -39,9 +39,10 @@
 						</div>
 						<div class="nav_content_mid">
 							<div class="nav_links">
-								<a class="nav_menu" th:href="@{#}">도서관에 바란다</a> <a
-									class="nav_menu selected_menu" th:href="@{#}">자유 게시판</a> <a class="nav_menu"
-									th:href="@{#}">도서관 이벤트</a>
+								<a class="nav_menu selected_menu" th:href="@{/freeboard/pagelist}">자유게시판</a>
+								<a class="nav_menu" th:href="@{/event/pagelist}">독서이벤트</a>
+								<a class="nav_menu" th:href="@{/hopeboard/pagelist}">도서관에바란다</a>
+								<a class="nav_menu" th:href="@{/faq/pagelist}">자주하는질문</a>
 							</div>
 						</div>
 					</div>
@@ -75,7 +76,7 @@
 											<td>
 												<textarea rows="5" cols="30" name="fbcontent" th:text="${freeBoard.fbcontent}"></textarea>
 												<div class="page_textarea_img_box">
-													<img th:if="${freeBoard.freeFilename != null}" th:src="${freeBoard.freeFilename}"/>
+													<img th:if="${freeBoard.freeFilename != null}" th:src="|/upload/${freeBoard.freeFilename}|"/>
 
 												</div>
 											</td>

@@ -23,8 +23,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authroize -> authroize
                         .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/upload/**","/error").permitAll()
-                        .requestMatchers("/hopeboard/write", "/member/update", "/rentalReturn/rental", "member/rentallist").authenticated()
-                        .requestMatchers("/member/list", "/book/register", "/rentalReturn/list", "/notice/write", "/wantbook/pagelist").hasAnyAuthority("Admin")
+                        .requestMatchers("/hopeboard/write", "/member/update", "/rentalReturn/rental", "/member/rentallist", "/freeboard/write").authenticated()
+                        .requestMatchers("/member/list", "/book/register", "/rentalReturn/list", "/notice/write", "/wantbook/pagelist", "/event/write").hasAnyAuthority("Admin")
                         .requestMatchers("/member/**", "/hopeboard/**", "/book/**", "/rentalReturn/**", "/readingRoom/**", "/faq/**",
                                 "/freeboard/**", "/notice/**", "/board/**").permitAll()
                         .anyRequest().authenticated()

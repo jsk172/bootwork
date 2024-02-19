@@ -58,11 +58,14 @@ public class BookController {
         Pageable pageable = PageRequest.of(page, size);
         Page<BookDTO> bookPage;
 
+
         if (keyword != null) {
             bookPage = bookService.search(keyword, pageable);
         } else {
             bookPage = bookService.paging(pageable);
         }
+
+
 
         List<BookDTO> bookDTOList = bookService.findAll();
 

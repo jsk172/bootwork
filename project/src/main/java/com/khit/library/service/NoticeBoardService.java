@@ -98,4 +98,8 @@ public class NoticeBoardService {
 		noticeBoardRepository.updateHits(nbid);
 	}
 
+    public List<NoticeBoard> mainList(){
+        return noticeBoardRepository.findTop5ByOrderByCreatedDateDesc();
+    }
+
 }

@@ -10,12 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.khit.library.config.SecurityUser;
@@ -94,7 +89,7 @@ public class FreeBoardController {
 //            return "freeboard/pagelist";
 //        }
 //	}
-	
+
 	//페이징, 글 목록
     @GetMapping("/freeboard/pagelist")
     public String pagelist(
@@ -165,5 +160,10 @@ public class FreeBoardController {
 		freeBoardService.deleteById(fbid);
 		return "redirect:/freeboard/pagelist";
 	}
+
+    @GetMapping("/freeboard/main") @ResponseBody
+    public List<FreeBoard> mainList(){
+        return freeBoardService.mainList();
+    }
 
 }

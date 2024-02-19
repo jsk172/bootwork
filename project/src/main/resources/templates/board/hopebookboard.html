@@ -17,7 +17,7 @@
             <div class="page_top">
                 <div class="page_top_imgbox">
                     <div class="page_img">
-                        <img th:src="@{/images/main_library_picture4.PNG}" alt="img">
+                        <img th:src="@{/images/header-image2.jpg}" alt="img">
                     </div>
                     <div class="page_title">
                         <p>희망도서 신청안내</p>
@@ -127,8 +127,8 @@
                                     </li>
                                 </ul>
 	                            <div class="hopebookboard_btn_box">
-	                            	<a><button class="searching_before_request">희망도서신청전 소장자료검색</button></a>
-	                            	<a><button class="hopebook_request">희망도서 신청하기</button></a>
+	                            	<a th:href="@{/book/list}"><button class="searching_before_request">희망도서신청전 소장자료검색</button></a>
+	                            	<a th:href="@{/wantbook/write}"><button class="hopebook_request">희망도서 신청하기</button></a>
 	                            </div>
                             </div>
                             

@@ -7,6 +7,9 @@ import com.khit.library.entity.Role;
 import com.khit.library.exception.FinalException;
 import com.khit.library.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -154,4 +157,10 @@ public class MemberService {
         MemberDTO memberDTO = MemberDTO.toSaveDTO(member);
         return memberDTO;
     }
+    
+    //페이징
+	public Page<MemberDTO> paging(Pageable pageable) {
+		Page<Member> memberPage = memberRepository.findAll(pageable);
+		return memberPage.map(member -> MemberDTO.toSaveDTO(member));
+	}
 }

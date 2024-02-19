@@ -3,6 +3,7 @@ package com.khit.library.entity;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.khit.library.dto.FreeBoardDTO;
@@ -53,7 +54,8 @@ public class FreeBoard extends BaseEntity {
 
 	// FreeBoard 엔터티에 작성자 정보 추가
 	// 작성자 - 외래키
-	@ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="mid")
 	private Member member;
 

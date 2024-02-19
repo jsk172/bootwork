@@ -26,6 +26,8 @@ public class HopeBoardDTO {
 	
 	private Integer hbhit;    // 조회수
 	
+	
+	
 	private String hopeFilename;
 	private String hopeFilepath;
 	

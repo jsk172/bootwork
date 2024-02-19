@@ -3,7 +3,7 @@
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="utf-8">
-<title>Hope for the library : DETAIL</title>
+<title>도서관에바란다</title>
 <script
 src="https://code.jquery.com/jquery-3.7.1.js"
 integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -24,7 +24,7 @@ crossorigin="anonymous"></script>
 			<div class="page_top">
 				<div class="page_top_imgbox">
 					<div class="page_img">
-						<img th:src="@{/images/main_library_picture1.PNG}" alt="img">
+						<img th:src="@{/images/images/header-image2.jpg}" alt="img">
 					</div>
 					<div class="page_title">
 						<p>도서관에 바란다</p>
@@ -38,15 +38,17 @@ crossorigin="anonymous"></script>
 					<div class="nav_content">
 						<div class="nav_content_top">
 							<div class="nav_top_title">
-								<p>열린 공간</p>
+								<p>열린공간</p>
 							</div>
 						</div>
 						<div class="nav_content_mid">
 							<div class="nav_links">
-								<a class="nav_menu selected_menu" th:href="@{#}">도서관에 바란다</a> <a
-									class="nav_menu" th:href="@{#}">자유 게시판</a> <a class="nav_menu"
-									th:href="@{#}">도서관 이벤트</a>
+								<a class="nav_menu" th:href="@{/freeboard/pagelist}">자유게시판</a>
+								<a class="nav_menu" th:href="@{/event/pagelist}">독서이벤트</a>
+								<a class="nav_menu selected_menu" th:href="@{/hopeboard/pagelist}">도서관에바란다</a>
+								<a class="nav_menu" th:href="@{/faq/pagelist}">자주하는질문</a>
 							</div>
+
 						</div>
 					</div>
 				</nav>
@@ -111,7 +113,7 @@ crossorigin="anonymous"></script>
                             	</div>
                             	<div class="hope_reply_content_box">
 	                                <p class="hope_reply_content" th:text="${hopeReply.hrcontent}"></p>
-                                    <th:block sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal.getUsername()} == ${hopeBoard.member.mid}">
+                                    <th:block sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal.getUsername()} == ${hopeReply.member.mid}">
 	                                    <div class="hope_reply_update">
 	                                        <div class="reply_update_btn_box">
 	                                            <button class="reply_update_btn" type="button" th:onClick="replyObject.updateReply([[${hopeBoard.hbid}]], [[${hopeReply.hrid}]])">수정</button>
@@ -140,8 +142,8 @@ crossorigin="anonymous"></script>
                         <div class="hope_reply_insert">
                             <input type="hidden" id="board_id" th:value="${hopeBoard.hbid}">
                             <div class="reply_textarea_box">
-                                <textarea id="reply_content" rows="3" cols="50" placeholder="댓글을 남겨주세요"></textarea>
-                           		<button id="save_reply_btn">댓글 등록</button>
+                                <textarea id="reply_content" rows="3" cols="50" placeholder="댓글을 남겨주세요" sec:authorize="hasAnyAuthority('Admin')"></textarea>
+                           		<button id="save_reply_btn" sec:authorize="hasAnyAuthority('Admin')">댓글 등록</button>
                             </div>
                         </div>
                     </div>

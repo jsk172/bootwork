@@ -102,22 +102,48 @@ public class HopeBoardController {
 	//페이징, 글 목록
     @GetMapping("/hopeboard/pagelist")
     public String pagelist(
-            @RequestParam(value = "page", defaultValue = "0") int page,
+    		@RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(value = "searchOption", required = false) String searchOption,
+            @RequestParam(value = "keyword", required = false) String keyword,
             @AuthenticationPrincipal SecurityUser principal,
             Model model) {
+    	
+    	
         Pageable pageable = PageRequest.of(page, size);
-        Page<HopeBoardDTO> hopeBoardPage = hopeBoardService.paging(pageable);
+        
+        Page<HopeBoardDTO> hopeBoardPage;
+        
+        if (searchOption != null && keyword != null) {
+        	if ("title".equals(searchOption)) {
+        	    hopeBoardPage = hopeBoardService.searchByTitle(keyword, pageable);
+        	} else if ("content".equals(searchOption)) {
+        	    hopeBoardPage = hopeBoardService.searchByContent(keyword, pageable);
+        	} else {
+        	    // 기본적으로는 제목으로 검색
+        	    hopeBoardPage = hopeBoardService.searchByTitle(keyword, pageable);
+        	}
+        } else {
+            // 검색 옵션 및 키워드가 없는 경우에는 기존 페이징 로직을 수행
+            hopeBoardPage = hopeBoardService.paging(pageable);
+        }
+        
         List<HopeBoardDTO> hopeBoardDTOList = hopeBoardService.findAll();
+        
         model.addAttribute("hopeBoardPage", hopeBoardPage);
         model.addAttribute("hopeBoardList", hopeBoardDTOList);
-        if(principal == null){
-            return "hopeboard/pagelist";
-        }else{
+        model.addAttribute("currentPage", pageable.getPageNumber());
+        model.addAttribute("totalPages", hopeBoardPage.getTotalPages());
+        model.addAttribute("totalItems", hopeBoardPage.getTotalElements());
+        model.addAttribute("keyword", keyword);
+        
+        
+        String viewName = "hopeboard/pagelist";
+        if (principal != null) {
             MemberDTO memberDTO = memberService.findByMid(principal);
             model.addAttribute("member", memberDTO);
-            return "hopeboard/pagelist";
         }
+        return viewName;
     }
 
     // 글 하나 상세보기

@@ -2,6 +2,7 @@ package com.khit.library.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.khit.library.dto.NoticeBoardDTO;
 
 import jakarta.persistence.*;
@@ -34,7 +35,8 @@ public class NoticeBoard extends BaseEntity {
 	private String noticeFilename;
 	@Column
 	private String noticeFilepath;
-	
+
+    @JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)	//글쓴이 - 외래
 	@JoinColumn(name = "mid")
 	private Member member;

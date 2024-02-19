@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface FreeBoardRepository extends JpaRepository<FreeBoard, Long> {
     
 	Page<FreeBoard> findByFbtitleContaining(String keyword, Pageable pageable);
@@ -20,4 +22,6 @@ public interface FreeBoardRepository extends JpaRepository<FreeBoard, Long> {
     
 	//페이징 처리를 위한 메서드
 	Page<FreeBoard> findAll(Pageable pageable);
+
+    List<FreeBoard> findTop5ByOrderByCreatedDateDesc();
 }

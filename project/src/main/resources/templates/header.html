@@ -18,8 +18,6 @@
                     <div class="header_link_search">
                         <a th:href="@{/book/list}">도서검색</a>
                         <div class="header_sub_link_search">
-
-
                             <p><a th:href="@{/book/list}">자료검색</a></p>
                             <p><a th:href="@{/rentalReturn/rentalbest}">대출베스트(추천도서)</a></p>
                             <p><a th:href="@{/wantbook/write}">희망도서신청</a></p>
@@ -61,7 +59,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="header_menu_toggle_box">
+                	<button class="header_menu_toggle_btn"><span>●</span><span>●</span><span>●</span></button>
+                </div>
             </div>
+            
             <div class="header_member">
                 <th:block sec:authorize="isAnonymous()">
                     <a class="header_member_join" th:href="@{/login}">로그인</a> |
@@ -88,5 +90,13 @@
             </div> -->
         </section>
     </div>
+<script>
+	const navbarToggle = document.querySelector('.header_menu_toggle_btn');
+	const navbarMenu = document.querySelector('.header_link');
+	
+	navbarToggle.addEventListener('click', () => {
+	    navbarMenu.classList.toggle('header_menu_active');
+	});
+</script>
 </header>
 </html>

@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.khit.library.entity.NoticeBoard;
 
+import java.util.List;
+
 public interface NoticeBoardRepository extends JpaRepository<NoticeBoard, Long>{
 
 	//페이징 처리를 위한 메서드
@@ -17,5 +19,7 @@ public interface NoticeBoardRepository extends JpaRepository<NoticeBoard, Long>{
 	@Modifying
 	@Query(value="update NoticeBoard b set b.nbhit=b.nbhit+1 where b.nbid=:nbid")
 	public void updateHits(Long nbid);
+
+    List<NoticeBoard> findTop5ByOrderByCreatedDateDesc();
 	
 }

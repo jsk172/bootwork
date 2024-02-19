@@ -3,7 +3,7 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
-<title>책목록</title>
+<title>도서목록</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
 <link rel="preconnect" th:href="@{https://fonts.gstatic.com}"
@@ -11,6 +11,39 @@
 <link
 	th:href="@{https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap}"
 	rel="stylesheet">	
+<style>
+.book_menu_search_box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.book_menu_search_input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.book_menu_input_btn {
+    position: relative;
+    right: 0;
+    top: 0;
+    padding: 2px;
+    background-color: #799c4b;
+    color: #fff;
+    border: 1px solid #799c4b;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+}
+
+.book_menu_input_btn:hover {
+    background-color: #799c4b;
+    border-color: #799c4b;
+}
+</style>
 </head>
 <body>
 	<div th:replace="~{header::header-fragment}"></div>
@@ -20,7 +53,7 @@
 			<div class="page_top">
 				<div class="page_top_imgbox">
 					<div class="page_img">
-						<img th:src="@{/images/main_library_picture1.PNG}" alt="img">
+						<img th:src="@{/images/header-image2.jpg}" alt="img">
 					</div>
 					<div class="page_title">
 						<p>자료검색</p>
@@ -34,35 +67,36 @@
 					<div class="nav_content">
 						<div class="nav_content_top">
 							<div class="nav_top_title">
-								<p>자료 검색</p>
+								<p>자료검색</p>
 							</div>
 						</div>
 						<div class="nav_content_mid">
 							<div class="nav_links">
 								<a class="nav_menu selected_menu" th:href="@{/book/list}">자료검색</a>
-								<a class="nav_menu" th:href="@{/rentalReturn/rentalbest}">대출 베스트</a>
-								<a class="nav_menu" th:href="@{/wantbook/write}">희망도서 신청</a>
-                                <a class="nav_menu" th:href="@{/wantbook/pagelist}" sec:authorize="hasAnyAuthority('Admin')">희망도서신청내역</a>
+								<a class="nav_menu" th:href="@{/rentalReturn/rentalbest}">대출베스트(추천도서)</a>
+								<a class="nav_menu" th:href="@{wantbook/write}">희망도서신청</a>
+                                 <a class="nav_menu" th:href="@{/wantbook/pagelist}" sec:authorize="hasAnyAuthority('Admin')">희망도서신청내역</a>
 							</div>
 						</div>
 					</div>
 				</nav>
 				
 				<div class="page_content">
-					<div class="page_content_top">
-						<div class="page_menu_search">
+				<div class="book_menu_search">
 							<form th:action="@{/book/list}" method="get">
 
-								<div class="page_menu_search_box" >
+								<div class="book_menu_search_box" >
 								
-									<input class="page_menu_search_input" type="text" name="keyword" th:value="${keyword}"  placeholder="제목 혹은 저자를 입력하세요">
-                                    <button class="page_menu_input_btn" type="submit">
-                                        <img class="page_menu_search_img" th:src="@{/images/magnifying4.png}" alt="">
+									<input class="book_menu_search_input" type="text" name="keyword" th:value="${keyword}"  placeholder="제목 혹은 저자를 입력하세요">
+                                    <button class="book_menu_input_btn" type="submit">
+                                        <img class="book_menu_search_img" th:src="@{/images/magnifying4.png}" alt="">
                                     </button>
 
 								</div>
 							</form>
 						</div>
+					<div class="page_content_top">
+						
 					</div>
 					<div class="page_content_mid">
 						<div class="page_table_box">
@@ -82,7 +116,7 @@
 								<tbody class="page_table_body">
 									<tr th:each="book : ${bookPage.content}">
 										<td th:text="${book.bookId}" ></td>
-										<td th:text="${book.bname}" ></td>
+										<td th:text="${book.bname}"  style="text-align: center"></td>
 										<td th:text="${book.publisher}" ></td>
 										<td th:text="${book.author}" ></td>
 										<td th:text="${book.bnumber}" ></td>
@@ -110,13 +144,20 @@
 							</li>
 
 							<!-- 페이지 번호 -->
-							<li
+							<li th:if="${bookPage.totalPages != 0}"
 								th:each="pageNum : ${#numbers.sequence(0, bookPage.totalPages-1)}">
 								<a th:href="@{|/book/list?page=${pageNum}|}"
 								th:text="${pageNum + 1}"
 								th:classappend="${pageNum} == ${bookPage.pageable.pageNumber} ? 'current' : ''">
 								</a>
 							</li>
+                            <li th:if="${bookPage.totalPages == 0}"
+                                >
+                                <a th:href="@{|/book/list?page=${pageNum}|}"
+                                   th:text="1"
+                                   th:classappend="${pageNum} == ${bookPage.pageable.pageNumber} ? 'current' : ''">
+                                </a>
+                            </li>
 
 							<!-- 다음 페이지 -->
 							<li th:if="${bookPage.hasNext()}"><a

@@ -113,5 +113,9 @@ public class FreeBoardService {
         Page<FreeBoard> freeBoardPage = freeBoardRepository.findAll(pageable);
         return freeBoardPage.map(freeBoard -> FreeBoardDTO.toSaveDTO(freeBoard));
     }
+
+    public List<FreeBoard> mainList() {
+        return freeBoardRepository.findTop5ByOrderByCreatedDateDesc();
+    }
 }
 

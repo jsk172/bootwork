@@ -14,6 +14,7 @@ public class MemberDTO {
     private Long memberId;
 
     @NotEmpty(message = "ID는 필수 항목입니다.")
+    @Size(min = 6)
     private String mid;
 
     @NotEmpty(message = "비밀번호는 필수 항목입니다.")
