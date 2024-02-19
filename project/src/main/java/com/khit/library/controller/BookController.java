@@ -49,12 +49,30 @@ public class BookController {
     }
     //책 리스트
     @GetMapping("/list")
-    public String getList(Model model, @AuthenticationPrincipal SecurityUser principal) {
+    public String getList(@RequestParam(value = "page", defaultValue = "0") int page,
+                          @RequestParam(value = "size", defaultValue = "10") int size,
+                          @RequestParam(value = "keyword", required = false) String keyword,
+                          @AuthenticationPrincipal SecurityUser principal,
+                          Model model) {
+
+        Pageable pageable = PageRequest.of(page, size);
+        Page<BookDTO> bookPage;
+
+        if (keyword != null) {
+            bookPage = bookService.search(keyword, pageable);
+        } else {
+            bookPage = bookService.paging(pageable);
+        }
+
         List<BookDTO> bookDTOList = bookService.findAll();
+
+        model.addAttribute("bookPage", bookPage);
         model.addAttribute("bookList", bookDTOList);
-        if(principal == null){
+        model.addAttribute("keyword", keyword);
+
+        if (principal == null) {
             return "book/list";
-        }else{
+        } else {
             MemberDTO memberDTO = memberService.findByMid(principal);
             model.addAttribute("member", memberDTO);
             return "book/list";
@@ -105,36 +123,5 @@ public class BookController {
         return "redirect:/book/list";
     }
 
-    //대출 베스트
-    @GetMapping("/rentalbest")
-    public String bestList(Model model){
-        List<BookDTO> bookDTOList = bookService.findOrderByRentalCount();
-        model.addAttribute("book", bookDTOList);
-        return "book/rentalbest";
-    }
-    
-    //책 검색
-    @GetMapping("/search")
-    public String search(@RequestParam String keyword,
-                         @RequestParam(value = "page", defaultValue = "0") int page,
-                         @RequestParam(value = "size", defaultValue = "10") int size,
-                         Model model,
-                         @AuthenticationPrincipal SecurityUser principal) {
-        // Pageable 객체를 생성하여 페이징 정보 설정
-        Pageable pageable = PageRequest.of(page, size);
-
-        // 책 검색 결과를 Page 타입으로 받아오기
-        Page<BookDTO> searchResults = bookService.search(keyword, pageable);
-
-        // 검색 결과를 모델에 추가
-        model.addAttribute("searchResults", searchResults);
-
-        if (principal != null) {
-            MemberDTO memberDTO = memberService.findByMid(principal);
-            model.addAttribute("member", memberDTO);
-        }
-
-        return "book/searchResults";  // 검색 결과를 표시할 Thymeleaf 템플릿 경로
-    }
 
 }

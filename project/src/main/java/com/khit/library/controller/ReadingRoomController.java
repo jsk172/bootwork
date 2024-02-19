@@ -34,8 +34,11 @@ public class ReadingRoomController {
         if(principal == null){
             return "readingroom/room";
         }else{
+            int result = readingRoomService.seat(principal.getMember().getMemberId());
             MemberDTO memberDTO = memberService.findByMid(principal);
+
             model.addAttribute("member", memberDTO);
+            model.addAttribute("seatCnt", result);
             return "readingroom/room";
         }
     }
@@ -43,25 +46,19 @@ public class ReadingRoomController {
     //좌석 선택
     @PostMapping("/select")
     public String select(@RequestParam("readingId") Long readingId, @AuthenticationPrincipal SecurityUser principal
-    , RedirectAttributes attributes){
+            , RedirectAttributes attributes){
         ReadingRoomDTO readingRoomDTO = readingRoomService.findById(readingId);
 
         MemberDTO memberDTO = memberService.findByMid(principal);
         readingRoomDTO.setMember(Member.builder().memberId(memberDTO.getMemberId()).build());
-        String result = readingRoomService.seat(principal.getMember().getMemberId());
-        if("OK".equals(result)){
-            if(readingRoomDTO.getEnter() == null){
-                readingRoomDTO.setEnter(new Timestamp(System.currentTimeMillis()));
-            }
-            readingRoomDTO.setSeatAvailable(false);
-            readingRoomService.select(readingRoomDTO);
-            attributes.addFlashAttribute("readingId", readingId);
-
-            return "redirect:/readingRoom/room";
-        }else{
-            attributes.addFlashAttribute("message", "이미 대여중인 좌석이 있습니다.");
-            return "redirect:/readingRoom/room";
+        if(readingRoomDTO.getEnter() == null){
+            readingRoomDTO.setEnter(new Timestamp(System.currentTimeMillis()));
         }
+        readingRoomDTO.setSeatAvailable(false);
+        readingRoomService.select(readingRoomDTO);
+        attributes.addFlashAttribute("readingId", readingId);
+
+        return "redirect:/readingRoom/room";
     }
 
     //좌석 반납

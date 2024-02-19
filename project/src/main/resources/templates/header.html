@@ -16,18 +16,18 @@
             <div class="header_links">
                 <div class="header_link">
                     <div class="header_link_search">
-                        <a th:href="@{/}">도서검색</a>
+                        <a th:href="@{/book/list}">도서검색</a>
                         <div class="header_sub_link_search">
 
 
                             <p><a th:href="@{/book/list}">자료검색</a></p>
-                            <p><a th:href="@{/book/rentalbest}">대출베스트(추천도서)</a></p>
+                            <p><a th:href="@{/rentalReturn/rentalbest}">대출베스트(추천도서)</a></p>
                             <p><a th:href="@{/wantbook/write}">희망도서신청</a></p>
                             <p><a th:href="@{/wantbook/pagelist}" sec:authorize="hasAnyAuthority('Admin')">희망도서신청내역</a></p>
                         </div>
                     </div>
                     <div class="header_link_open_space">
-                        <a th:href="@{/}">열린공간</a>
+                        <a th:href="@{/freeboard/pagelist}">열린공간</a>
                         <div class="header_sub_link_open_space">
                             <p><a th:href="@{/freeboard/pagelist}">자유게시판</a></p>
                             <p><a th:href="@{/event/pagelist}">독서이벤트</a></p>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="header_link_library_info">
-                        <a th:href="@{/board/useinfoboard}">도서관안내</a>
+                        <a th:href="@{/notice/pagelist}">도서관안내</a>
                         <div class="header_sub_link_library_info">
                             <p><a th:href="@{/notice/pagelist}">공지사항</a></p>
                             <p><a th:href="@{/board/useinfoboard}">이용안내</a></p>
@@ -44,13 +44,13 @@
                         </div>
                     </div>
                     <div class="header_link_study_room">
-                        <a th:href="@{/}">열람실</a>
+                        <a th:href="@{/readingRoom/room}">열람실</a>
                         <div class="header_sub_link_study_room">
                             <p><a th:href="@{/readingRoom/room}">자율학습실현황</a></p>
                         </div>
                     </div>
                     <div class="header_link_my_library">
-                        <a th:href="@{/}">나의책숲</a>
+                        <a th:href="@{/member/rentallist}">나의책숲</a>
                         <div class="header_sub_link_my_library">
 
                             <p><a th:href="@{/member/rentallist}">내서재</a></p>

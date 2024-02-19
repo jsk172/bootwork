@@ -1,12 +1,10 @@
 package com.khit.library.repository;
 
-import com.khit.library.dto.BookDTO;
 import com.khit.library.entity.RentalReturn;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface RentalReturnRepository extends JpaRepository<RentalReturn, Long> {
     //Optional<RentalReturn> findByRentalId(Long rentalId);
@@ -25,7 +23,10 @@ public interface RentalReturnRepository extends JpaRepository<RentalReturn, Long
             "group by r1.member.memberId")
     public List<Integer> rentalAble();
 
-    @Query("select r.book.bookId, count(*) as rental_count from RentalReturn r group by r.book.bookId order by rental_count desc limit 10")
-    List<BookDTO> findOrderByRentalCount();
+    @Query("SELECT r.book.bookId, COUNT(r.rentalId) AS rentalCount " +
+            "FROM RentalReturn r " +
+            "GROUP BY r.book.bookId " +
+            "ORDER BY rentalCount DESC")
+    List<Object[]> findOrderByRentalCount();
 }
 

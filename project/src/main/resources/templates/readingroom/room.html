@@ -75,11 +75,11 @@
                                             <form th:if="${seat.seatAvailable == false}" th:action="@{/readingRoom/checkout}" method="post" class="seat-form">
                                                 <input type="hidden" th:name="readingId" th:value="${seat.readingId}">
                                                 <input type="hidden" class="member-id" th:value="${seat.member.mid}">
-                                                <input type="submit" th:value="${seat.seat}" class="returnBtn alreadyUse">
+                                                <input type="button" th:value="${seat.seat}" class="returnBtn alreadyUse">
                                             </form>
                                             <form th:if="${seat.seatAvailable == true}" th:action="@{/readingRoom/select}" method="post">
                                                 <input type="hidden" th:name="readingId" th:value="${seat.readingId}">
-                                                <input type="submit" th:value="${seat.seat}" class="returnBtn canUse">
+                                                <input type="button" th:value="${seat.seat}" class="returnBtn canUse">
                                             </form>
                                         </div>
                                     </div>
@@ -89,11 +89,11 @@
                                                 <form th:if="${seat.seatAvailable == false}" th:action="@{/readingRoom/checkout}" method="post" class="seat-form">
                                                     <input type="hidden" th:name="readingId" th:value="${seat.readingId}">
                                                     <input type="hidden" class="member-id" th:value="${seat.member.mid}">
-                                                    <input type="submit" th:value="${seat.seat}" class="returnBtn alreadyUse">
+                                                    <input type="button" th:value="${seat.seat}" class="returnBtn alreadyUse">
                                                 </form>
                                                 <form th:if="${seat.seatAvailable == true}" th:action="@{/readingRoom/select}" method="post">
                                                     <input type="hidden" th:name="readingId" th:value="${seat.readingId}">
-                                                    <input type="submit" th:value="${seat.seat}" class="returnBtn canUse">
+                                                    <input type="button" th:value="${seat.seat}" class="returnBtn canUse">
                                                 </form>
                                             </div>
                                         </div>
@@ -102,11 +102,11 @@
                                                 <form th:if="${seat.seatAvailable == false}" th:action="@{/readingRoom/checkout}" method="post" class="seat-form">
                                                     <input type="hidden" th:name="readingId" th:value="${seat.readingId}">
                                                     <input type="hidden" class="member-id" th:value="${seat.member.mid}">
-                                                    <input type="submit" th:value="${seat.seat}" class="returnBtn alreadyUse">
+                                                    <input type="button" th:value="${seat.seat}" class="returnBtn alreadyUse">
                                                 </form>
                                                 <form th:if="${seat.seatAvailable == true}" th:action="@{/readingRoom/select}" method="post">
                                                     <input type="hidden" th:name="readingId" th:value="${seat.readingId}">
-                                                    <input type="submit" th:value="${seat.seat}" class="returnBtn canUse">
+                                                    <input type="button" th:value="${seat.seat}" class="returnBtn canUse">
                                                 </form>
                                             </div>
                                         </div>
@@ -180,7 +180,7 @@
         let td3 = document.querySelector("#td3");
         let td4 = document.querySelector("#td4");
 
-        let seats = document.querySelectorAll('input[type="submit"]').length;
+        let seats = document.querySelectorAll('input[type="button"]').length;
 
         let usedSeats = document.querySelectorAll('.alreadyUse').length;
 
@@ -197,11 +197,14 @@
     counting();
 
     $(".canUse").click(function (){
-        let message = "[[${message}]]";
         let confirmationMessage = "사용 하시겠습니까?";
-        if(message){
-            alert(message);
-        } else if(confirm(confirmationMessage)){
+        if(confirm(confirmationMessage)){
+            if([[${seatCnt}]] > 0) {
+                alert("이미 사용중인 좌석이 있습니다.");
+                return;
+            }
+
+            $(this).closest("form").submit()
             alert("사용 시작.");
             counting();
         } else{
@@ -218,6 +221,7 @@
                 alert("권한이 없습니다.");
                 return false;
             }else{
+                $(this).closest("form").submit()
                 alert("반납 완료.");
                 counting();
                 return true;

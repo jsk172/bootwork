@@ -17,6 +17,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -57,6 +58,7 @@ public class FreeBoard extends BaseEntity {
 	private Member member;
 
 	@OneToMany(mappedBy = "freeboard", cascade = CascadeType.ALL)
+	@OrderBy("frid desc")
 	private List<FreeReply> freeReplyList;
 
 	// insert

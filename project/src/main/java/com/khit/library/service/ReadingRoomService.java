@@ -53,12 +53,7 @@ public class ReadingRoomService {
     }
 
     @Transactional
-    public String seat(Long memberId){
-        int count = readingRoomRepository.countSeatsByMemberId(memberId);
-        if(count >= 1){
-            return "NO";
-        }else{
-            return "OK";
-        }
+    public int seat(Long memberId){
+        return readingRoomRepository.countSeatsByMemberId(memberId);
     }
 }

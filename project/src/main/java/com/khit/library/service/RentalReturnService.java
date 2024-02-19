@@ -1,5 +1,6 @@
 package com.khit.library.service;
 
+import com.khit.library.dto.BookDTO;
 import com.khit.library.dto.RentalReturnDTO;
 import com.khit.library.entity.RentalReturn;
 import com.khit.library.repository.RentalReturnRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,4 +67,7 @@ public class RentalReturnService {
         return rentalReturnRepository.rentalAble();
     }
 
+    /*public List<BookDTO> findOrderByRentalCount() {
+        return rentalReturnRepository.findOrderByRentalCount();
+    }*/
 }

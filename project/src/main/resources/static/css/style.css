@@ -287,6 +287,89 @@
 	
 	
 	
+	/* =================================== 아이디 찾기 =================================== */
+	#find_id {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	
+	.find_id_text {
+		font-size: 0.8rem;
+		color: #6a4;
+		margin-bottom: 75px;
+		text-align: right;
+	}
+	
+	#find_id .login label {
+		font-size: 1.2rem;
+		color: #864;
+	}
+	
+	.email_input_box {
+		text-align: center;
+	}
+	
+	.find_id_email {
+		border-top: none;
+		border-right: none;
+		border-bottom: 1px solid #ccc;
+		border-left: none;
+		width: 80%;
+		padding: 5px 10px;
+	}
+	
+	.find_id_btn_box {
+		display:flex;
+		justify-content: center;
+		margin-top: 50px;
+	}
+	
+	.find_id_btn {
+		display:flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.5rem;
+		font-weight: 300;
+		padding-top: 40px;
+		padding-right: 60px;
+		padding-bottom: 40px;
+		padding-left: 60px;
+		border-radius: 25px;
+		border-top: none;
+		border-right: 3px solid #9d9;
+		border-bottom: 3px solid #9d9;
+		border-left: none;
+		background-color: #cfc;
+		margin-bottom: 30px;
+		box-shadow: 3px 3px 5px #ccc;
+	}
+	
+	.find_id_btn_box img {
+		margin-right: 20px;
+	}
+	
+	.find_id_result_text h2 {
+		color: #753;
+		margin-bottom: 50px;
+		font-size: 1rem;
+	}
+	
+	.find_id_result_text p {
+		color: #999;
+		font-size: 0.9rem;
+	}
+	
+	.find_id_result_text p span {
+		color: #294;
+		font-size: 1.7rem;
+		font-weight: 500;
+	}
+	
+	
+	
+	
+	
 	/* =================================== 로그인 =================================== */
 	#login {
 		width: 100%;
@@ -1608,13 +1691,13 @@
 	/* page_table */
 	.page_table {
 	    width: 100%;
-	    border-top: 2px solid #999;
-	    border-bottom: 2px solid #999;
+	    border-top: 1px solid #999;
+	    border-bottom: 1px solid #999;
 	    border-collapse: collapse;
 	}
 	
 	.page_table_head{
-	    border-bottom: 2px solid #999;
+	    border-bottom: 1px solid #eee;
 	}
 	
 	.page_table_head tr th {
@@ -1625,7 +1708,7 @@
 	.page_table_body tr td {
 	    padding-top: 10px;
 	    padding-bottom: 10px;
-	    border-bottom: 1px solid #ddd;
+	    border-bottom: 1px solid #eee;
 	    text-align: center;
 	}
 	
@@ -2248,8 +2331,8 @@
 	    border-bottom: 2px solid #aaa;
 	}
 	
-	.member_update_form table tr:nth-child(1) input,
-	.member_update_form table tr:nth-child(2) input {
+	.member_update_form table tr:nth-child(2) input,
+	.member_update_form table tr:nth-child(3) input {
 	    font-weight: 600;
 	}
 	
@@ -2648,8 +2731,9 @@
 	
 	.withdrawalError{
 	    padding-top: 10px;
-	    padding-left: 5px;
-	    color: red;
+	    padding-left: 15%;
+	    color: #f66;
+	    font-size: 0.8rem;
 	}
 	
 	
@@ -3151,6 +3235,91 @@
 	.joinform1 #checkBtn:hover {
 	    background-color: #e0e0e0;
 	}
+		
+	
+	
+	
+	
+	
+	/* =================================== 아이디 찾기 =================================== */
+	#find_id {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	
+	.find_id_text {
+		font-size: 0.8rem;
+		color: #6a4;
+		margin-bottom: 75px;
+		text-align: right;
+	}
+	
+	#find_id .login label {
+		font-size: 1.2rem;
+		color: #864;
+	}
+	
+	.email_input_box {
+		text-align: center;
+	}
+	
+	.find_id_email {
+		border-top: none;
+		border-right: none;
+		border-bottom: 1px solid #ccc;
+		border-left: none;
+		width: 80%;
+		padding: 5px 10px;
+	}
+	
+	.find_id_btn_box {
+		display:flex;
+		justify-content: center;
+		margin-top: 50px;
+	}
+	
+	.find_id_btn {
+		display:flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.5rem;
+		font-weight: 300;
+		padding-top: 40px;
+		padding-right: 60px;
+		padding-bottom: 40px;
+		padding-left: 60px;
+		border-radius: 25px;
+		border-top: none;
+		border-right: 3px solid #9d9;
+		border-bottom: 3px solid #9d9;
+		border-left: none;
+		background-color: #cfc;
+		margin-bottom: 30px;
+		box-shadow: 3px 3px 5px #ccc;
+	}
+	
+	.find_id_btn_box img {
+		margin-right: 20px;
+	}
+		
+	.find_id_result_text h2 {
+		color: #753;
+		margin-bottom: 50px;
+		font-size: 1rem;
+	}
+	
+	.find_id_result_text p {
+		color: #999;
+		font-size: 0.9rem;
+	}
+	
+	.find_id_result_text p span {
+		color: #294;
+		font-size: 1.7rem;
+		font-weight: 500;
+	}
+	
 	
 	
 	
@@ -4356,7 +4525,7 @@
 	/* page_top */
 	.page_top {
 	    width: 88.5%;
-	    height: 300px;
+	    height: 280px;
 	    background-color: #000;
 	    margin: 0 auto;
 	    border-radius: 50px;
@@ -4368,7 +4537,7 @@
 	
 	.page_img img {
 	    width: 100%;
-	    height: 300px;
+	    height: 280px;
 	    border-radius: 50px;
 	    object-fit:cover;
 	}
@@ -4401,15 +4570,15 @@
 	/* page_side_nav */
 	.page_side_nav {
 	    padding-top: 50px;
-	    width: 15%;
+	    width: 20%;
 	}
 	
 	.nav_content {
+		width: 100%;
 	    margin: 0 auto;
-	    
 	    border-radius: 25px;
 	    background-color: #fff;
-	    padding: 10px;
+	    padding: 5px;
 	    text-align: center;
 	}
 	
@@ -4450,7 +4619,7 @@
 	.page_content {
 	    border-radius: 25px;
 	    background-color: #fff;
-	    padding: 50px 6%;
+	    padding: 50px 2%;
 	}
 	
 	.page_content_top {
@@ -4494,13 +4663,13 @@
 	/* page_table */
 	.page_table {
 	    width: 100%;
-	    border-top: 2px solid #999;
-	    border-bottom: 2px solid #999;
+	    border-top: 1px solid #999;
+	    border-bottom: 1px solid #999;
 	    border-collapse: collapse;
 	}
 	
 	.page_table_head{
-	    border-bottom: 2px solid #999;
+	    border-bottom: 1px solid #eee;
 	}
 	
 	.page_table_head tr th {
@@ -5134,8 +5303,8 @@
 	    border-bottom: 2px solid #aaa;
 	}
 	
-	.member_update_form table tr:nth-child(1) input,
-	.member_update_form table tr:nth-child(2) input {
+	.member_update_form table tr:nth-child(2) input,
+	.member_update_form table tr:nth-child(3) input {
 	    font-weight: 600;
 	}
 	
@@ -5246,6 +5415,13 @@
 	    line-height: 32px;
 	}
 	
+	.user_rental_state_title {
+		width: 15%;
+	}
+	
+	.user_rental_past_title{
+		width: 20%;
+	}
 	.user_rental_state_box,
 	.user_rental_past_list_box {
 	    border: 1px solid #fafafa;
@@ -5534,8 +5710,9 @@
 	
 	.withdrawalError{
 	    padding-top: 10px;
-	    padding-left: 5px;
-	    color: red;
+	    padding-left: 15%;
+	    color: #f66;
+	    font-size: 0.8rem;
 	}
 	
 	
@@ -5608,7 +5785,7 @@
 	}
 	
 	.seats_info_board {
-	    width: 80%;
+	    width: 90%;
 	    height: 150px;
 	    background-color: #efefef;
 	    border-radius: 15px;
@@ -5641,7 +5818,7 @@
 	}
 	
 	.seats_using_board {
-	    width: 80%;
+	    width: 90%;
 	    height: 380px;
 	    background-color: #efefef;
 	    border-radius: 15px;
@@ -6036,6 +6213,91 @@
 	
 	.joinform1 #checkBtn:hover {
 	    background-color: #e0e0e0;
+	}
+	
+		
+	
+	
+	
+	
+	
+	/* =================================== 아이디 찾기 =================================== */
+	#find_id {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	
+	.find_id_text {
+		font-size: 0.8rem;
+		color: #6a4;
+		margin-bottom: 75px;
+		text-align: right;
+	}
+	
+	#find_id .login label {
+		font-size: 1.2rem;
+		color: #864;
+	}
+	
+	.email_input_box {
+		text-align: center;
+	}
+	
+	.find_id_email {
+		border-top: none;
+		border-right: none;
+		border-bottom: 1px solid #ccc;
+		border-left: none;
+		width: 80%;
+		padding: 5px 10px;
+	}
+	
+	.find_id_btn_box {
+		display:flex;
+		justify-content: center;
+		margin-top: 50px;
+	}
+	
+	.find_id_btn {
+		display:flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.5rem;
+		font-weight: 300;
+		padding-top: 40px;
+		padding-right: 60px;
+		padding-bottom: 40px;
+		padding-left: 60px;
+		border-radius: 25px;
+		border-top: none;
+		border-right: 3px solid #9d9;
+		border-bottom: 3px solid #9d9;
+		border-left: none;
+		background-color: #cfc;
+		margin-bottom: 30px;
+		box-shadow: 3px 3px 5px #ccc;
+	}
+	
+	.find_id_btn_box img {
+		margin-right: 20px;
+	}
+		
+	.find_id_result_text h2 {
+		color: #753;
+		margin-bottom: 50px;
+		font-size: 1rem;
+	}
+	
+	.find_id_result_text p {
+		color: #999;
+		font-size: 0.9rem;
+	}
+	
+	.find_id_result_text p span {
+		color: #294;
+		font-size: 1.7rem;
+		font-weight: 500;
 	}
 	
 	
@@ -7243,7 +7505,7 @@
 	/* page_top */
 	.page_top {
 	    width: 88.5%;
-	    height: 300px;
+	    height: 250px;
 	    background-color: #000;
 	    margin: 0 auto;
 	    border-radius: 50px;
@@ -7255,19 +7517,19 @@
 	
 	.page_img img {
 	    width: 100%;
-	    height: 300px;
+	    height: 250px;
 	    border-radius: 50px;
 	    object-fit:cover;
 	}
 	
 	.page_title {
 	    position: absolute;
-	    top: 100px;
-	    left: 150px;
+	    top: 75px;
+	    left: 120px;
 	}
 	
 	.page_title p {
-	    font-size: 2.5rem;
+	    font-size: 2.2rem;
 	    color: #fff;
 	    text-shadow: 3px 3px 5px #555;
 	}
@@ -7280,20 +7542,19 @@
 	    margin-right: auto;
 	    margin-left: auto;
 	    margin-bottom: 0;
-	
 	    display: flex;
+		flex-direction: column;
 	    justify-content: space-evenly;
 	}
 	
 	/* page_side_nav */
 	.page_side_nav {
-	    padding-top: 50px;
-	    width: 15%;
+	    width: 100%;
 	}
 	
 	.nav_content {
-	    margin: 0 auto;
-	    
+		width: 100%;
+		margin-bottom: 50px;  
 	    border-radius: 25px;
 	    background-color: #fff;
 	    padding: 10px;
@@ -7335,9 +7596,10 @@
 	
 	/* page_content */
 	.page_content {
+		width: 100%;
 	    border-radius: 25px;
 	    background-color: #fff;
-	    padding: 50px 6%;
+	    padding: 50px 6% 75px;
 	}
 	
 	.page_content_top {
@@ -7381,13 +7643,13 @@
 	/* page_table */
 	.page_table {
 	    width: 100%;
-	    border-top: 2px solid #999;
-	    border-bottom: 2px solid #999;
+	    border-top: 1px solid #999;
+	    border-bottom: 1px solid #999;
 	    border-collapse: collapse;
 	}
 	
 	.page_table_head{
-	    border-bottom: 2px solid #999;
+	    border-bottom: 1px solid #eee;
 	}
 	
 	.page_table_head tr th {
@@ -7907,7 +8169,8 @@
 	.use_time_info table tr th
 	 {
 	    border-bottom: 1px solid #efefef;
-	    padding: 10px;
+	    padding: 5px;
+	    font-size: 0.7rem;
 	}
 	
 	.holiday_date_info {
@@ -7996,6 +8259,10 @@
 	    padding: 10px;
 	}
 	
+	.member_update_form table tr td label {
+		font-size: 0.9rem;
+	}
+	
 	.member_update_form table tr td:nth-child(1) {
 	    width: 20%;
 	    background-color: #efefef;
@@ -8021,8 +8288,8 @@
 	    border-bottom: 2px solid #aaa;
 	}
 	
-	.member_update_form table tr:nth-child(1) input,
-	.member_update_form table tr:nth-child(2) input {
+	.member_update_form table tr:nth-child(2) input,
+	.member_update_form table tr:nth-child(3) input {
 	    font-weight: 600;
 	}
 	
@@ -8121,7 +8388,6 @@
 	
 	.user_rental_state_title,
 	.user_rental_past_title {
-	    width: 15%;
 	    text-align: center;
 	    padding-top: 3px;
 	    padding-right: 10px;
@@ -8133,6 +8399,12 @@
 	    line-height: 32px;
 	}
 	
+	.user_rental_state_title {
+		width: 15%;
+	}
+	.user_rental_past_title {
+		width: 20%;
+	}
 	.user_rental_state_box,
 	.user_rental_past_list_box {
 	    border: 1px solid #fafafa;
@@ -8160,6 +8432,7 @@
 	.user_rental_state_tbl table thead,
 	.user_rental_past_list_tbl table thead {
 	    background-color: #efffef;
+	    font-size: 0.9rem;
 	}
 	
 	.user_rental_state_tbl table thead tr th,
@@ -8181,7 +8454,7 @@
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    border-bottom: 1px dotted #ccc;
-	
+		font-size: 0.9rem;
 	}
 	
 	.user_rental_state_tbl table tbody tr td input {
@@ -8421,8 +8694,9 @@
 	
 	.withdrawalError{
 	    padding-top: 10px;
-	    padding-left: 5px;
-	    color: red;
+	    padding-left: 15%;
+	    color: #f66;
+	    font-size: 0.8rem;
 	}
 	
 	
@@ -8448,13 +8722,13 @@
 	    border: 5px solid #a07a48;
 	    border-radius: 20px;
 	    padding: 15px;
-	    height: 500px;
+	    height: 400px;
 	    background-color: #fff;
 	}
 	
 	.big_seats {
 	    width: 100%;
-	    height: 250px;
+	    height: 200;
 	    margin-bottom: 30px;
 	    display: flex;
 	    flex-wrap: wrap;
@@ -8464,14 +8738,14 @@
 	
 	.small_seats_box {
 	    width: 100%;
-	    height: 185px;
+	    height: 100px;
 	    display: flex;
 	    justify-content: space-between;
 	}
 	
 	.small_seats_1 {
 	    width: 50%;
-	    height: 150px;
+	    height: 120px;
 	    display: flex;
 	    flex-wrap: wrap;
 	    align-items: center;
@@ -8480,7 +8754,7 @@
 	
 	.small_seats_2 {
 	    width: 35%;
-	    height: 150px;
+	    height: 120px;
 	    display: flex;
 	    flex-wrap: wrap;
 	    align-items: center;
@@ -8495,7 +8769,7 @@
 	}
 	
 	.seats_info_board {
-	    width: 80%;
+	    width: 90%;
 	    height: 150px;
 	    background-color: #efefef;
 	    border-radius: 15px;
@@ -8528,8 +8802,8 @@
 	}
 	
 	.seats_using_board {
-	    width: 80%;
-	    height: 380px;
+	    width: 90%;
+	    height: 350px;
 	    background-color: #efefef;
 	    border-radius: 15px;
 	    padding-bottom: 30px;
@@ -8549,17 +8823,17 @@
 	
 	.seats_using_list {
 	    width: 90%;
-	    height: 300px;
+	    height: 270px;
 	    border-radius: 10px;
 	    background-color: #fff;
+	    font-size: 0.85rem;
 	}
 	
 	.seat_form input{
 	    margin: 5px 10px;
-	    width: 6vw;
-	    height: 50px;
-	    padding: 5px 20px;
-	    font-size: 1.5rem;
+	    width: 7vw;
+	    padding: 5px 10px;
+	    font-size: 1.3rem;
 	    background-color: #efe;
 	    color: #754;
 	    border: none;
@@ -8625,7 +8899,7 @@
 	.footer_top_text_box p {
 	    display: flex;
 	    justify-content: space-around;
-	    font-size: 0.8rem;
+	    font-size: 0.7rem;
 	    color: #fff;
 	}
 	
@@ -8653,11 +8927,11 @@
 	}
 	
 	.team_basic_info {
-	    font-size: 0.7rem;
+	    font-size: 0.6rem;
 	}
 	
 	.team_copyright {
-	    font-size: 0.6rem;
+	    font-size: 0.5rem;
 	}
 }
 
@@ -8923,6 +9197,92 @@
 	.joinform1 #checkBtn:hover {
 	    background-color: #e0e0e0;
 	}
+	
+		
+	
+	
+	
+	
+	
+	/* =================================== 아이디 찾기 =================================== */
+	#find_id {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	
+	.find_id_text {
+		font-size: 0.8rem;
+		color: #6a4;
+		margin-bottom: 75px;
+		text-align: right;
+	}
+	
+	#find_id .login label {
+		font-size: 1.2rem;
+		color: #864;
+	}
+	
+	.email_input_box {
+		text-align: center;
+	}
+	
+	.find_id_email {
+		border-top: none;
+		border-right: none;
+		border-bottom: 1px solid #ccc;
+		border-left: none;
+		width: 80%;
+		padding: 5px 10px;
+	}
+	
+	.find_id_btn_box {
+		display:flex;
+		justify-content: center;
+		margin-top: 50px;
+	}
+	
+	.find_id_btn {
+		display:flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.5rem;
+		font-weight: 300;
+		padding-top: 40px;
+		padding-right: 60px;
+		padding-bottom: 40px;
+		padding-left: 60px;
+		border-radius: 25px;
+		border-top: none;
+		border-right: 3px solid #9d9;
+		border-bottom: 3px solid #9d9;
+		border-left: none;
+		background-color: #cfc;
+		margin-bottom: 30px;
+		box-shadow: 3px 3px 5px #ccc;
+	}
+	
+	.find_id_btn_box img {
+		margin-right: 20px;
+	}
+		
+	.find_id_result_text h2 {
+		color: #753;
+		margin-bottom: 50px;
+		font-size: 1rem;
+	}
+	
+	.find_id_result_text p {
+		color: #999;
+		font-size: 0.9rem;
+	}
+	
+	.find_id_result_text p span {
+		color: #294;
+		font-size: 1.7rem;
+		font-weight: 500;
+	}
+	
 	
 	
 	
@@ -10137,7 +10497,7 @@
 	/* page_top */
 	.page_top {
 	    width: 88.5%;
-	    height: 300px;
+	    height: 220px;
 	    background-color: #000;
 	    margin: 0 auto;
 	    border-radius: 50px;
@@ -10149,15 +10509,15 @@
 	
 	.page_img img {
 	    width: 100%;
-	    height: 300px;
+	    height: 220px;
 	    border-radius: 50px;
 	    object-fit:cover;
 	}
 	
 	.page_title {
 	    position: absolute;
-	    top: 100px;
-	    left: 150px;
+	    top: 75px;
+	    left: 100px;
 	}
 	
 	.page_title p {
@@ -10169,34 +10529,33 @@
 	
 	/* page_content_box */
 	.page_content_box {
-	    width: 88.5%;
+	    width: 100%;
 	    margin-top: 50px;
 	    margin-right: auto;
 	    margin-left: auto;
 	    margin-bottom: 0;
-	
 	    display: flex;
-	    justify-content: space-evenly;
+	    flex-direction: column;
 	}
 	
 	/* page_side_nav */
 	.page_side_nav {
-	    padding-top: 50px;
-	    width: 15%;
+	    width: 100%;
+	    margin-bottom: 50px;
 	}
 	
 	.nav_content {
 	    margin: 0 auto;
-	    
+	    width: 100%;
 	    border-radius: 25px;
 	    background-color: #fff;
-	    padding: 10px;
+	    padding: 5px;
 	    text-align: center;
 	}
 	
 	.nav_top_title {
 	    margin: 10px 15px 0 15px;
-	    padding: 15px;
+	    padding: 10px;
 	    border-bottom: 2px dotted #c6c6c6;
 	}
 	
@@ -10207,7 +10566,7 @@
 	}
 	
 	.nav_content_mid {
-	    margin: 25px 10px;
+	    margin: 15px 10px;
 	    font-size: 0.95rem;
 	}
 	
@@ -10229,9 +10588,10 @@
 	
 	/* page_content */
 	.page_content {
+		width: 100%;
 	    border-radius: 25px;
 	    background-color: #fff;
-	    padding: 50px 6%;
+	    padding: 50px 3% 75px;
 	}
 	
 	.page_content_top {
@@ -10275,13 +10635,13 @@
 	/* page_table */
 	.page_table {
 	    width: 100%;
-	    border-top: 2px solid #999;
-	    border-bottom: 2px solid #999;
+	    border-top: 1px solid #999;
+	    border-bottom: 1px solid #999;
 	    border-collapse: collapse;
 	}
 	
 	.page_table_head{
-	    border-bottom: 2px solid #999;
+	    border-bottom: 1px solid #eee;
 	}
 	
 	.page_table_head tr th {
@@ -10758,6 +11118,7 @@
 	}
 	
 	.first_ul {
+		margin-left: 50px;
 	    font-size: 1.2rem;
 	    line-height: 2.5;
 	}
@@ -10802,6 +11163,7 @@
 	 {
 	    border-bottom: 1px solid #efefef;
 	    padding: 10px;
+	    font-size: 0.7rem;
 	}
 	
 	.holiday_date_info {
@@ -10887,6 +11249,7 @@
 	
 	.member_update_form table tr td {
 	    border-bottom: 2px solid #ddd;
+	    font-size: 0.8rem;
 	    padding: 10px;
 	}
 	
@@ -10913,10 +11276,11 @@
 		color: #753;
 		font-weight: 600;
 	    border-bottom: 2px solid #aaa;
+	    font-size: 0.9rem;
 	}
 	
-	.member_update_form table tr:nth-child(1) input,
-	.member_update_form table tr:nth-child(2) input {
+	.member_update_form table tr:nth-child(2) input,
+	.member_update_form table tr:nth-child(3) input {
 	    font-weight: 600;
 	}
 	
@@ -11012,10 +11376,14 @@
 	    margin-right: 10px;
 	}
 	
+	.rental_state_page_title h2 {
+		font-size: 1.3rem;
+	}
+	
 	
 	.user_rental_state_title,
 	.user_rental_past_title {
-	    width: 15%;
+	    font-size: 0.9rem;
 	    text-align: center;
 	    padding-top: 3px;
 	    padding-right: 10px;
@@ -11025,6 +11393,14 @@
 	    color: #eee;
 	    border-radius: 10px;
 	    line-height: 32px;
+	}
+	
+	.user_rental_state_title {
+		width: 15%;
+	}
+
+	.user_rental_past_title {
+		width: 20%;
 	}
 	
 	.user_rental_state_box,
@@ -11059,6 +11435,7 @@
 	.user_rental_state_tbl table thead tr th,
 	.user_rental_past_list_tbl table thead tr th {
 	    padding: 5px;
+	    font-size: 0.8rem;
 	}
 	
 	.user_rental_state_tbl table thead tr th:nth-child(1),
@@ -11075,6 +11452,7 @@
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    border-bottom: 1px dotted #ccc;
+	    font-size: 0.8rem;
 	
 	}
 	
@@ -11082,7 +11460,7 @@
 	    padding: 3px;
 	    border: 1px solid #eda;
 	    border-radius: 5px;
-	    font-size: 0.8rem;
+	    font-size: 0.7rem;
 	    background-color: #fff;
 	    color: #753;
 	    cursor: pointer;
@@ -11315,12 +11693,13 @@
 	
 	.withdrawalError{
 	    padding-top: 10px;
-	    padding-left: 5px;
-	    color: red;
+	    padding-left: 15%;
+	    color: #f66;
+	    font-size: 0.8rem;
 	}
 	
 	
-	
+
 	
 	/* =================================== 열람실 =================================== */
 	.study_room_page {
@@ -11348,8 +11727,8 @@
 	
 	.big_seats {
 	    width: 100%;
-	    height: 250px;
-	    margin-bottom: 30px;
+	    height: 200px;
+	    margin-bottom: 50px;
 	    display: flex;
 	    flex-wrap: wrap;
 	    align-items: center;
@@ -11358,14 +11737,14 @@
 	
 	.small_seats_box {
 	    width: 100%;
-	    height: 185px;
+	    height: 100px;
 	    display: flex;
 	    justify-content: space-between;
 	}
 	
 	.small_seats_1 {
 	    width: 50%;
-	    height: 150px;
+	    height: 100px;
 	    display: flex;
 	    flex-wrap: wrap;
 	    align-items: center;
@@ -11374,7 +11753,7 @@
 	
 	.small_seats_2 {
 	    width: 35%;
-	    height: 150px;
+	    height: 100px;
 	    display: flex;
 	    flex-wrap: wrap;
 	    align-items: center;
@@ -11423,7 +11802,7 @@
 	
 	.seats_using_board {
 	    width: 80%;
-	    height: 380px;
+	    height: 330px;
 	    background-color: #efefef;
 	    border-radius: 15px;
 	    padding-bottom: 30px;
@@ -11443,17 +11822,16 @@
 	
 	.seats_using_list {
 	    width: 90%;
-	    height: 300px;
+	    height: 250px;
 	    border-radius: 10px;
 	    background-color: #fff;
 	}
 	
 	.seat_form input{
 	    margin: 5px 10px;
-	    width: 6vw;
-	    height: 50px;
-	    padding: 5px 20px;
-	    font-size: 1.5rem;
+	    width: 9.3vw;
+	    height: 40px;
+	    font-size: 1rem;
 	    background-color: #efe;
 	    color: #754;
 	    border: none;
@@ -11479,10 +11857,12 @@
 	.seats_using_list table thead th {
 	    padding: 10px;
 	    border-bottom: 1px solid #efefef;
+	    font-size: 0.9rem;
 	}
 	.seats_using_list table tbody td {
 	    padding: 5px;
 	    border-bottom: 1px dotted #efefef;
+	    font-size: 0.85rem;
 	}
 	
 	

@@ -2,14 +2,18 @@ package com.khit.library.dto;
 
 import com.khit.library.entity.Book;
 import com.khit.library.entity.RentalReturn;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookDTO {
     private Long bookId; // 도서번호
     private String bname; //도서이름

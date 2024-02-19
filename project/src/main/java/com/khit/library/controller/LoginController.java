@@ -1,3 +1,4 @@
+
 package com.khit.library.controller;
 
 import com.khit.library.service.NaverService;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 
-    //    private final AppleService appleService;
+//    private final AppleService appleService;
 //    private final KakaoService kakaoService;
     private final NaverService naverService;
 
@@ -25,3 +26,4 @@ public class LoginController {
     }
 
 }
+
