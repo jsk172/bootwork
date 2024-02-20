@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .formLogin(form ->
                         form.loginPage("/login")
+                                .usernameParameter("mid")
                                 .defaultSuccessUrl("/")
                                 .permitAll()
                 );

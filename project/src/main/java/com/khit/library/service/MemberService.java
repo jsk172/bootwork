@@ -10,6 +10,10 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +24,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class MemberService {
+public class MemberService implements UserDetailsService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder pwEncoder;
     private final EmailService emailService;
@@ -163,4 +167,17 @@ public class MemberService {
 		Page<Member> memberPage = memberRepository.findAll(pageable);
 		return memberPage.map(member -> MemberDTO.toSaveDTO(member));
 	}
+
+    @Override
+    public UserDetails loadUserByUsername(String mid) throws UsernameNotFoundException {
+        Optional<Member> member = memberRepository.findByMid(mid);
+        if(member.isEmpty()){
+            throw new UsernameNotFoundException(mid);
+        }
+        return User.builder()
+                .username(member.get().getMid())
+                .password(member.get().getPassword())
+                .roles(member.get().getRole().toString())
+                .build();
+    }
 }
