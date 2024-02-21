@@ -70,7 +70,7 @@
 								</thead>
 								<tbody class="page_table_body">
 									<!-- <tr th:each="noticeBoard : ${noticeBoardPage.content}"> -->
-									<tr th:each="noticeBoard : ${noticeBoardList}">
+									<tr th:each="noticeBoard : ${noticeBoardPage.content}">
 										<td th:text="${noticeBoard.nbid}"></td>
 										<!-- th:href="@{/notice/{nbid}(nbid=${noticeBoard.nbid})}" -->
 										<td><a

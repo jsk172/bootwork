@@ -48,21 +48,45 @@ document.addEventListener('DOMContentLoaded', function() {
 	    },
 	    editable: true,
 	    dayMaxEvents: true, // allow "more" link when too many events
-	    
-	    
-	 //Google Calendar 이벤트 소스
-	    eventSources: [
+	    events: [
+	        
 	        {
-	            googleCalendarApiKey: '',
-	            googleCalendarId: '',
-	            className: '',
-	            color: '#4885ed', // 이벤트 색상 (옵션)
-	            textColor: '#ffffff' // 텍스트 색상 (옵션)
+	          title: '휴관',
+	          start: '2024-02-01',
+	          
+	        },
+	        {
+	          title: '휴관',
+	          start: '2024-02-09',
+	          end: '2024-02-13'
+	        },
+	        {
+	          title: '휴관',
+	          start: '2024-02-15',
+	         
+	        },
+	        {
+	          title: '종강',
+	          start: '2024-02-20T18:30:00',
+	          end: '2024-02-20T18:30:00'
 	        }
-	    ]
+	        
+	        
+	      ],
+	   //Google Calendar 이벤트 소스
+	      eventSources: [
+	          {
+	              googleCalendarApiKey: '',
+	              googleCalendarId: '',
+	              className: '',
+	              color: '#4885ed', // 이벤트 색상 (옵션)
+	              textColor: '#ffffff' // 텍스트 색상 (옵션)
+	          }
+	      ]
+	    });
+	    calendar.render();
 	  });
-	  calendar.render();
-	});
+
 </script>
 
 </head>

@@ -18,15 +18,9 @@
 	   @media (max-width: 767px) {}
  */
 
-
-
-
-
-
-
-
-
-
+.main_input_btn {
+	border:none;
+}
 
 /* =================================== pc버전(큰화면) =================================== */
 @media (min-width: 1440px){
@@ -78,7 +72,7 @@
 	.join_logo{
 	    width: 160px;
 	    position: absolute;
-	    left: 0;
+	    left: 40%;
 	    top: 0;
 	}
 	
@@ -97,10 +91,11 @@
 	    line-height: 60px;
 	    text-align: center;
 	    width: 100%;
+	    padding-right: 50px;
 	    position: relative;
 	    display: flex;
 	    align-items: center;
-	    justify-content: center;
+	    justify-content: flex-end;
 	}
 	
 	#top {
@@ -610,7 +605,8 @@
 		display: flex;
 		justify-content: space-around;
 		position: fixed;
-		z-index: 1;
+		z-index: 2;
+
 	}
 	
 	.header {
@@ -839,17 +835,15 @@
 	}
 	
 	.main_big_welcome {
-	    color: #fff;
-	    font-size: 3.5rem;
-	    line-height: 64px;
-	    text-shadow: 2px 2px 5px #aaa;
+		color: #fff;
+		font-size: 3.5rem;
+		line-height: 64px;
 	}
 	
 	.main_small_welcom {
-	    color: #fff;
-	    font-size: 1.2rem;
-	    line-height: 48px;
-	    text-shadow: 2px 2px 5px #aaa;
+		color: #fff;
+		font-size: 1.2rem;
+		line-height: 48px;
 	}
 	
 	/* main_timer */
@@ -1000,13 +994,15 @@
 	
 	
 	.main_mid_small_text {
-	    font-size: 0.9rem;
+	    font-size: 1rem;
 	    color: #7C9877;
+	   	font-weight: 500;
 	}
 	
 	.main_mid_big_text {
-	    font-size: 3rem;
+	    font-size: 2.9rem;
 	    position: relative;
+	    font-weight: 500;
 	}
 	
 	.main_mid_text_img {
@@ -1053,12 +1049,11 @@
 	
 	.main_mid_schedule:hover {
 	    width:37%;
-	    border: 5px solid #745b3d;
 	    transition: width 0.5s ease-in-out, border 0.5s ease-in-out;
 	}
 	
 	.main_mid_schedule:hover .main_usable_time_table tbody tr td {
-	    font-size: 1.1rem;
+	    font-size: 13px;
 	    transition: font-size 0.5s ease-in-out;
 	}
 	
@@ -1068,7 +1063,7 @@
 	}
 	
 	.main_schedule_title {
-	    border-bottom: 2px solid #555;
+	    border-bottom: 1px solid #ccc;
 	    padding-bottom: 10px;
 	    padding-left: 20px;
 	    color: #6A5C40;
@@ -1095,32 +1090,37 @@
 	.main_usable_time_table thead tr th{
 	    padding-top: 15px;
 	    padding-bottom: 15px;
-	    font-size: 1rem;
+	    font-size: 13px;
+	    font-weight: 400;
+	    color: #333;
 	}
 	
 	.main_usable_time_table tbody tr td:nth-child(1),
 	.main_usable_time_table tbody tr td:nth-child(2) {
 	    padding-top: 10px;
 	    padding-bottom: 10px;
-	    font-size: 0.8rem;
-	    font-weight: 500;
+	    font-size: 13px;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	.main_usable_time_table tbody tr td:nth-child(3),
 	.main_usable_time_table tbody tr td:nth-child(4){
-	    font-weight: 500;
-	    font-size: 0.9rem;
+	    font-weight: 400;
+	    font-size: 13px;
 	    text-align: center;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	
 	.holiday_date {
-	    color: #f99;
+	    color: #d94646;
 	    text-align: center;
-	    padding-top: 20px;
-	    font-size: 0.9rem;
+	    padding-top: 30px;
+	    font-size: 14px;
+	    font-weight: 400;
 	}
 	
 	
@@ -1142,12 +1142,11 @@
 	
 	.main_mid_openspace:hover {
 	    width:37%;
-	    border: 5px solid #745b3d;
 	    transition: width 0.5s ease-in-out, border 0.5s ease-in-out;
 	}
 	
 	.main_mid_openspace:hover .main_openspace_board_table tbody tr td {
-	    font-size: 1.1rem;
+	    font-size: 13px;
 	    transition: font-size 0.5s ease-in-out;
 	}
 	
@@ -1157,7 +1156,7 @@
 	}
 	
 	.main_openspace_title {
-	    border-bottom: 2px solid #555;
+	    border-bottom: 1px solid #ccc;
 	    padding-bottom: 10px;
 	    padding-left: 20px;
 	    color: #6A5C40;
@@ -1185,22 +1184,28 @@
 	.main_openspace_board_table thead tr th{
 	    padding-top: 15px;
 	    padding-bottom: 15px;
+	    font-size: 13px;
+	    font-weight: 400;
+	    color: #333;
 	}
 	
 	.main_openspace_board_table tbody tr td:nth-child(1),
 	.main_openspace_board_table tbody tr td:nth-child(3) {
 	    padding-top: 10px;
 	    padding-bottom: 10px;
-	    font-size: 0.8rem;
-	    font-weight: 500;
+	    font-size: 13px;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	.main_openspace_board_table tbody tr td:nth-child(2) {
-	    font-weight: 500;
-	    font-size: 0.9rem;
-	    text-align: center;
+	    padding-top: 10px;
+	    padding-bottom: 10px;
+	    font-size: 13px;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	/* main_mid_free */
@@ -1219,7 +1224,7 @@
 	}
 	
 	.main_free_title {
-	    border-bottom: 2px solid #555;
+	    border-bottom: 1px solid #ccc;
 	    padding-bottom: 10px;
 	    padding-left: 20px;
 	    color: #6A5C40;
@@ -1230,12 +1235,11 @@
 	
 	.main_mid_free:hover {
 	    width:37%;
-	    border: 5px solid #745b3d;
 	    transition: width 0.5s ease-in-out, border 0.5s ease-in-out;
 	}
 	
 	.main_mid_free:hover .main_free_board_table tbody tr td {
-	    font-size: 1.1rem;
+	    font-size: 13px;
 	    transition: font-size 0.5s ease-in-out;
 	}
 	
@@ -1259,8 +1263,12 @@
 	}
 	
 	.main_free_board_table thead tr th{
-	    padding-top: 15px;
-	    padding-bottom: 15px;
+	    padding-top: 10px;
+	    padding-bottom: 10px;
+	    font-size: 13px;
+	    font-weight: 400;
+	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	
 	}
 	
@@ -1268,16 +1276,19 @@
 	.main_free_board_table tbody tr td:nth-child(3) {
 	    padding-top: 10px;
 	    padding-bottom: 10px;
-	    font-size: 0.8rem;
+	    font-size: 13px;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
-	    font-weight: 500;
+	    color: #333;
 	}
 	
 	.main_free_board_table tbody tr td:nth-child(2) {
-	    font-weight: 500;
-	    font-size: 0.9rem;
+	    padding-top: 10px;
+	    padding-bottom: 10px;
+	    font-size: 13px;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
-	    text-align: center;
+	    color: #333;
 	}
 	
 	/* main_icons */
@@ -1604,7 +1615,6 @@
 	.page_title p {
 	    font-size: 2.5rem;
 	    color: #fff;
-	    text-shadow: 3px 3px 5px #555;
 	}
 	
 	
@@ -1828,14 +1838,21 @@
 	}
 	
 	.page_write_btn {
-	    border: 1px solid #cfc;
-	    border-radius: 15px 5px 15px 10px;
-	    padding: 5px;
-	    background-color: #fff;
-	    color: #543;
-	    font-size: 0.8rem;
-	    font-weight: 500;
-	    box-shadow: 1px 1px 3px #543;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		padding: 6px;
+		background-color: #fff;
+		color: #777;
+		font-size: 0.8rem;
+		box-shadow: 3px 3px 3px #eee;
+		cursor: pointer;
+	}
+	
+	.page_write_btn:hover {
+		background-color: rgba(200, 206, 122, 0.1);
+		border: 1px solid rgba(200, 206, 122, 0.1);
+		color: #777;
+		box-shadow: 3px 3px 3px #eee;
 	}
 	
 	.page_textarea_img_box {
@@ -2195,7 +2212,7 @@
 	.page_menu_title {
 	    width: 100%;
 	    padding-top: 10px;
-	    border-bottom: 3px solid #efefef;
+	    border-bottom: 1px solid #efefef;
 	}
 	
 	.first_ul {
@@ -2331,6 +2348,11 @@
 	    padding: 10px;
 	}
 	
+	.td_btn {
+	width: 20% !important;
+	background-color: white !important;
+}
+	
 	.member_update_form table tr td:nth-child(1) {
 	    width: 20%;
 	    background-color: #efefef;
@@ -2368,21 +2390,35 @@
 	    justify-content: right;
 	}
 	
-	.member_update_btn_box button {
-	    padding: 5px 15px;
-	    border-radius: 10px;
-	    margin-right: 20px;
-	}
+.member_update_btn_box button {
+	padding: 5px 15px;
+	border-radius: 4px;
+	color: #777;
+	text-decoration: none;
+	box-shadow: 3px 3px 3px #eee;
+	margin-right: 20px;
+}
+
+.member_update_btn_box button:hover {
+	background-color: rgba(200, 206, 122, 0.1);
+	border: 1px solid rgba(200, 206, 122, 0.1);
+	color: #777;
+	box-shadow: 3px 3px 3px #eee;
+}
 	
 	.member_update_confirm {
-	    border: 1px solid #dcffe6;
-	    background-color: #dcffe6;
+	    border: 1px solid #E1E1E1;
+	    background-color: white;
 	}
 	
 	.member_update_cancel {
-	    border: #745b3d;
-	    background-color: #745b3d;
-	    color: #fff;
+	    border: 1px solid #E1E1E1;
+	    background-color: white;
+	}
+	
+	.member_update_leave {
+	    border: 1px solid #E1E1E1;
+	    background-color: white;
 	}
 	
 	.user_update_icon{
@@ -2415,15 +2451,23 @@
 	}
 	
 	.member_list_links button {
-		padding: 10px 20px;
 		margin-right: 15px;
-		border: none;
-		border-radius: 10px;
-		background-color: #fff;
+		width: 58px;
+		padding: 7px;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		box-shadow: 3px 3px 3px #eee;
+		background-color: white;
+		color: #777;
+		text-decoration: none;
 	}
 	
-	
-	
+	.member_list_links button:hover {
+		 background-color : rgba(200, 206, 122, 0.1);
+		 border: 1px solid rgba(200, 206, 122, 0.1);
+		 color: #777;
+		 box-shadow: 3px 3px 3px #eee;
+	}
 	
 	
 	
@@ -2527,6 +2571,30 @@
 	    background-color: #fff;
 	    color: #753;
 	    cursor: pointer;
+	}
+	
+		.home_btn {
+		display: block;
+		width: 8%;
+		padding: 6px;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		box-shadow: 3px 3px 3px #eee;
+		background-color: white;
+		color: #777;
+		text-decoration: none;
+		cursor: pointer;
+		margin: 0 auto;
+		/* margin-top: 10px; 
+	 	margin-left: 50%;
+		margin-top: 0; */
+	}
+
+	.home_btn:hover {
+		background-color: rgba(200, 206, 122, 0.1);
+		border: 1px solid rgba(200, 206, 122, 0.1);
+		color: #777;
+		box-shadow: 3px 3px 3px #eee;
 	}
 	
 	
@@ -2684,10 +2752,20 @@
 	}
 	
 	.member_rental_info_toggle_btn {
-	    padding: 13px 5px;
-	    border-radius: 10px;
-	    border: 1px solid #efefef;
-	    background-color: #efefef;
+		padding: 6px;
+	    border: 1px solid #E1E1E1;
+	    border-radius: 4px;
+	    box-shadow: 3px 3px 3px #eee;
+	    background-color: white;
+	    color: #777;
+		text-decoration: none;
+	}
+	
+	.member_rental_info_toggle_btn:hover {
+		background-color : rgba(200, 206, 122, 0.1);
+		border: 1px solid rgba(200, 206, 122, 0.1);
+		color: #777;
+	 	box-shadow: 3px 3px 3px #eee;
 	}
 	
 	.member_rental_list_box {
@@ -2761,7 +2839,29 @@
 	    font-size: 0.8rem;
 	}
 	
-	
+	.home_btn2 {
+		display: block;
+		width: 58px;
+		padding: 6px;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		box-shadow: 3px 3px 3px #eee;
+		background-color: white;
+		color: #777;
+		text-decoration: none;
+		cursor: pointer;
+		margin-top: 4%; /* 상단 여백을 10px로 설정 */
+		margin-right: auto; /* 우측 여백을 자동으로 설정 */
+		margin-bottom: 0; /* 하단 여백을 0으로 설정 (필요한 경우) */
+		margin-left: auto; /* 좌측 여백을 자동으로 설정 */
+	}
+
+	.home_btn2:hover {
+		background-color: rgba(200, 206, 122, 0.1);
+		border: 1px solid rgba(200, 206, 122, 0.1);
+		color: #777;
+		box-shadow: 3px 3px 3px #eee;
+	}
 	
 	
 	/* =================================== 열람실 =================================== */
@@ -2781,8 +2881,7 @@
 	
 	.seats_box {
 	    width: 100%;
-	    border: 5px solid #a07a48;
-	    border-radius: 20px;
+/* 	    border-radius: 20px; */
 	    padding: 15px;
 	    height: 500px;
 	    background-color: #fff;
@@ -2831,19 +2930,25 @@
 	}
 	
 	.seats_info_board {
-	    width: 80%;
-	    height: 150px;
-	    background-color: #efefef;
-	    border-radius: 15px;
-	    margin-bottom: 30px;
-	    display: flex;
-	    flex-direction: column;
-	    align-items: center;
-	    justify-content: center;
+		width: 80%;
+		height: 150px;
+		border-radius: 15px;
+		margin-bottom: 30px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(200, 206, 122, 0.1);
 	}
 	
 	.seats_info_board h3 {
-	    margin-bottom: 10px;
+		margin-bottom: 10px;
+	}
+	
+	.readingroom_h3 {
+		font-weight: 400;
+		font-size: 16px;
+		color: #333;
 	}
 	
 	.seats_info_board div,
@@ -2854,26 +2959,32 @@
 	    border-collapse: collapse;
 	}
 	
-	.seats_info_board div table thead tr th {
-	    border-bottom: 1px solid #ccc;
-	    padding: 3px;
-	}
-	
-	.seats_info_board div table tbody tr td {
-	    padding-top: 10px;
-	}
-	
-	.seats_using_board {
-	    width: 80%;
-	    height: 380px;
-	    background-color: #efefef;
-	    border-radius: 15px;
-	    padding-bottom: 30px;
-	    display: flex;
-	    flex-direction: column;
-	    align-items: center;
-	    margin-bottom: 75px;
-	}
+.seats_info_board div table thead tr th {
+	border-bottom: 1px solid #ccc;
+	padding: 3px;
+	font-weight: 400;
+	font-size: 15px;
+	color: #333;
+}
+
+.seats_info_board div table tbody tr td {
+	padding-top: 10px;
+	font-weight: 200;
+	font-size: 15px;
+	color: #333;
+}
+
+.seats_using_board {
+	width: 80%;
+	height: 380px;
+	background-color: rgba(244, 244, 244, 0.4);
+	border-radius: 15px;
+	padding: 0 5px 30px 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 75px;
+}
 	
 	.seats_using_info {
 	    width: 100%;
@@ -2884,28 +2995,32 @@
 	}
 	
 	.seats_using_list {
-	    width: 90%;
-	    height: 300px;
-	    border-radius: 10px;
-	    background-color: #fff;
+		width: 90%;
+		padding: 5px;
+		height: 300px;
+		border-radius: 10px;
+		background-color: rgba(244, 244, 244, 0.2);
+		/* 스크롤 */
+		overflow-y: auto;
+		max-height: 280px;
 	}
 	
-	.seat_form input{
-	    margin: 5px 10px;
-	    width: 6vw;
-	    height: 50px;
-	    padding: 5px 20px;
-	    font-size: 1.5rem;
-	    background-color: #efe;
-	    color: #754;
-	    border: none;
-	    cursor: pointer;
+	.seat_form input {
+		margin: 5px 10px;
+		width: 6vw;
+		height: 50px;
+		padding: 5px 20px;
+		font-size: 14px;
+		background-color: rgba(200, 206, 122, 0.1);
+		color: #754;
+		border: none;
+		cursor: pointer;
 	}
 	
 	.seat_form input:hover {
-	    border: 3px solid #754;
-	    box-sizing: border-box;
-	    cursor: pointer;
+		border: 1px solid #754;
+		box-sizing: border-box;
+		cursor: pointer;
 	}
 	
 	form[action="/readingRoom/checkout"] input {
@@ -2914,17 +3029,24 @@
 	}
 	
 	.seats_using_list table {
-	    width: 100%;
-	    text-align: center;
+		width: 100%;
+		text-align: center;
 	}
 	
 	.seats_using_list table thead th {
-	    padding: 10px;
-	    border-bottom: 1px solid #efefef;
+		padding: 10px;
+		border-bottom: 1px solid #efefef;
+		font-weight: 400;
+		font-size: 15px;
+		color: #333;
 	}
+	
 	.seats_using_list table tbody td {
-	    padding: 5px;
-	    border-bottom: 1px dotted #efefef;
+		padding: 5px;
+		border-bottom: 1px dotted #efefef;
+		font-weight: 200;
+		font-size: 15px;
+		color: #333;
 	}
 	
 	
@@ -3007,6 +3129,7 @@
 
 
 
+
 /* =================================== pc버전 (보통) =================================== */
 @media (min-width: 1025px) and (max-width: 1439px) {
 /* =================================== 공통 =================================== */
@@ -3057,7 +3180,7 @@
 	.join_logo{
 	    width: 160px;
 	    position: absolute;
-	    left: 0;
+	    left: 40%;
 	    top: 0;
 	}
 	
@@ -3076,10 +3199,11 @@
 	    line-height: 60px;
 	    text-align: center;
 	    width: 100%;
+	    padding-right: 50px;
 	    position: relative;
 	    display: flex;
 	    align-items: center;
-	    justify-content: center;
+	    justify-content: flex-end;
 	}
 	
 	#top {
@@ -3591,7 +3715,9 @@
 		display: flex;
 		justify-content: space-around;
 		position: fixed;
-		z-index: 1;
+
+		z-index: 2;
+
 	}
 	
 	.header {
@@ -3819,16 +3945,15 @@
 	}
 	
 	.main_big_welcome {
-	    color: #fff;
-	    font-size: 3.5rem;
-	    line-height: 64px;
+		color: #fff;
+		font-size: 3.5rem;
+		line-height: 64px;
 	}
 	
 	.main_small_welcom {
-	    color: #fff;
-	    font-size: 1.2rem;
-	    line-height: 48px;
-	    text-shadow: 2px 2px 5px #aaa;
+		color: #fff;
+		font-size: 1.2rem;
+		line-height: 48px;
 	}
 	
 	/* main_timer */
@@ -3979,13 +4104,15 @@
 	
 	
 	.main_mid_small_text {
-	    font-size: 0.9rem;
+	    font-size: 1rem;
 	    color: #7C9877;
+	   	font-weight: 500;
 	}
 	
 	.main_mid_big_text {
-	    font-size: 3rem;
+	    font-size: 2.9rem;
 	    position: relative;
+	    font-weight: 500;
 	}
 	
 	.main_mid_text_img {
@@ -4014,7 +4141,7 @@
 	    transition: opacity 0.5s ease, transform 0.5s ease;
 	}
 	
-	/* main_mid_schedule */
+		/* main_mid_schedule */
 	.main_mid_schedule {
 	    width: 20%;
 	    height: 350px;
@@ -4032,7 +4159,6 @@
 	
 	.main_mid_schedule:hover {
 	    width:50%;
-	    border: 5px solid #745b3d;
 	    transition: width 0.5s ease-in-out, border 0.5s ease-in-out;
 	}
 	
@@ -4043,7 +4169,7 @@
 	}
 	
 	.main_mid_schedule:hover .main_usable_time_table tbody tr td {
-	    font-size: 0.9rem;
+	    font-size: 13px;
 	    transition: font-size 0.5s ease-in-out;
 	}
 	
@@ -4053,7 +4179,7 @@
 	}
 	
 	.main_schedule_title {
-	    border-bottom: 2px solid #555;
+	    border-bottom: 1px solid #ccc;
 	    padding-bottom: 10px;
 	    padding-left: 20px;
 	    color: #6A5C40;
@@ -4080,7 +4206,13 @@
 	.main_usable_time_table thead tr th{
 	    padding-top: 15px;
 	    padding-bottom: 15px;
-	    font-size: 0.5rem;
+	    font-size: 13px;
+	    font-weight: 400;
+	    color: #333;
+	}
+	
+	.main_usable_time_table thead tr th:nth-child(2) {
+		font-size: 0.2rem;
 	}
 	
 	.main_usable_time_table tbody tr td:nth-child(1),
@@ -4088,16 +4220,18 @@
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    font-size: 0.2rem;
-	    font-weight: 500;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	.main_usable_time_table tbody tr td:nth-child(3),
 	.main_usable_time_table tbody tr td:nth-child(4){
-	    font-weight: 500;
+	    font-weight: 400;
 	    font-size: 0.2rem;
 	    text-align: center;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	.holiday_date {
@@ -4126,7 +4260,6 @@
 	
 	.main_mid_openspace:hover {
 	    width:50%;
-	    border: 5px solid #745b3d;
 	    transition: width 0.5s ease-in-out, border 0.5s ease-in-out;
 	}
 	
@@ -4136,7 +4269,7 @@
 	}
 	
 	.main_mid_openspace:hover .main_openspace_board_table tbody tr td {
-	    font-size: 0.9rem;
+	    font-size: 13px;
 	    transition: font-size 0.5s ease-in-out;
 	}
 	
@@ -4146,7 +4279,7 @@
 	}
 	
 	.main_openspace_title {
-	    border-bottom: 2px solid #555;
+	    border-bottom: 1px solid #ccc;
 	    padding-bottom: 10px;
 	    padding-left: 20px;
 	    color: #6A5C40;
@@ -4174,7 +4307,9 @@
 	.main_openspace_board_table thead tr th{
 	    padding-top: 15px;
 	    padding-bottom: 15px;
-	    font-size: 0.5rem;
+	    font-size: 13px;
+	    font-weight: 400;
+	    color: #333;
 	}
 	
 	.main_openspace_board_table tbody tr td:nth-child(1),
@@ -4182,15 +4317,18 @@
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    font-size: 0.2rem;
-	    font-weight: 500;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	.main_openspace_board_table tbody tr td:nth-child(2) {
-	    font-weight: 500;
+	    padding-top: 5px;
+	    padding-bottom: 5px;
 	    font-size: 0.2rem;
-	    text-align: center;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	/* main_mid_free */
@@ -4209,7 +4347,7 @@
 	}
 	
 	.main_free_title {
-	    border-bottom: 2px solid #555;
+	    border-bottom: 1px solid #ccc;
 	    padding-bottom: 10px;
 	    padding-left: 20px;
 	    color: #6A5C40;
@@ -4220,7 +4358,6 @@
 	
 	.main_mid_free:hover {
 	    width:50%;
-	    border: 5px solid #745b3d;
 	    transition: width 0.5s ease-in-out, border 0.5s ease-in-out;
 	}
 	
@@ -4256,7 +4393,10 @@
 	.main_free_board_table thead tr th{
 	    padding-top: 15px;
 	    padding-bottom: 15px;
-	    font-size: 0.5rem;
+	    font-size: 13px;
+	    font-weight: 400;
+	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	.main_free_board_table tbody tr td:nth-child(1),
@@ -4264,15 +4404,18 @@
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    font-size: 0.2rem;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
-	    font-weight: 500;
+	    color: #333;
 	}
 	
 	.main_free_board_table tbody tr td:nth-child(2) {
-	    font-weight: 500;
+	    padding-top: 10px;
+	    padding-bottom: 10px;
 	    font-size: 0.2rem;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
-	    text-align: center;
+	    color: #333;
 	}
 	
 	/* main_icons */
@@ -5194,9 +5337,9 @@
 	
 	/* =================================== 이용안내 =================================== */
 	.page_menu_title {
-	    width: 100%;
-	    padding-top: 10px;
-	    border-bottom: 3px solid #efefef;
+		width: 100%;
+		padding-top: 10px;
+		border-bottom: 1px solid #efefef;
 	}
 	
 	.first_ul {
@@ -5332,6 +5475,11 @@
 	    padding: 10px;
 	}
 	
+	.td_btn {
+	width: 20% !important;
+	background-color: white !important;
+}
+	
 	.member_update_form table tr td:nth-child(1) {
 	    width: 20%;
 	    background-color: #efefef;
@@ -5369,21 +5517,35 @@
 	    justify-content: right;
 	}
 	
-	.member_update_btn_box button {
-	    padding: 5px 15px;
-	    border-radius: 10px;
-	    margin-right: 20px;
-	}
+.member_update_btn_box button {
+	padding: 5px 15px;
+	border-radius: 4px;
+	color: #777;
+	text-decoration: none;
+	box-shadow: 3px 3px 3px #eee;
+	margin-right: 20px;
+}
+
+.member_update_btn_box button:hover {
+	background-color: rgba(200, 206, 122, 0.1);
+	border: 1px solid rgba(200, 206, 122, 0.1);
+	color: #777;
+	box-shadow: 3px 3px 3px #eee;
+}
 	
 	.member_update_confirm {
-	    border: 1px solid #dcffe6;
-	    background-color: #dcffe6;
+	    border: 1px solid #E1E1E1;
+	    background-color: white;
 	}
 	
 	.member_update_cancel {
-	    border: #745b3d;
-	    background-color: #745b3d;
-	    color: #fff;
+	    border: 1px solid #E1E1E1;
+	    background-color: white;
+	}
+	
+		.member_update_leave {
+	    border: 1px solid #E1E1E1;
+	    background-color: white;
 	}
 	
 	.user_update_icon{
@@ -5416,16 +5578,23 @@
 	}
 	
 	.member_list_links button {
-		padding: 10px 20px;
 		margin-right: 15px;
-		border: none;
-		border-radius: 10px;
-		background-color: #fff;
+		width: 58px;
+		padding: 7px;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		box-shadow: 3px 3px 3px #eee;
+		background-color: white;
+		color: #777;
+		text-decoration: none;
 	}
 	
-	
-	
-	
+	.member_list_links button:hover {
+		 background-color : rgba(200, 206, 122, 0.1);
+		 border: 1px solid rgba(200, 206, 122, 0.1);
+		 color: #777;
+		 box-shadow: 3px 3px 3px #eee;
+	}
 	
 	
 	/* =================================== 나의 서재 =================================== */
@@ -5537,7 +5706,29 @@
 	    cursor: pointer;
 	}
 	
-	
+	.home_btn {
+		display: block;
+		width: 8%;
+		padding: 6px;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		box-shadow: 3px 3px 3px #eee;
+		background-color: white;
+		color: #777;
+		text-decoration: none;
+		cursor: pointer;
+		margin: 0 auto;
+		/* margin-top: 10px; 
+	 	margin-left: 50%;
+		margin-top: 0; */
+	}
+
+	.home_btn:hover {
+		background-color: rgba(200, 206, 122, 0.1);
+		border: 1px solid rgba(200, 206, 122, 0.1);
+		color: #777;
+		box-shadow: 3px 3px 3px #eee;
+	}
 	
 	
 	/* =================================== 도서 상세 보기 =================================== */
@@ -5781,7 +5972,7 @@
 	
 	.seats_section {
 	    width: 100%;
-	    border-bottom: 3px solid #ccc;
+	    border-bottom: 1px solid #ccc;
 	    padding: 15px;
 	    margin-bottom: 50px;
 	    height: 550px;
@@ -5789,8 +5980,7 @@
 	
 	.seats_box {
 	    width: 100%;
-	    border: 5px solid #a07a48;
-	    border-radius: 20px;
+/* 	    border-radius: 20px; */
 	    padding: 15px;
 	    height: 500px;
 	    background-color: #fff;
@@ -5838,21 +6028,26 @@
 	    align-items: center;
 	}
 	
-.seats_info_board {
-	width: 80%;
-	height: 150px;
-	/* background-color: rgba(244, 244, 244, 0.5); */
-	border-radius: 15px;
-	margin-bottom: 30px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background-color: rgba(200, 206, 122, 0.1);
-}
+	.seats_info_board {
+		width: 80%;
+		height: 150px;
+		border-radius: 15px;
+		margin-bottom: 30px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(200, 206, 122, 0.1);
+	}
 
-.seats_info_board h3 {
-	margin-bottom: 10px;
+	.seats_info_board h3 {
+		margin-bottom: 10px;
+	}
+	
+		.readingroom_h3 {
+	font-weight: 400;
+	font-size: 16px;
+	color: #333;
 }
 
 .seats_info_board div, .seats_info_board div table {
@@ -5904,29 +6099,33 @@
 	}
 	
 	.seats_using_list {
-	    width: 90%;
-	    height: 300px;
-	    border-radius: 10px;
-	    background-color: #fff;
+		width: 90%;
+		padding: 5px;
+		height: 300px;
+		border-radius: 10px;
+		background-color: rgba(244, 244, 244, 0.2);
+		/* 스크롤 */
+		overflow-y: auto;
+		max-height: 280px;
 	}
 	
-.seat_form input {
-	margin: 5px 10px;
-	width: 6vw;
-	height: 50px;
-	padding: 5px 20px;
-	font-size: 14px;
-	background-color: rgba(200, 206, 122, 0.1);
-	color: #754;
-	border: none;
-	cursor: pointer;
-}
-
-.seat_form input:hover {
-	border: 1px solid #754;
-	box-sizing: border-box;
-	cursor: pointer;
-}
+	.seat_form input {
+		margin: 5px 10px;
+		width: 6vw;
+		height: 50px;
+		padding: 5px 20px;
+		font-size: 14px;
+		background-color: rgba(200, 206, 122, 0.1);
+		color: #754;
+		border: none;
+		cursor: pointer;
+	}
+	
+	.seat_form input:hover {
+		border: 1px solid #754;
+		box-sizing: border-box;
+		cursor: pointer;
+	}
 	
 	form[action="/readingRoom/checkout"] input {
 	    background-color: #543;
@@ -5934,17 +6133,24 @@
 	}
 	
 	.seats_using_list table {
-	    width: 100%;
-	    text-align: center;
+		width: 100%;
+		text-align: center;
 	}
 	
 	.seats_using_list table thead th {
-	    padding: 10px;
-	    border-bottom: 1px solid #efefef;
+		padding: 10px;
+		border-bottom: 1px solid #efefef;
+		font-weight: 400;
+		font-size: 15px;
+		color: #333;
 	}
+	
 	.seats_using_list table tbody td {
-	    padding: 5px;
-	    border-bottom: 1px dotted #efefef;
+		padding: 5px;
+		border-bottom: 1px dotted #efefef;
+		font-weight: 200;
+		font-size: 15px;
+		color: #333;
 	}
 	
 	
@@ -6077,7 +6283,7 @@
 	.join_logo{
 	    width: 160px;
 	    position: absolute;
-	    left: 0;
+	    left: 40%;
 	    top: 0;
 	}
 	
@@ -6098,8 +6304,9 @@
 	    width: 100%;
 	    position: relative;
 	    display: flex;
+	    padding-right: 50px;
 	    align-items: center;
-	    justify-content: center;
+	    justify-content: flex-end;
 	}
 	
 	#top {
@@ -6611,7 +6818,8 @@
 		display: flex;
 		justify-content: space-around;
 		position: fixed;
-		z-index: 1;
+		z-index: 2;
+
 	}
 	
 	.header {
@@ -6839,17 +7047,15 @@
 	}
 	
 	.main_big_welcome {
-	    color: #fff;
-	    font-size: 3rem;
-	    line-height: 64px;
-	    text-shadow: 2px 2px 5px #aaa;
+		color: #fff;
+		font-size: 3.5rem;
+		line-height: 64px;
 	}
 	
 	.main_small_welcom {
-	    color: #fff;
-	    font-size: 1rem;
-	    line-height: 48px;
-	    text-shadow: 2px 2px 5px #aaa;
+		color: #fff;
+		font-size: 1.2rem;
+		line-height: 48px;
 	}
 	
 	/* main_timer */
@@ -6931,7 +7137,7 @@
 	    width: 40%;
 	    height: 100px;
 	    position: absolute;
-	    bottom: 100px;
+	    bottom: 50px;
 	    right: 100px;
 	}
 	
@@ -6939,13 +7145,13 @@
 	    width: 50px;
 	    width: 50px;
 	    position: absolute;
-	    top: 27.5px;
+	    top: 13px;
 	    left: 27.5px;
 	}
 	
 	.main_search_input {
 	    width: 100%;
-	    height: 100px;
+	    height: 75px;
 	    border: 3px solid #fff;
 	    border-radius: 50px;
 	    background: none;
@@ -7002,11 +7208,13 @@
 	.main_mid_small_text {
 	    font-size: 0.7rem;
 	    color: #7C9877;
+	   	font-weight: 500;
 	}
 	
 	.main_mid_big_text {
-	    font-size: 2.5rem;
+	    font-size: 2.2rem;
 	    position: relative;
+	    font-weight: 500;
 	}
 	
 	.main_mid_text_img {
@@ -7053,7 +7261,6 @@
 	
 	.main_mid_schedule:hover {
 	    width:50%;
-	    border: 5px solid #745b3d;
 	    transition: width 0.5s ease-in-out, border 0.5s ease-in-out;
 	}
 	
@@ -7064,7 +7271,7 @@
 	}
 	
 	.main_mid_schedule:hover .main_usable_time_table tbody tr td {
-	    font-size: 0.9rem;
+	    font-size: 13px;
 	    transition: font-size 0.5s ease-in-out;
 	}
 	
@@ -7074,7 +7281,7 @@
 	}
 	
 	.main_schedule_title {
-	    border-bottom: 2px solid #555;
+	    border-bottom: 1px solid #ccc;
 	    padding-bottom: 10px;
 	    padding-left: 20px;
 	    color: #6A5C40;
@@ -7101,7 +7308,13 @@
 	.main_usable_time_table thead tr th{
 	    padding-top: 15px;
 	    padding-bottom: 15px;
-	    font-size: 0.5rem;
+	    font-size: 13px;
+	    font-weight: 400;
+	    color: #333;
+	}
+	
+	.main_usable_time_table thead tr th:nth-child(2) {
+		font-size: 0.2rem;
 	}
 	
 	.main_usable_time_table tbody tr td:nth-child(1),
@@ -7109,16 +7322,18 @@
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    font-size: 0.2rem;
-	    font-weight: 500;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	.main_usable_time_table tbody tr td:nth-child(3),
 	.main_usable_time_table tbody tr td:nth-child(4){
-	    font-weight: 500;
+	    font-weight: 400;
 	    font-size: 0.2rem;
 	    text-align: center;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	.holiday_date {
@@ -7147,7 +7362,6 @@
 	
 	.main_mid_openspace:hover {
 	    width:50%;
-	    border: 5px solid #745b3d;
 	    transition: width 0.5s ease-in-out, border 0.5s ease-in-out;
 	}
 	
@@ -7157,7 +7371,7 @@
 	}
 	
 	.main_mid_openspace:hover .main_openspace_board_table tbody tr td {
-	    font-size: 0.9rem;
+	    font-size: 13px;
 	    transition: font-size 0.5s ease-in-out;
 	}
 	
@@ -7167,7 +7381,7 @@
 	}
 	
 	.main_openspace_title {
-	    border-bottom: 2px solid #555;
+	    border-bottom: 1px solid #ccc;
 	    padding-bottom: 10px;
 	    padding-left: 20px;
 	    color: #6A5C40;
@@ -7195,7 +7409,9 @@
 	.main_openspace_board_table thead tr th{
 	    padding-top: 15px;
 	    padding-bottom: 15px;
-	    font-size: 0.5rem;
+	    font-size: 13px;
+	    font-weight: 400;
+	    color: #333;
 	}
 	
 	.main_openspace_board_table tbody tr td:nth-child(1),
@@ -7203,15 +7419,18 @@
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    font-size: 0.2rem;
-	    font-weight: 500;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	.main_openspace_board_table tbody tr td:nth-child(2) {
-	    font-weight: 500;
+	    padding-top: 5px;
+	    padding-bottom: 5px;
 	    font-size: 0.2rem;
-	    text-align: center;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	/* main_mid_free */
@@ -7230,7 +7449,7 @@
 	}
 	
 	.main_free_title {
-	    border-bottom: 2px solid #555;
+	    border-bottom: 1px solid #ccc;
 	    padding-bottom: 10px;
 	    padding-left: 20px;
 	    color: #6A5C40;
@@ -7241,7 +7460,6 @@
 	
 	.main_mid_free:hover {
 	    width:50%;
-	    border: 5px solid #745b3d;
 	    transition: width 0.5s ease-in-out, border 0.5s ease-in-out;
 	}
 	
@@ -7277,7 +7495,10 @@
 	.main_free_board_table thead tr th{
 	    padding-top: 15px;
 	    padding-bottom: 15px;
-	    font-size: 0.5rem;
+	    font-size: 13px;
+	    font-weight: 400;
+	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	.main_free_board_table tbody tr td:nth-child(1),
@@ -7285,15 +7506,18 @@
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    font-size: 0.2rem;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
-	    font-weight: 500;
+	    color: #333;
 	}
 	
 	.main_free_board_table tbody tr td:nth-child(2) {
-	    font-weight: 500;
+	    padding-top: 10px;
+	    padding-bottom: 10px;
 	    font-size: 0.2rem;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
-	    text-align: center;
+	    color: #333;
 	}
 	
 	/* main_icons */
@@ -7621,7 +7845,6 @@
 	.page_title p {
 	    font-size: 2.2rem;
 	    color: #fff;
-	    text-shadow: 3px 3px 5px #555;
 	}
 	
 	
@@ -7845,14 +8068,21 @@
 	}
 	
 	.page_write_btn {
-	    border: 1px solid #cfc;
-	    border-radius: 15px 5px 15px 10px;
-	    padding: 5px;
-	    background-color: #fff;
-	    color: #543;
-	    font-size: 0.8rem;
-	    font-weight: 500;
-	    box-shadow: 1px 1px 3px #543;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		padding: 6px;
+		background-color: #fff;
+		color: #777;
+		font-size: 0.8rem;
+		box-shadow: 3px 3px 3px #eee;
+		cursor: pointer;
+	}
+	
+	.page_write_btn:hover {
+		background-color: rgba(200, 206, 122, 0.1);
+		border: 1px solid rgba(200, 206, 122, 0.1);
+		color: #777;
+		box-shadow: 3px 3px 3px #eee;
 	}
 	
 	.page_textarea_img_box {
@@ -8210,9 +8440,9 @@
 	
 	/* =================================== 이용안내 =================================== */
 	.page_menu_title {
-	    width: 100%;
-	    padding-top: 10px;
-	    border-bottom: 3px solid #efefef;
+		width: 100%;
+		padding-top: 10px;
+		border-bottom: 1px solid #efefef;
 	}
 	
 	.first_ul {
@@ -8349,6 +8579,11 @@
 	    padding: 10px;
 	}
 	
+	.td_btn {
+	width: 20% !important;
+	background-color: white !important;
+}
+	
 	.member_update_form table tr td label {
 		font-size: 0.9rem;
 	}
@@ -8391,20 +8626,36 @@
 	}
 	
 	.member_update_btn_box button {
-	    padding: 5px 15px;
-	    border-radius: 10px;
-	    margin-right: 20px;
+		padding: 5px 15px;
+		border-radius: 4px;
+		color: #777;
+		text-decoration: none;
+		box-shadow: 3px 3px 3px #eee;
+		margin-right: 20px;
 	}
 	
-	.member_update_confirm {
-	    border: 1px solid #dcffe6;
-	    background-color: #dcffe6;
+	.member_update_btn_box button:hover {
+		background-color: rgba(200, 206, 122, 0.1);
+		border: 1px solid rgba(200, 206, 122, 0.1);
+		color: #777;
+		box-shadow: 3px 3px 3px #eee;
+	}
+	
+	member_update_confirm {
+		border: 1px solid #E1E1E1;
+		background-color: white;
+
 	}
 	
 	.member_update_cancel {
-	    border: #745b3d;
-	    background-color: #745b3d;
-	    color: #fff;
+		border: 1px solid #E1E1E1;
+		background-color: white;
+	}
+
+ 
+	.member_update_leave {
+		border: 1px solid #E1E1E1;
+		background-color: white;
 	}
 	
 	.user_update_icon{
@@ -8437,11 +8688,22 @@
 	}
 	
 	.member_list_links button {
-		padding: 10px 20px;
 		margin-right: 15px;
-		border: none;
-		border-radius: 10px;
-		background-color: #fff;
+		width: 58px;
+		padding: 7px;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		box-shadow: 3px 3px 3px #eee;
+		background-color: white;
+		color: #777;
+		text-decoration: none;
+	}
+	
+	.member_list_links button:hover {
+		 background-color : rgba(200, 206, 122, 0.1);
+		 border: 1px solid rgba(200, 206, 122, 0.1);
+		 color: #777;
+		 box-shadow: 3px 3px 3px #eee;
 	}
 	
 	
@@ -8555,6 +8817,30 @@
 	    background-color: #fff;
 	    color: #753;
 	    cursor: pointer;
+	}
+	
+		.home_btn {
+		display: block;
+		width: 8%;
+		padding: 6px;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		box-shadow: 3px 3px 3px #eee;
+		background-color: white;
+		color: #777;
+		text-decoration: none;
+		cursor: pointer;
+		margin: 0 auto;
+		/* margin-top: 10px; 
+	 	margin-left: 50%;
+		margin-top: 0; */
+	}
+
+	.home_btn:hover {
+		background-color: rgba(200, 206, 122, 0.1);
+		border: 1px solid rgba(200, 206, 122, 0.1);
+		color: #777;
+		box-shadow: 3px 3px 3px #eee;
 	}
 	
 	
@@ -8801,7 +9087,7 @@
 	
 	.seats_section {
 	    width: 100%;
-	    border-bottom: 3px solid #ccc;
+	    border-bottom: 1px solid #ccc;
 	    padding: 15px;
 	    margin-bottom: 50px;
 	    height: 550px;
@@ -8809,10 +9095,9 @@
 	
 	.seats_box {
 	    width: 100%;
-	    border: 5px solid #a07a48;
-	    border-radius: 20px;
+/* 	    border-radius: 20px; */
 	    padding: 15px;
-	    height: 400px;
+	    height: 500px;
 	    background-color: #fff;
 	}
 	
@@ -8859,19 +9144,25 @@
 	}
 	
 	.seats_info_board {
-	    width: 90%;
-	    height: 150px;
-	    background-color: #efefef;
-	    border-radius: 15px;
-	    margin-bottom: 30px;
-	    display: flex;
-	    flex-direction: column;
-	    align-items: center;
-	    justify-content: center;
+		width: 80%;
+		height: 150px;
+		border-radius: 15px;
+		margin-bottom: 30px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(200, 206, 122, 0.1);
 	}
 	
 	.seats_info_board h3 {
-	    margin-bottom: 10px;
+		margin-bottom: 10px;
+	}
+	
+	.readingroom_h3 {
+		font-weight: 400;
+		font-size: 16px;
+		color: #333;
 	}
 	
 	.seats_info_board div,
@@ -8882,14 +9173,20 @@
 	    border-collapse: collapse;
 	}
 	
-	.seats_info_board div table thead tr th {
-	    border-bottom: 1px solid #ccc;
-	    padding: 3px;
-	}
-	
-	.seats_info_board div table tbody tr td {
-	    padding-top: 10px;
-	}
+.seats_info_board div table thead tr th {
+	border-bottom: 1px solid #ccc;
+	padding: 3px;
+	font-weight: 400;
+	font-size: 15px;
+	color: #333;
+}
+
+.seats_info_board div table tbody tr td {
+	padding-top: 10px;
+	font-weight: 200;
+	font-size: 15px;
+	color: #333;
+}
 	
 	.seats_using_board {
 	    width: 90%;
@@ -8912,28 +9209,32 @@
 	}
 	
 	.seats_using_list {
-	    width: 90%;
-	    height: 270px;
-	    border-radius: 10px;
-	    background-color: #fff;
-	    font-size: 0.85rem;
+		width: 90%;
+		padding: 5px;
+		height: 300px;
+		border-radius: 10px;
+		background-color: rgba(244, 244, 244, 0.2);
+		/* 스크롤 */
+		overflow-y: auto;
+		max-height: 280px;
 	}
 	
-	.seat_form input{
-	    margin: 5px 10px;
-	    width: 7vw;
-	    padding: 5px 10px;
-	    font-size: 1.3rem;
-	    background-color: #efe;
-	    color: #754;
-	    border: none;
-	    cursor: pointer;
+	.seat_form input {
+		margin: 5px 10px;
+		width: 6vw;
+		height: 50px;
+		padding: 5px 20px;
+		font-size: 14px;
+		background-color: rgba(200, 206, 122, 0.1);
+		color: #754;
+		border: none;
+		cursor: pointer;
 	}
 	
 	.seat_form input:hover {
-	    border: 3px solid #754;
-	    box-sizing: border-box;
-	    cursor: pointer;
+		border: 1px solid #754;
+		box-sizing: border-box;
+		cursor: pointer;
 	}
 	
 	form[action="/readingRoom/checkout"] input {
@@ -8942,17 +9243,24 @@
 	}
 	
 	.seats_using_list table {
-	    width: 100%;
-	    text-align: center;
+		width: 100%;
+		text-align: center;
 	}
 	
 	.seats_using_list table thead th {
-	    padding: 10px;
-	    border-bottom: 1px solid #efefef;
+		padding: 10px;
+		border-bottom: 1px solid #efefef;
+		font-weight: 400;
+		font-size: 15px;
+		color: #333;
 	}
+	
 	.seats_using_list table tbody td {
-	    padding: 5px;
-	    border-bottom: 1px dotted #efefef;
+		padding: 5px;
+		border-bottom: 1px dotted #efefef;
+		font-weight: 200;
+		font-size: 15px;
+		color: #333;
 	}
 	
 	
@@ -9084,7 +9392,7 @@
 	.join_logo{
 	    width: 160px;
 	    position: absolute;
-	    left: 0;
+	    left: 40%;
 	    top: 0;
 	}
 	
@@ -9105,8 +9413,9 @@
 	    width: 100%;
 	    position: relative;
 	    display: flex;
+	    padding-right: 50px;
 	    align-items: center;
-	    justify-content: center;
+	    justify-content: flex-end;
 	}
 	
 	#top {
@@ -9619,7 +9928,7 @@
 		display: flex;
 		justify-content: space-around;
 		position: fixed;
-		z-index: 1;
+		z-index: 2;
 	}
 	
 	.header {
@@ -9892,17 +10201,15 @@
 	}
 	
 	.main_big_welcome {
-	    color: #fff;
-	    font-size: 2rem;
-	    line-height: 64px;
-	    text-shadow: 2px 2px 5px #aaa;
+		color: #fff;
+		font-size: 2.2rem;
+		line-height: 64px;
 	}
 	
 	.main_small_welcom {
-	    color: #fff;
-	    font-size: 0.8rem;
-	    line-height: 48px;
-	    text-shadow: 2px 2px 5px #aaa;
+		color: #fff;
+		font-size: 0.9rem;
+		line-height: 48px;
 	}
 	
 	/* main_timer */
@@ -9984,21 +10291,20 @@
 	    width: 40%;
 	    height: 100px;
 	    position: absolute;
-	    bottom: 50px;
+	    bottom: 10px;
 	    right: 50px;
 	}
 	
 	.main_search_icon {
-	    width: 50px;
-	    width: 50px;
+	    width: 30px;
 	    position: absolute;
-	    top: 27.5px;
+	    top: 10px;
 	    left: 27.5px;
 	}
 	
 	.main_search_input {
 	    width: 100%;
-	    height: 100px;
+	    height: 50px;
 	    border: 3px solid #fff;
 	    border-radius: 50px;
 	    background: none;
@@ -10042,7 +10348,7 @@
 	.welcome_box_visible {
 	    opacity: 1;
 	    transform: translateY(0);
-	    transition: opacity 1s ease, transform 1s ease;
+	    transition: opacity 2s ease, transform 2s ease;
 	}
 	
 	.welcome_box_hidden {
@@ -10053,13 +10359,15 @@
 	
 	
 	.main_mid_small_text {
-	    font-size: 0.7rem;
+	    font-size: 1rem;
 	    color: #7C9877;
+	   	font-weight: 500;
 	}
 	
 	.main_mid_big_text {
-	    font-size: 1.7rem;
+	    font-size: 2.2rem;
 	    position: relative;
+	    font-weight: 500;
 	}
 	
 	.main_mid_text_img {
@@ -10080,7 +10388,7 @@
 	.board_box_visible {
 	    opacity: 1;
 	    transform: translateY(0);
-	    transition: opacity 1s ease, transform 1s ease;
+	    transition: opacity 2s ease, transform 2s ease;
 	}
 	
 	.board_box_hidden {
@@ -10118,7 +10426,7 @@
 	}
 	
 	.main_mid_schedule:hover .main_usable_time_table tbody tr td {
-	    font-size: 0.9rem;
+	    font-size: 13px;
 	    transition: font-size 0.5s ease-in-out;
 	}
 	
@@ -10128,7 +10436,7 @@
 	}
 	
 	.main_schedule_title {
-	    border-bottom: 2px solid #555;
+	    border-bottom: 1px solid #ccc;
 	    padding-bottom: 10px;
 	    padding-left: 20px;
 	    color: #6A5C40;
@@ -10155,24 +10463,28 @@
 	.main_usable_time_table thead tr th{
 	    padding-top: 10px;
 	    padding-bottom: 10px;
-	    font-size: 0.2rem;
+	    font-size: 10px;
+	    font-weight: 400;
+	    color: #333;
 	}
 	
 	.main_usable_time_table tbody tr td:nth-child(1),
 	.main_usable_time_table tbody tr td:nth-child(2) {
-	    padding-top: 8px;
-	    padding-bottom: 8px;
-	    font-size: 0.2rem;
-	    font-weight: 500;
+	    padding-top: 5px;
+	    padding-bottom: 5px;
+	    font-size: 7px;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	.main_usable_time_table tbody tr td:nth-child(3),
 	.main_usable_time_table tbody tr td:nth-child(4){
-	    font-weight: 500;
-	    font-size: 0.2rem;
+	    font-weight: 400;
+	    font-size: 7px;
 	    text-align: center;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 
 	
@@ -10203,7 +10515,7 @@
 	.main_mid_openspace:hover {
 	    width:100%;
 	    height: 300px;
-	    border: 5px solid #745b3d;
+	    /* border: 5px solid #745b3d; */
 	    transition: width 0.5s ease-in-out, height 0.5s ease-in-out, border 0.5s ease-in-out;
 	}
 	
@@ -10213,7 +10525,13 @@
 	}
 	
 	.main_mid_openspace:hover .main_openspace_board_table tbody tr td {
-	    font-size: 0.8rem;
+	    font-size: 13px;
+	    transition: font-size 0.5s ease-in-out;
+	}
+	
+	.main_mid_openspace:hover .main_openspace_board_table tbody tr td a{
+	    font-size: 13px;
+	    color: #753; 
 	    transition: font-size 0.5s ease-in-out;
 	}
 	
@@ -10223,7 +10541,7 @@
 	}
 	
 	.main_openspace_title {
-	    border-bottom: 2px solid #555;
+	    border-bottom: 1px solid #ccc;
 	    padding-bottom: 10px;
 	    padding-left: 20px;
 	    color: #6A5C40;
@@ -10251,23 +10569,36 @@
 	.main_openspace_board_table thead tr th{
 	    padding-top: 10px;
 	    padding-bottom: 10px;
-	    font-size: 0.2rem;
+	    font-size: 10px;
+	    font-weight: 400;
+	    color: #333;
 	}
 	
 	.main_openspace_board_table tbody tr td:nth-child(1),
 	.main_openspace_board_table tbody tr td:nth-child(3) {
-	    padding-top: 8px;
-	    padding-bottom: 8px;
-	    font-size: 0.2rem;
+	    padding-top: 5px;
+	    padding-bottom: 5px;
+	    font-size: 7px;
 	    font-weight: 500;
 	    transition: font-size 0.5s ease-in-out;
 	}
 	
 	.main_openspace_board_table tbody tr td:nth-child(2) {
-	    font-weight: 500;
-	    font-size: 0.2rem;
-	    text-align: center;
+	    padding-top: 5px;
+	    padding-bottom: 5px;
+	    font-size: 7px;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
+	}
+	
+	.main_openspace_board_table tbody tr td:nth-child(2) a {
+	    padding-top: 5px;
+	    padding-bottom: 5px;
+	    font-size: 10px;
+	    font-weight: 400;
+	    transition: font-size 0.5s ease-in-out;
+	    color: #753;
 	}
 	
 	/* main_mid_free */
@@ -10286,7 +10617,7 @@
 	}
 	
 	.main_free_title {
-	    border-bottom: 2px solid #555;
+	    border-bottom: 1px solid #ccc;
 	    padding-bottom: 10px;
 	    padding-left: 20px;
 	    color: #6A5C40;
@@ -10298,7 +10629,6 @@
 	.main_mid_free:hover {
 	    width:100%;
 	    height: 300px;
-	    border: 5px solid #745b3d;
 	    transition: width 0.5s ease-in-out, height 0.5s ease-in-out, border 0.5s ease-in-out;
 	}
 	
@@ -10334,23 +10664,29 @@
 	.main_free_board_table thead tr th{
 	    padding-top: 10px;
 	    padding-bottom: 10px;
-		font-size: 0.2rem;
+	    font-size: 13px;
+	    font-weight: 400;
+	    transition: font-size 0.5s ease-in-out;
+	    color: #333;
 	}
 	
 	.main_free_board_table tbody tr td:nth-child(1),
 	.main_free_board_table tbody tr td:nth-child(3) {
-	    padding-top: 8px;
-	    padding-bottom: 8px;
-	    font-size: 0.2rem;
+	    padding-top: 5px;
+	    padding-bottom: 5px;
+	    font-size: 7px;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
-	    font-weight: 500;
+	    color: #333;
 	}
 	
 	.main_free_board_table tbody tr td:nth-child(2) {
-	    font-weight: 500;
-	    font-size: 0.2rem;
+	    padding-top: 5px;
+	    padding-bottom: 5px;
+	    font-size: 7px;
+	    font-weight: 400;
 	    transition: font-size 0.5s ease-in-out;
-	    text-align: center;
+	    color: #333;
 	}
 	
 	/* main_icons */
@@ -10499,7 +10835,7 @@
 	.book_text_box_visible {
 	    opacity: 1;
 	    transform: translateY(0);
-	    transition: opacity 1s ease, transform 1s ease;
+	    transition: opacity 2s ease, transform 2s ease;
 	}
 	
 	.book_text_box_hidden {
@@ -10575,7 +10911,7 @@
 	.book1_visible {
 	    opacity: 1;
 	    transform: translateY(0);
-	    transition: opacity 1s ease, transform 1s ease;
+	    transition: opacity 1.5s ease, transform 1.5s ease;
 	}
 	.book1_hidden {
 	    opacity: 0;
@@ -10586,7 +10922,7 @@
 	.book2_visible {
 	    opacity: 1;
 	    transform: translateY(0);
-	    transition: opacity 1s ease, transform 1s ease;
+	    transition: opacity 1.5s ease, transform 1.5s ease;
 	    transition-delay: 0.4s;
 	}
 	.book2_hidden {
@@ -10600,7 +10936,7 @@
 	.book3_visible {
 	    opacity: 1;
 	    transform: translateY(0);
-	    transition: opacity 1s ease, transform 1s ease;
+	    transition: opacity 1.5s ease, transform 1.5s ease;
 	    transition-delay: 0.8s;
 	    
 	}
@@ -10615,7 +10951,7 @@
 	.book4_visible {
 	    opacity: 1;
 	    transform: translateY(0);
-	    transition: opacity 1s ease, transform 1s ease;
+	    transition: opacity 1.5s ease, transform 1.5s ease;
 	    transition-delay: 1.2s;
 	}
 	.book4_hidden {
@@ -10629,7 +10965,7 @@
 	.book5_visible {
 	    opacity: 1;
 	    transform: translateY(0);
-	    transition: opacity 1s ease, transform 1s ease;
+	    transition: opacity 1.5s ease, transform 1.5s ease;
 	    transition-delay: 1.6s;
 	}
 	.book5_hidden {
@@ -10679,7 +11015,6 @@
 	.page_title p {
 	    font-size: 2.5rem;
 	    color: #fff;
-	    text-shadow: 3px 3px 5px #555;
 	}
 	
 	
@@ -10903,14 +11238,21 @@
 	}
 	
 	.page_write_btn {
-	    border: 1px solid #cfc;
-	    border-radius: 15px 5px 15px 10px;
-	    padding: 5px;
-	    background-color: #fff;
-	    color: #543;
-	    font-size: 0.8rem;
-	    font-weight: 500;
-	    box-shadow: 1px 1px 3px #543;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		padding: 6px;
+		background-color: #fff;
+		color: #777;
+		font-size: 0.8rem;
+		box-shadow: 3px 3px 3px #eee;
+		cursor: pointer;
+	}
+	
+	.page_write_btn:hover {
+		background-color: rgba(200, 206, 122, 0.1);
+		border: 1px solid rgba(200, 206, 122, 0.1);
+		color: #777;
+		box-shadow: 3px 3px 3px #eee;
 	}
 	
 	.page_textarea_img_box {
@@ -11270,7 +11612,7 @@
 	.page_menu_title {
 	    width: 100%;
 	    padding-top: 10px;
-	    border-bottom: 3px solid #efefef;
+	    border-bottom: 1px solid #efefef;
 	}
 	
 	.first_ul {
@@ -11405,9 +11747,13 @@
 	
 	.member_update_form table tr td {
 	    border-bottom: 2px solid #ddd;
-	    font-size: 0.8rem;
 	    padding: 10px;
 	}
+	
+	.td_btn {
+	width: 20% !important;
+	background-color: white !important;
+}
 	
 	.member_update_form table tr td:nth-child(1) {
 	    width: 20%;
@@ -11447,21 +11793,35 @@
 	    justify-content: right;
 	}
 	
-	.member_update_btn_box button {
-	    padding: 5px 15px;
-	    border-radius: 10px;
-	    margin-right: 20px;
-	}
+.member_update_btn_box button {
+	padding: 5px 15px;
+	border-radius: 4px;
+	color: #777;
+	text-decoration: none;
+	box-shadow: 3px 3px 3px #eee;
+	margin-right: 20px;
+}
+
+.member_update_btn_box button:hover {
+	background-color: rgba(200, 206, 122, 0.1);
+	border: 1px solid rgba(200, 206, 122, 0.1);
+	color: #777;
+	box-shadow: 3px 3px 3px #eee;
+}
 	
 	.member_update_confirm {
-	    border: 1px solid #dcffe6;
-	    background-color: #dcffe6;
+	    border: 1px solid #E1E1E1;
+	    background-color: white;
 	}
 	
 	.member_update_cancel {
-	    border: #745b3d;
-	    background-color: #745b3d;
-	    color: #fff;
+	    border: 1px solid #E1E1E1;
+	    background-color: white;
+	}
+	
+		.member_update_leave {
+	    border: 1px solid #E1E1E1;
+	    background-color: white;
 	}
 	
 	.user_update_icon{
@@ -11494,11 +11854,22 @@
 	}
 	
 	.member_list_links button {
-		padding: 10px 20px;
 		margin-right: 15px;
-		border: none;
-		border-radius: 10px;
-		background-color: #fff;
+		width: 58px;
+		padding: 7px;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		box-shadow: 3px 3px 3px #eee;
+		background-color: white;
+		color: #777;
+		text-decoration: none;
+	}
+	
+	.member_list_links button:hover {
+		 background-color : rgba(200, 206, 122, 0.1);
+		 border: 1px solid rgba(200, 206, 122, 0.1);
+		 color: #777;
+		 box-shadow: 3px 3px 3px #eee;
 	}
 	
 	
@@ -11622,6 +11993,29 @@
 	    cursor: pointer;
 	}
 	
+		.home_btn {
+		display: block;
+		width: 8%;
+		padding: 6px;
+		border: 1px solid #E1E1E1;
+		border-radius: 4px;
+		box-shadow: 3px 3px 3px #eee;
+		background-color: white;
+		color: #777;
+		text-decoration: none;
+		cursor: pointer;
+		margin: 0 auto;
+		/* margin-top: 10px; 
+	 	margin-left: 50%;
+		margin-top: 0; */
+	}
+
+	.home_btn:hover {
+		background-color: rgba(200, 206, 122, 0.1);
+		border: 1px solid rgba(200, 206, 122, 0.1);
+		color: #777;
+		box-shadow: 3px 3px 3px #eee;
+	}
 	
 	
 	
@@ -11866,7 +12260,7 @@
 	
 	.seats_section {
 	    width: 100%;
-	    border-bottom: 3px solid #ccc;
+	    border-bottom: 1px solid #ccc;
 	    padding: 15px;
 	    margin-bottom: 50px;
 	    height: 550px;
@@ -11874,8 +12268,7 @@
 	
 	.seats_box {
 	    width: 100%;
-	    border: 5px solid #a07a48;
-	    border-radius: 20px;
+/* 	    border-radius: 20px; */
 	    padding: 15px;
 	    height: 500px;
 	    background-color: #fff;
@@ -11924,21 +12317,26 @@
 	}
 	
 	.seats_info_board {
-	width: 80%;
-	height: 150px;
-	/* background-color: rgba(244, 244, 244, 0.5); */
-	border-radius: 15px;
-	margin-bottom: 30px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background-color: rgba(200, 206, 122, 0.1);
-}
+		width: 80%;
+		height: 150px;
+		border-radius: 15px;
+		margin-bottom: 30px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(200, 206, 122, 0.1);
+	}
 
-.seats_info_board h3 {
-	margin-bottom: 10px;
-}
+	.seats_info_board h3 {
+		margin-bottom: 10px;
+	}
+	
+	.readingroom_h3 {
+		font-weight: 400;
+		font-size: 16px;
+		color: #333;
+	}
 
 .seats_info_board div, .seats_info_board div table {
 	width: 90%;

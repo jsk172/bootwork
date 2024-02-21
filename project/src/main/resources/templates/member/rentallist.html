@@ -6,28 +6,24 @@
     <title>나의 서재</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
-    <link rel="preconnect" th:href="@{https://fonts.gstatic.com}"
-          crossorigin>
-    <link
-            th:href="@{https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap}"
-            rel="stylesheet">
 </head>
 <body>
 <div th:replace="~{header::header-fragment}"></div>
+
 <div id="container">
     <section class="page">
 
         <div class="page_top">
             <div class="page_top_imgbox">
                 <div class="page_img">
-                    <img th:src="@{/images/main_library_picture1.PNG}" alt="img">
+                    <img th:src="@{/images/header-image2.jpg}" alt="img">
                 </div>
                 <div class="page_title">
                     <p>나의 서재</p>
                 </div>
             </div>
         </div>
+
 
 
         <div class="page_content_box">
@@ -40,8 +36,8 @@
                     </div>
                     <div class="nav_content_mid">
                         <div class="nav_links">
-                            <a class="nav_menu selected_menu" th:href="@{/member/rentallist}">나의 서재</a>
-                            <a class="nav_menu" th:href="@{|/member/update/${member.memberId}|}">나의 정보</a>
+                            <a class="nav_menu selected_menu" th:href="@{/member/rentallist}">내서재</a>
+                            <a class="nav_menu" th:href="@{|/member/update/${member.memberId}|}">내정보수정</a>
                         </div>
                     </div>
                 </div>
@@ -168,7 +164,7 @@
                             </div>
                         </div>
                     </div>
-                    <a th:href="@{/}"><button type="button">Home</button></a>
+                    <a th:href="@{/}"><button type="button" class="home_btn">Home</button></a>
                 </div>
             </div>
         </div>

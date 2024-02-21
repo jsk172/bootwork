@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -106,7 +107,9 @@ public class HopeBoardService {
 
 	//페이징
 	public Page<HopeBoardDTO> paging(Pageable pageable) {
-        Page<HopeBoard> hopeBoardPage = hopeBoardRepository.findAll(pageable);
+	    Pageable reversePageable = PageRequest.of(
+	            pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "hbid"));
+	        Page<HopeBoard> hopeBoardPage = hopeBoardRepository.findAll(reversePageable);
         return hopeBoardPage.map(hopeBoard -> HopeBoardDTO.toSaveDTO(hopeBoard));
     }
 

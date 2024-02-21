@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -86,8 +87,11 @@ public class NoticeBoardService {
 		
 		return noticeBoardDTOList;
 	}
+
 	//페이징
 	public Page<NoticeBoardDTO> paging(Pageable pageable) {
+        Pageable reversePageable = PageRequest.of(
+                pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "nbid"));
         Page<NoticeBoard> noticeBoardPage = noticeBoardRepository.findAll(pageable);
         return noticeBoardPage.map(noticeBoard -> NoticeBoardDTO.toSaveDTO(noticeBoard));
     }

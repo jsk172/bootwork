@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -110,7 +111,9 @@ public class FreeBoardService {
 
 	//페이징
 	public Page<FreeBoardDTO> paging(Pageable pageable) {
-        Page<FreeBoard> freeBoardPage = freeBoardRepository.findAll(pageable);
+	    Pageable reversePageable = PageRequest.of(
+	            pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "fbid"));
+        Page<FreeBoard> freeBoardPage = freeBoardRepository.findAll(reversePageable);
         return freeBoardPage.map(freeBoard -> FreeBoardDTO.toSaveDTO(freeBoard));
     }
 

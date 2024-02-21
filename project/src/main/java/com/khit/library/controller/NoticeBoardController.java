@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -79,7 +80,7 @@ public class NoticeBoardController {
     	model.addAttribute("noticeBoard", upNoticeBoard);
 		return "redirect:/notice/" + noticeBoard.getNbid();
 	}
-	
+
 	//페이징, 글 목록
     @GetMapping("/notice/pagelist")
     public String pagelist(
@@ -87,7 +88,7 @@ public class NoticeBoardController {
             @RequestParam(value = "size", defaultValue = "10") int size,
             @AuthenticationPrincipal SecurityUser principal,
             Model model) {
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
         Page<NoticeBoardDTO> noticeBoardPage = noticeBoardService.paging(pageable);
         List<NoticeBoardDTO> noticeBoardDTOList = noticeBoardService.findAll();
         model.addAttribute("noticeBoardPage", noticeBoardPage);

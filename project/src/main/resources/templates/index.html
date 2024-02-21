@@ -183,8 +183,10 @@
 					</div>
 
 					<div class="main_mid_openspace">
+
 						<p class="main_openspace_title"> 공지 사항
                             <img class="main_openspace_mark" th:src="@{/images/main_boardimg.png}" alt="">
+
 						</p>
 						<div class="main_openspace_board">
 							<table class="main_openspace_board_table">
@@ -204,7 +206,7 @@
 
 					<div class="main_mid_free">
 						<p class="main_free_title">
-							게시판 <img class="main_openspace_mark"
+							자유게시판 <img class="main_openspace_mark"
 								th:src="@{/images/main_boardimg.png}" alt="">
 						</p>
 						<div class="main_free_board">
@@ -228,33 +230,33 @@
 			<div class="main_icons">
 				<img class="icons_background" th:src="@{/images/background.jpg}">
 				<div class="main_use_info">
-					<a th:href="@{/}"> <img class="use_info_icon"
+					<a th:href="@{/board/useinfoboard}"> <img class="use_info_icon"
 						th:src="@{/images/use_info_icon.png}" alt="#">
 						<p>이용안내</p>
 					</a>
 				</div>
 				<div class="main_reading_event">
-					<a th:href="@{/}"> <img class="reading_event_icon"
+					<a th:href="@{/event/pagelist}"> <img class="reading_event_icon"
 						th:src="@{/images/event_icon.png}" alt="">
 						<p>독서 이벤트</p>
 					</a>
 				</div>
 				<div class="main_study_room">
-					<a th:href="@{/}"> <img class="study_room_icon"
+					<a th:href="@{/readingRoom/room}"> <img class="study_room_icon"
 						th:src="@{/images/study_room_icon.png}" alt="">
 						<p>자율 학습실</p>
 					</a>
 				</div>
 				<div class="main_request_book">
-					<a th:href="@{/}"> <img class="request_book_icon"
+					<a th:href="@{/wantbook/write}"> <img class="request_book_icon"
 						th:src="@{/images/request_book_icon.png}" alt="">
 						<p>희망 도서 신청</p>
 					</a>
 				</div>
 				<div class="main_my_library">
-					<a th:href="@{/}"> <img class="my_library_icon"
+					<a th:href="@{/member/rentallist}"> <img class="my_library_icon"
 						th:src="@{/images/my_library_icon.png}" alt="">
-						<p>나의 책숲</p>
+						<p>내서재</p>
 					</a>
 				</div>
 			</div>

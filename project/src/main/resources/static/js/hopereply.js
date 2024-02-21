@@ -83,24 +83,25 @@ let replyObject = {
 		
 	
 	deleteReply: function(boardId, replyId){
-		alert("댓글 삭제 요청됨");
-		
-		//let header = $("meta[name='_csrf_header']").attr('content');
-		//let token = $("meta[name='_csrf']").attr('content');
-		
-		$.ajax({
-			type: "DELETE",
-			url: "/hopereply/" + replyId,
-			//beforeSend: function(xhr) {
-			//	xhr.setRequestHeader(header, token);
-			//}
+		if(confirm("댓글을 삭제하시겠습니까?")){
 			
-		}).done((response)=>{
-			console.log(response);
-			location.href="/hopeboard/"+boardId;
-		}).fail((error)=>{
-			alert("에러 발생: "+ error)
-		})
+			//let header = $("meta[name='_csrf_header']").attr('content');
+			//let token = $("meta[name='_csrf']").attr('content');
+			
+			$.ajax({
+				type: "DELETE",
+				url: "/hopereply/" + replyId,
+				//beforeSend: function(xhr) {
+				//	xhr.setRequestHeader(header, token);
+				//}
+				
+			}).done((response)=>{
+				console.log(response);
+				location.href="/hopeboard/"+boardId;
+			}).fail((error)=>{
+				alert("에러 발생: "+ error)
+			})
+		}
 	}
 }
 

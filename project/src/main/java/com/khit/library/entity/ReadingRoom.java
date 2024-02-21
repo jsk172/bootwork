@@ -19,7 +19,7 @@ import java.sql.Timestamp;
 @Entity
 @Data
 @Table(name= "readingroom")
-//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+/*@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})*/
 public class ReadingRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,8 +63,8 @@ public class ReadingRoom {
         return readingRoom;
     }
 
-    /*@JsonIgnore*/
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn
+    @JsonIgnore
     private Member member;
 }

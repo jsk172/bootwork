@@ -61,6 +61,7 @@ public class FreeBoard extends BaseEntity {
 
 	@OneToMany(mappedBy = "freeboard", cascade = CascadeType.ALL)
 	@OrderBy("frid desc")
+    @JsonIgnore
 	private List<FreeReply> freeReplyList;
 
 	// insert
@@ -84,7 +85,7 @@ public class FreeBoard extends BaseEntity {
 	}
 
 	// 추가된 getter 및 setter
-	public Member getMember() {
+	/*public Member getMember() {
 		return member;
 	}
 
@@ -94,5 +95,5 @@ public class FreeBoard extends BaseEntity {
 
 	 public String getMid() {
 	        return member != null ? member.getMid() : null;
-	}
+	}*/
 }

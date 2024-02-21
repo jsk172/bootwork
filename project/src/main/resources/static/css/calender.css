@@ -307,6 +307,7 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     flex-direction: row-reverse;
   }
 .fc .fc-scroller {
+	
     -webkit-overflow-scrolling: touch;
     position: relative; /* for abs-positioned elements within */
   }
@@ -576,10 +577,10 @@ A HORIZONTAL event
 */
 .fc-h-event { /* allowed to be top-level */
   display: block;
-  border: 1px solid #3788d8;
-  border: 1px solid var(--fc-event-border-color, #3788d8);
-  background-color: #3788d8;
-  background-color: var(--fc-event-bg-color, #3788d8)
+  border: 1px solid ;
+  border: 1px solid var(--fc-event-border-color, rgb(247, 91, 83));
+  background-color: rgb(247, 91, 83);
+  background-color: var(--fc-event-bg-color, rgb(247, 91, 83))
 
 }
 .fc-h-event .fc-event-main {
